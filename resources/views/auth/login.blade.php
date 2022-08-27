@@ -26,10 +26,14 @@
             <div class="mt-4">
                 <x-label for="password" :value="__('Senha')" />
 
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
+                <x-input
+                    id="password"
+                    class="block mt-1 w-full"
+                    type="password"
+                    name="password"
+                    autocomplete="current-password"
+                    required
+                />
             </div>
 
             <!-- Remember Me -->
@@ -51,6 +55,42 @@
                     {{ __('Login') }}
                 </x-button>
             </div>
+
+            <button 
+                class="
+                    items-center
+                    px-4
+                    py-2
+                    bg-gray-800
+                    border
+                    border-transparent
+                    rounded-md
+                    font-semibold
+                    text-xs
+                    text-white
+                    uppercase
+                    tracking-widest
+                    hover:bg-gray-700
+                    active:bg-gray-900
+                    focus:outline-none
+                    focus:border-gray-900
+                    focus:ring
+                    ring-gray-300
+                    disabled:opacity-25
+                    transition
+                    ease-in-out
+                    duration-150
+                    mt-4
+                    d-flex
+                    justify-content-center
+                "
+                style="width: 100%;"
+                type="button"
+            >
+                <a href="{{ route('register') }}">
+                    Não tem cadastro? Registre-se
+                </a>
+            </button>
         </form>
     </x-auth-card>
 </x-guest-layout>
