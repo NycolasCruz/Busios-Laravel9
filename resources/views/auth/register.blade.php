@@ -1,8 +1,11 @@
+@extends('layouts.main')
+@section('register')
+
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+            <a href="/" class="fs-1 fw-bold text-decoration-none" style="color: #8181ff;">
+                CLINIC CONTROL
             </a>
         </x-slot>
 
@@ -58,10 +61,15 @@
                     {{ __('Já tem uma conta? Conecte-se') }}
                 </a>
 
-                <x-button class="ml-4">
+                <button
+                    class="btn text-white ms-4"
+                    style="background-color: #8181ff"
+                >
                     {{ __('Registrar') }}
-                </x-button>
+                </button>
             </div>
         </form>
     </x-auth-card>
 </x-guest-layout>
+
+{{-- @endsection --}}

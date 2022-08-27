@@ -1,8 +1,11 @@
+@extends('layouts.main')
+@section('login')
+
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+            <a href="/" class="fs-1 fw-bold" style="color: #8181ff;">
+                CLINIC CONTROL
             </a>
         </x-slot>
 
@@ -37,60 +40,42 @@
             </div>
 
             <!-- Remember Me -->
-            <div class="block mt-4">
+            <div class="d-flex justify-content-between mt-4">
                 <label for="remember_me" class="inline-flex items-center">
                     <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
                     <span class="ml-2 text-sm text-gray-600">{{ __('Lembre-me') }}</span>
                 </label>
+
+                @if (Route::has('password.request'))
+                    <div class="text-end">
+                        <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                            {{ __('Esqueceu sua senha?') }}
+                        </a>
+                    </div>
+                @endif
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Esqueceu sua senha?') }}
-                    </a>
-                @endif
-
-                <x-button class="ml-3">
-                    {{ __('Login') }}
-                </x-button>
+            <div class="flex items-center justify-end my-4">
+                <button
+                    class="btn text-white"
+                    style="background-color: #8181ff"
+                    type="button"
+                >
+                    {{ __('Entrar') }}
+                </button>
             </div>
 
             <button 
-                class="
-                    items-center
-                    px-4
-                    py-2
-                    bg-gray-800
-                    border
-                    border-transparent
-                    rounded-md
-                    font-semibold
-                    text-xs
-                    text-white
-                    uppercase
-                    tracking-widest
-                    hover:bg-gray-700
-                    active:bg-gray-900
-                    focus:outline-none
-                    focus:border-gray-900
-                    focus:ring
-                    ring-gray-300
-                    disabled:opacity-25
-                    transition
-                    ease-in-out
-                    duration-150
-                    mt-4
-                    d-flex
-                    justify-content-center
-                "
-                style="width: 100%;"
+                class="btn text-white"
+                style="width: 100%; background-color: #8181ff"
                 type="button"
             >
-                <a href="{{ route('register') }}">
+                <a href="{{ route('register') }}" class="text-white">
                     Não tem cadastro? Registre-se
                 </a>
             </button>
         </form>
     </x-auth-card>
 </x-guest-layout>
+
+@endsection
