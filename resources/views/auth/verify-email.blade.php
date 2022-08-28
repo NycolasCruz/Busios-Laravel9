@@ -5,7 +5,7 @@
     <x-auth-card>
         <x-slot name="logo">
             <a href="/" class="fs-1 fw-bold" style="color: #8181ff;">
-                CLINIC CONTROL
+                BUSIOS
             </a>
         </x-slot>
 
