@@ -1,7 +1,7 @@
 FROM php:8.1.1-fpm
 
 # Arguments
-ARG user=clinicControl
+ARG user=Busios
 ARG uid=1000
 
 # Install system dependencies
