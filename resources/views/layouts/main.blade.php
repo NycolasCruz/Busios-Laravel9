@@ -10,6 +10,9 @@
 
         {{-- favicon --}}
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+        {{-- fontawesome --}}
+        <script src="https://kit.fontawesome.com/36eec2ffe7.js" crossorigin="anonymous"></script>
     </head>
     <body>
         @yield('content')
