@@ -11,9 +11,6 @@
                     <div class="p-3">
 
                         {{-- 
-                            botão de adicionar novas lojas padrao regulação
-
-
                             nome
                             logradouro
                             telefone    
@@ -33,32 +30,448 @@
                             menu ranking de votação
                         --}}
                         
+
+                        <div class="d-flex justify-content-between align-items-center mb-5">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-cart-shopping text-primary fs-1"></i>
+                                <h1 class="ms-4 fs-1">Lojas</h2>
+                            </div>
+                            <div>
+                                <button type="button" class="btn btn-primary bg-primary">
+                                    Nova Loja
+                                </button>
+                            </div>
+                        </div>
+
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Nome</th>
-                                    <th scope="col">Proprietário</th>
-                                    <th scope="col">Ramo de Negócio</th>
+                                    <th>#</th>
+                                    <th>Nome</th>
+                                    <th>Proprietário</th>
+                                    <th>Ramo de Negócio</th>
+                                    <th class="text-end">Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
+                                <tr class="align-middle">
+                                    <td>1</td>
+                                    <td>Intimus</td>
+                                    <td>André Alves da Costa</td>
+                                    <td>Roupas</td>
+                                    <td class="text-end">
+                                        <button class="btn btn-primary" title="Ver Detalhes">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-warning ms-2 text-white" title="Editar Informações">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
+                                <tr class="align-middle">
+                                    <td>1</td>
+                                    <td>Intimus</td>
+                                    <td>André Alves da Costa</td>
+                                    <td>Roupas</td>
+                                    <td class="text-end">
+                                        <button class="btn btn-primary" title="Ver Detalhes">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-warning ms-2 text-white" title="Editar Informações">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td colspan="2">Larry the Bird</td>
-                                    <td>@twitter</td>
+                                <tr class="align-middle">
+                                    <td>1</td>
+                                    <td>Intimus</td>
+                                    <td>André Alves da Costa</td>
+                                    <td>Roupas</td>
+                                    <td class="text-end">
+                                        <button class="btn btn-primary" title="Ver Detalhes">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-warning ms-2 text-white" title="Editar Informações">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="align-middle">
+                                    <td>1</td>
+                                    <td>Intimus</td>
+                                    <td>André Alves da Costa</td>
+                                    <td>Roupas</td>
+                                    <td class="text-end">
+                                        <button class="btn btn-primary" title="Ver Detalhes">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-warning ms-2 text-white" title="Editar Informações">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="align-middle">
+                                    <td>1</td>
+                                    <td>Intimus</td>
+                                    <td>André Alves da Costa</td>
+                                    <td>Roupas</td>
+                                    <td class="text-end">
+                                        <button class="btn btn-primary" title="Ver Detalhes">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-warning ms-2 text-white" title="Editar Informações">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="align-middle">
+                                    <td>1</td>
+                                    <td>Intimus</td>
+                                    <td>André Alves da Costa</td>
+                                    <td>Roupas</td>
+                                    <td class="text-end">
+                                        <button class="btn btn-primary" title="Ver Detalhes">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-warning ms-2 text-white" title="Editar Informações">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                
+                                <tr class="align-middle">
+                                    <td>1</td>
+                                    <td>Intimus</td>
+                                    <td>André Alves da Costa</td>
+                                    <td>Roupas</td>
+                                    <td class="text-end">
+                                        <button class="btn btn-primary" title="Ver Detalhes">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-warning ms-2 text-white" title="Editar Informações">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="align-middle">
+                                    <td>1</td>
+                                    <td>Intimus</td>
+                                    <td>André Alves da Costa</td>
+                                    <td>Roupas</td>
+                                    <td class="text-end">
+                                        <button class="btn btn-primary" title="Ver Detalhes">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-warning ms-2 text-white" title="Editar Informações">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                
+                                <tr class="align-middle">
+                                    <td>1</td>
+                                    <td>Intimus</td>
+                                    <td>André Alves da Costa</td>
+                                    <td>Roupas</td>
+                                    <td class="text-end">
+                                        <button class="btn btn-primary" title="Ver Detalhes">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-warning ms-2 text-white" title="Editar Informações">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="align-middle">
+                                    <td>1</td>
+                                    <td>Intimus</td>
+                                    <td>André Alves da Costa</td>
+                                    <td>Roupas</td>
+                                    <td class="text-end">
+                                        <button class="btn btn-primary" title="Ver Detalhes">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-warning ms-2 text-white" title="Editar Informações">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="align-middle">
+                                    <td>1</td>
+                                    <td>Intimus</td>
+                                    <td>André Alves da Costa</td>
+                                    <td>Roupas</td>
+                                    <td class="text-end">
+                                        <button class="btn btn-primary" title="Ver Detalhes">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-warning ms-2 text-white" title="Editar Informações">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="align-middle">
+                                    <td>1</td>
+                                    <td>Intimus</td>
+                                    <td>André Alves da Costa</td>
+                                    <td>Roupas</td>
+                                    <td class="text-end">
+                                        <button class="btn btn-primary" title="Ver Detalhes">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-warning ms-2 text-white" title="Editar Informações">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="align-middle">
+                                    <td>1</td>
+                                    <td>Intimus</td>
+                                    <td>André Alves da Costa</td>
+                                    <td>Roupas</td>
+                                    <td class="text-end">
+                                        <button class="btn btn-primary" title="Ver Detalhes">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-warning ms-2 text-white" title="Editar Informações">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="align-middle">
+                                    <td>1</td>
+                                    <td>Intimus</td>
+                                    <td>André Alves da Costa</td>
+                                    <td>Roupas</td>
+                                    <td class="text-end">
+                                        <button class="btn btn-primary" title="Ver Detalhes">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-warning ms-2 text-white" title="Editar Informações">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </td>
+                                </tr> <tr class="align-middle">
+                                    <td>1</td>
+                                    <td>Intimus</td>
+                                    <td>André Alves da Costa</td>
+                                    <td>Roupas</td>
+                                    <td class="text-end">
+                                        <button class="btn btn-primary" title="Ver Detalhes">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-warning ms-2 text-white" title="Editar Informações">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </td>
+                                </tr> <tr class="align-middle">
+                                    <td>1</td>
+                                    <td>Intimus</td>
+                                    <td>André Alves da Costa</td>
+                                    <td>Roupas</td>
+                                    <td class="text-end">
+                                        <button class="btn btn-primary" title="Ver Detalhes">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-warning ms-2 text-white" title="Editar Informações">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </td>
+                                </tr> <tr class="align-middle">
+                                    <td>1</td>
+                                    <td>Intimus</td>
+                                    <td>André Alves da Costa</td>
+                                    <td>Roupas</td>
+                                    <td class="text-end">
+                                        <button class="btn btn-primary" title="Ver Detalhes">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-warning ms-2 text-white" title="Editar Informações">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </td>
+                                </tr> <tr class="align-middle">
+                                    <td>1</td>
+                                    <td>Intimus</td>
+                                    <td>André Alves da Costa</td>
+                                    <td>Roupas</td>
+                                    <td class="text-end">
+                                        <button class="btn btn-primary" title="Ver Detalhes">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-warning ms-2 text-white" title="Editar Informações">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </td>
+                                </tr> <tr class="align-middle">
+                                    <td>1</td>
+                                    <td>Intimus</td>
+                                    <td>André Alves da Costa</td>
+                                    <td>Roupas</td>
+                                    <td class="text-end">
+                                        <button class="btn btn-primary" title="Ver Detalhes">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-warning ms-2 text-white" title="Editar Informações">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </td>
+                                </tr> <tr class="align-middle">
+                                    <td>1</td>
+                                    <td>Intimus</td>
+                                    <td>André Alves da Costa</td>
+                                    <td>Roupas</td>
+                                    <td class="text-end">
+                                        <button class="btn btn-primary" title="Ver Detalhes">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-warning ms-2 text-white" title="Editar Informações">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </td>
+                                </tr> <tr class="align-middle">
+                                    <td>1</td>
+                                    <td>Intimus</td>
+                                    <td>André Alves da Costa</td>
+                                    <td>Roupas</td>
+                                    <td class="text-end">
+                                        <button class="btn btn-primary" title="Ver Detalhes">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-warning ms-2 text-white" title="Editar Informações">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </td>
+                                </tr> <tr class="align-middle">
+                                    <td>1</td>
+                                    <td>Intimus</td>
+                                    <td>André Alves da Costa</td>
+                                    <td>Roupas</td>
+                                    <td class="text-end">
+                                        <button class="btn btn-primary" title="Ver Detalhes">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-warning ms-2 text-white" title="Editar Informações">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </td>
+                                </tr> <tr class="align-middle">
+                                    <td>1</td>
+                                    <td>Intimus</td>
+                                    <td>André Alves da Costa</td>
+                                    <td>Roupas</td>
+                                    <td class="text-end">
+                                        <button class="btn btn-primary" title="Ver Detalhes">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-warning ms-2 text-white" title="Editar Informações">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </td>
+                                </tr> <tr class="align-middle">
+                                    <td>1</td>
+                                    <td>Intimus</td>
+                                    <td>André Alves da Costa</td>
+                                    <td>Roupas</td>
+                                    <td class="text-end">
+                                        <button class="btn btn-primary" title="Ver Detalhes">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-warning ms-2 text-white" title="Editar Informações">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </td>
+                                </tr> <tr class="align-middle">
+                                    <td>1</td>
+                                    <td>Intimus</td>
+                                    <td>André Alves da Costa</td>
+                                    <td>Roupas</td>
+                                    <td class="text-end">
+                                        <button class="btn btn-primary" title="Ver Detalhes">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-warning ms-2 text-white" title="Editar Informações">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </td>
+                                </tr> <tr class="align-middle">
+                                    <td>1</td>
+                                    <td>Intimus</td>
+                                    <td>André Alves da Costa</td>
+                                    <td>Roupas</td>
+                                    <td class="text-end">
+                                        <button class="btn btn-primary" title="Ver Detalhes">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-warning ms-2 text-white" title="Editar Informações">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </td>
+                                </tr> <tr class="align-middle">
+                                    <td>1</td>
+                                    <td>Intimus</td>
+                                    <td>André Alves da Costa</td>
+                                    <td>Roupas</td>
+                                    <td class="text-end">
+                                        <button class="btn btn-primary" title="Ver Detalhes">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-warning ms-2 text-white" title="Editar Informações">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </td>
+                                </tr> <tr class="align-middle">
+                                    <td>1</td>
+                                    <td>Intimus</td>
+                                    <td>André Alves da Costa</td>
+                                    <td>Roupas</td>
+                                    <td class="text-end">
+                                        <button class="btn btn-primary" title="Ver Detalhes">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-warning ms-2 text-white" title="Editar Informações">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </td>
+                                </tr> <tr class="align-middle">
+                                    <td>1</td>
+                                    <td>Intimus</td>
+                                    <td>André Alves da Costa</td>
+                                    <td>Roupas</td>
+                                    <td class="text-end">
+                                        <button class="btn btn-primary" title="Ver Detalhes">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-warning ms-2 text-white" title="Editar Informações">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </td>
+                                </tr> <tr class="align-middle">
+                                    <td>1</td>
+                                    <td>Intimus</td>
+                                    <td>André Alves da Costa</td>
+                                    <td>Roupas</td>
+                                    <td class="text-end">
+                                        <button class="btn btn-primary" title="Ver Detalhes">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-warning ms-2 text-white" title="Editar Informações">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </td>
+                                </tr> <tr class="align-middle">
+                                    <td>1</td>
+                                    <td>Intimus</td>
+                                    <td>André Alves da Costa</td>
+                                    <td>Roupas</td>
+                                    <td class="text-end">
+                                        <button class="btn btn-primary" title="Ver Detalhes">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-warning ms-2 text-white" title="Editar Informações">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
