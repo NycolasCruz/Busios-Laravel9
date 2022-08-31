@@ -1,6 +1,6 @@
 <nav
     x-data="{ open: false }"
-    class="bg-white border-b border-gray-100"
+    class="bg-white border-b border-gray-100 position-fixed w-100"
     style="box-shadow: 0px -15px 20px black;"
 >
     <!-- Primary Navigation Menu -->
