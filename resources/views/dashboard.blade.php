@@ -85,7 +85,7 @@
             <div class="modal-header">
                 <h5 class="modal-title fs-5" id="exampleModalLabel">Cadastrar Loja</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                    <i class="fa-solid fa-xmark"></i>
+                    <i class="fa-solid fa-x"></i>
                 </button>
             </div>
             <div class="modal-body">
