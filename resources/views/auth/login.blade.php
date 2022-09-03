@@ -20,14 +20,34 @@
 
             <!-- Email Address -->
             <div>
-                <x-label for="email" :value="__('Email')" />
+                <label class="form-label fw-bolder text-dark fs-6 mb-0">Email</label>
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                <x-input
+                    id="email"
+                    class="block mt-1 w-full"
+                    type="email"
+                    name="email"
+                    :value="old('email')"
+                    required
+                    autofocus
+                />
             </div>
 
             <!-- Password -->
             <div class="mt-4">
-                <x-label for="password" :value="__('Senha')" />
+                <div class="d-flex justify-content-between mb-2">
+                    <label class="form-label fw-bolder text-dark fs-6 mb-0">Senha</label>
+
+                    {{-- @if (Route::has('password.request'))
+                        <a
+                            class="fs-6 fw-bolder"
+                            href="{{ route('password.request') }}"
+                            style="color: #8181ff;"
+                        >
+                            Esqueceu sua senha?
+                        </a>
+                    @endif --}}
+                </div>
 
                 <x-input
                     id="password"
@@ -39,41 +59,31 @@
                 />
             </div>
 
-            <!-- Remember Me -->
-            <div class="d-flex justify-content-between mt-4">
-                <label for="remember_me" class="inline-flex items-center">
-                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Lembre-me') }}</span>
-                </label>
-
-                @if (Route::has('password.request'))
-                    <div class="text-end">
-                        <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                            {{ __('Esqueceu sua senha?') }}
-                        </a>
-                    </div>
-                @endif
-            </div>
-
             <div class="flex items-center justify-end my-4">
-                <button
-                    class="btn text-white"
-                    style="background-color: #8181ff"
-                    type="button"
-                >
-                    {{ __('Entrar') }}
-                </button>
-            </div>
-
-            <button 
+            <x-button
                 class="btn text-white"
-                style="width: 100%; background-color: #8181ff"
-                type="button"
+                style="
+                    background-color: #8181ff;
+                    width: 100%;
+                    justify-content: center;
+                    padding: 1rem !important;
+                    font-size: 13px;
+                "
             >
-                <a href="{{ route('register') }}" class="text-white">
+                {{ __('Entrar') }}
+            </x-button>
+        </div>
+
+
+            <div class="text-end">
+                <a
+                    class="fs-6 fw-bolder"
+                    href="{{ route('register') }}"
+                    style="color: #8181ff;"
+                >
                     Não tem cadastro? Registre-se
                 </a>
-            </button>
+            </div>
         </form>
     </x-auth-card>
 </x-guest-layout>
