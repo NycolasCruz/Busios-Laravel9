@@ -97,6 +97,7 @@
                             class="form-control"
                             placeholder="Nome da Loja"
                             autocomplete="none"
+                            required
                         >
                     </div>
                     <div class="col-6">
@@ -105,6 +106,16 @@
                             type="text"
                             class="form-control"
                             placeholder="Ramo"
+                            autocomplete="none"
+                            required
+                        >
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label mt-1">Descrição</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Descrição"
                             autocomplete="none"
                         >
                     </div>
@@ -115,6 +126,7 @@
                             class="form-control"
                             placeholder="Telefone"
                             autocomplete="none"
+                            required
                         >
                     </div>
                     <div class="col-6">
@@ -124,6 +136,7 @@
                             class="form-control"
                             placeholder="Cpf do Proprietário"
                             autocomplete="none"
+                            required
                         >
                     </div>
                     <div class="col-12">
@@ -133,6 +146,7 @@
                             class="form-control"
                             placeholder="Logradouro"
                             autocomplete="none"
+                            required
                         >
                     </div>
                 </div>
