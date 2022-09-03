@@ -13,9 +13,12 @@
 
         {{-- fontawesome --}}
         <script src="https://kit.fontawesome.com/36eec2ffe7.js" crossorigin="anonymous"></script>
+
+        {{-- css --}}
+        <link rel="stylesheet" href="/css/styles.css">
     </head>
     <body>
-        @yield('content')
+        @yield('dashboard')
         @yield('confirm-password')
         @yield('forgot-password')
         @yield('login')
