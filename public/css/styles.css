@@ -1,0 +1,29 @@
+.text-primary {
+    color: #009ef7 !important;
+}
+.bg-primary {
+    background-color: #009ef7 !important;
+    border-color: #009ef7 !important;
+}
+
+.bg-warning {
+    background-color: #ffbc34 !important;
+    border-color: #ffbc34 !important;
+}
+
+.bg-light {
+    background-color: #f8f9fa !important;
+    border-color: #f8f9fa !important;
+}
+.form-control {
+    height: 2.75rem !important;
+    display: block !important;
+    width: 100% !important;
+    padding: .75rem 1rem !important;
+    border: 1px solid #e4e6ef !important;
+    border-radius: .475rem !important;
+    box-shadow: inset 0 0 0 black !important;
+}
+.btn {
+    height: 2.6rem !important;
+}
