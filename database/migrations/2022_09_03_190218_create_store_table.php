@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('name', 100);
             $table->string('branch', 100);
             $table->text('description')->nullable();
-            $table->integer('cpf');
-            $table->integer('number');
+            $table->text('cpf');
+            $table->text('number');
             $table->timestamps();
         });
     }
