@@ -11,11 +11,17 @@
         {{-- favicon --}}
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
+        {{-- css --}}
+        <link rel="stylesheet" href="/css/styles.css">
+
         {{-- fontawesome --}}
         <script src="https://kit.fontawesome.com/36eec2ffe7.js" crossorigin="anonymous"></script>
 
-        {{-- css --}}
-        <link rel="stylesheet" href="/css/styles.css">
+        {{-- axios --}}
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+        {{-- sweet alert --}}
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </head>
     <body>
         @yield('dashboard')
