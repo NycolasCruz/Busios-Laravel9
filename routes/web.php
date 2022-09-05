@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StoreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +19,9 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [StoreController::class, 'index'])->name('dashboard.get');
+    Route::post('/dashboard', [StoreController::class, 'store'])->name('dashboard.post');
+    Route::get('/dashboard/getAxios', [StoreController::class, 'getAxios'])->name('dashboard.getAxios');
 });
 
 require __DIR__.'/auth.php';
