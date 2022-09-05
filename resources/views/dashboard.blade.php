@@ -56,10 +56,10 @@
                             </thead>
                             <tbody>
                                 <tr class="align-middle">
-                                    <td>1</td>
-                                    <td>Intimus</td>
-                                    <td>André Alves da Costa</td>
-                                    <td>Roupas</td>
+                                    <td>a</td>
+                                    <td>e</td>
+                                    <td>f</td>
+                                    <td>b</td>
                                     <td class="text-end">
                                         <button class="btn bg-primary text-white" title="Ver Detalhes">
                                             <i class="fas fa-eye"></i>
@@ -89,74 +89,127 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="row">
-                    <div class="col-6">
-                        <label class="form-label mt-1">Nome da Loja</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            placeholder="Nome da Loja"
-                            autocomplete="none"
-                            required
-                        >
+                <form id="register-form">
+                    @csrf
+                    <div class="row">
+                        <div class="col-6">
+                            <label class="form-label mt-1">Nome da Loja</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Nome da Loja"
+                                autocomplete="none"
+                                required
+                            >
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label mt-1">Ramo</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Ramo"
+                                autocomplete="none"
+                                required
+                            >
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label mt-1">Descrição</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Descrição"
+                                autocomplete="none"
+                            >
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label mt-1">Telefone</label>
+                            <input
+                                type="number"
+                                class="form-control"
+                                placeholder="Telefone"
+                                autocomplete="none"
+                                required
+                            >
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label mt-1">Cpf do Proprietário</label>
+                            <input
+                                type="number"
+                                class="form-control"
+                                placeholder="Cpf do Proprietário"
+                                autocomplete="none"
+                                required
+                            >
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label mt-1">Logradouro</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Logradouro"
+                                autocomplete="none"
+                                required
+                            >
+                        </div>
                     </div>
-                    <div class="col-6">
-                        <label class="form-label mt-1">Ramo</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            placeholder="Ramo"
-                            autocomplete="none"
-                            required
-                        >
-                    </div>
-                    <div class="col-12">
-                        <label class="form-label mt-1">Descrição</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            placeholder="Descrição"
-                            autocomplete="none"
-                        >
-                    </div>
-                    <div class="col-6">
-                        <label class="form-label mt-1">Telefone</label>
-                        <input
-                            type="number"
-                            class="form-control"
-                            placeholder="Telefone"
-                            autocomplete="none"
-                            required
-                        >
-                    </div>
-                    <div class="col-6">
-                        <label class="form-label mt-1">Cpf do Proprietário</label>
-                        <input
-                            type="number"
-                            class="form-control"
-                            placeholder="Cpf do Proprietário"
-                            autocomplete="none"
-                            required
-                        >
-                    </div>
-                    <div class="col-12">
-                        <label class="form-label mt-1">Logradouro</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            placeholder="Logradouro"
-                            autocomplete="none"
-                            required
-                        >
-                    </div>
-                </div>
+                </form>
             </div>
             <div class="modal-footer d-flex justify-content-center">
                 <button type="button" class="btn bg-light text-gray-500" data-bs-dismiss="modal">Fechar</button>
-                <button type="button" class="btn bg-primary text-white">Salvar</button>
+                <button type="submit" class="btn bg-primary text-white" form="register-form">Salvar</button>
             </div>
         </div>
     </div>
 </div>
 
+<script>
+    axios.get('/dashboard/getAxios').then(response => {
+        const data = response;
+        console.log(data);
+    })
+
+
+    // register form
+    document.querySelector('#register-form').addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const inputData = Array.from(event.target.querySelectorAll('div.row div input'));
+
+        Swal.fire({
+            icon: 'info',
+            title: 'Aguarde um pouco..',
+            showConfirmButton: false,
+            timer: 1500
+        });
+
+        try {
+            const response = await axios.post('/dashboard', {
+                name: inputData[0].value,
+                branch: inputData[1].value,
+                description: inputData[2].value,
+                cpf: inputData[3].value,
+                number: inputData[4].value,
+                place: inputData[5].value
+            });
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Loja cadastrada com sucesso!',
+                showConfirmButton: false,
+                timer: 1500
+            });
+
+            // function
+        } catch (error) {
+            console.error(error);
+
+            Swal.fire({
+                icon: 'error',
+                title: 'Aguarde um pouco..',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+    });
+
+</script>
 @endsection
