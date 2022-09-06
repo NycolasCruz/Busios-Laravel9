@@ -22,6 +22,12 @@
 
         {{-- sweet alert --}}
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        {{-- jquery --}}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+            
+        {{-- jquery mask --}}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     </head>
     <body>
         @yield('dashboard')

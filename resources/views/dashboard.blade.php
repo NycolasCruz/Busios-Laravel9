@@ -54,21 +54,8 @@
                                     <th class="text-end">Ações</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr class="align-middle">
-                                    <td>a</td>
-                                    <td>e</td>
-                                    <td>f</td>
-                                    <td>b</td>
-                                    <td class="text-end">
-                                        <button class="btn bg-primary text-white" title="Ver Detalhes">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                        <button class="btn bg-warning ms-2 text-white" title="Editar Informações">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                    </td>
-                                </tr>              
+                            <tbody id="tbody">
+          
                             </tbody>
                         </table>
                     </div>  
@@ -163,11 +150,30 @@
 </div>
 
 <script>
-    axios.get('/dashboard/getAxios').then(response => {
-        const data = response;
-        console.log(data);
-    })
+    async function showStores() {
+        const response = await axios.get('/dashboard/getAxios');
 
+        response.data.forEach(dataStore => {
+            document.querySelector('#tbody').innerHTML += `
+                <tr class="align-middle">
+                    <td>${dataStore.id}</td>
+                    <td>${dataStore.name}</td>
+                    <td>Proprietário</td>
+                    <td>${dataStore.branch}</td>
+                    <td class="text-end">
+                        <button class="btn bg-primary text-white" title="Ver Detalhes">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <button class="btn bg-warning ms-2 text-white" title="Editar Informações">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </td>
+                </tr>    
+            `
+        });
+    }
+
+    showStores()
 
     // register form
     document.querySelector('#register-form').addEventListener('submit', async (event) => {
@@ -198,7 +204,11 @@
                 timer: 1500
             });
 
-            // function
+            $('#register-modal').modal('hide');
+            inputData.forEach(input => input.value = '');
+
+            document.querySelector('#tbody').innerHTML = '';
+            showStores();
         } catch (error) {
             console.error(error);
 
