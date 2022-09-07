@@ -55,9 +55,14 @@
                                 </tr>
                             </thead>
                             <tbody id="tbody">
-          
+
                             </tbody>
                         </table>
+                        <div class="d-flex justify-content-center">
+                            <div id="loader" class="spinner-border text-primary" role="status" hidden>
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
                     </div>  
                 </div>
             </div>
@@ -100,7 +105,7 @@
                             >
                         </div>
                         <div class="col-12">
-                            <label class="form-label mt-1">Descrição</label>
+                            <label class="form-label mt-1">Descrição (opcional)</label>
                             <input
                                 type="text"
                                 class="form-control"
@@ -128,7 +133,7 @@
                                 required
                             >
                         </div>
-                        <div class="col-12">
+                        <div class="col-7">
                             <label class="form-label mt-1">Logradouro</label>
                             <input
                                 type="text"
@@ -137,6 +142,45 @@
                                 autocomplete="none"
                                 required
                             >
+                        </div>
+                        <div class="col-5">
+                            <label class="form-label mt-1">Qual a renda mensal da loja?</label>
+                            <select class="form-select" required>
+                                <option value="" selected disabled>Qual a renda mensal da loja?</option>
+                                <option value="1">Menos que 10.000</option>
+                                <option value="2">Entre 10.000 e 50.000</option>
+                                <option value="3">Mais que 50.000</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="row my-3">
+                        <div class="col-6 d-flex">
+                            <input class="form-check-input me-2" value="1" type="checkbox" id="check-1">
+                            <label class="form-check-label" for="check-1">
+                                Possui mais de 10 funcionários?
+                            </label>
+                        </div>
+                        <div class="col-6 d-flex">
+                            <input class="form-check-input me-2" value="2" type="checkbox" id="check-2">
+                            <label class="form-check-label" for="check-2">
+                                Possuis filiais?
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="row my-3">
+                        <div class="col-6 d-flex">
+                            <input class="form-check-input me-2" value="3" type="checkbox" id="check-3">
+                            <label class="form-check-label" for="check-3">
+                                Possui loja física e virtual?
+                            </label>
+                        </div>
+                        <div class="col-6 d-flex">
+                            <input class="form-check-input me-2" value="4" type="checkbox" id="check-4">
+                            <label class="form-check-label" for="check-4">
+                                Faz entregas à domicílio?
+                            </label>
                         </div>
                     </div>
                 </form>
@@ -151,12 +195,18 @@
 
 <script>
     async function showStores() {
+        const loader = document.querySelector('#loader');
+        loader.removeAttribute('hidden');
+
         const response = await axios.get('/dashboard/getAxios');
 
-        response.data.forEach(dataStore => {
+        loader.setAttribute('hidden', true);
+
+        response.data.map((dataStore, i) => {
+            console.log(dataStore);
             document.querySelector('#tbody').innerHTML += `
                 <tr class="align-middle">
-                    <td>${dataStore.id}</td>
+                    <td>${i + 1}</td>
                     <td>${dataStore.name}</td>
                     <td>Proprietário</td>
                     <td>${dataStore.branch}</td>
@@ -180,12 +230,12 @@
         event.preventDefault();
         const inputData = Array.from(event.target.querySelectorAll('div.row div input'));
 
-        Swal.fire({
+        Toast.fire({
             icon: 'info',
-            title: 'Aguarde um pouco..',
-            showConfirmButton: false,
-            timer: 1500
-        });
+            title: 'Aguarde um pouco..'
+        })
+
+        $('#register-modal').modal('hide');
 
         try {
             const response = await axios.post('/dashboard', {
@@ -197,27 +247,21 @@
                 place: inputData[5].value
             });
 
-            Swal.fire({
+            Toast.fire({
                 icon: 'success',
-                title: 'Loja cadastrada com sucesso!',
-                showConfirmButton: false,
-                timer: 1500
-            });
+                title: 'Loja cadastrada com sucesso!'
+            })
 
-            $('#register-modal').modal('hide');
             inputData.forEach(input => input.value = '');
-
             document.querySelector('#tbody').innerHTML = '';
             showStores();
         } catch (error) {
             console.error(error);
 
-            Swal.fire({
+            Toast.fire({
                 icon: 'error',
-                title: 'Aguarde um pouco..',
-                showConfirmButton: false,
-                timer: 1500
-            });
+                title: 'Erro ao cadastrar a loja'
+            })
         }
     });
 
