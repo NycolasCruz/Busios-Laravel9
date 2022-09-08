@@ -21,7 +21,7 @@ Route::get('/', function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [StoreController::class, 'index'])->name('dashboard.get');
     Route::post('/dashboard', [StoreController::class, 'store'])->name('dashboard.post');
-    Route::get('/dashboard/getAxios', [StoreController::class, 'getAxios'])->name('dashboard.getAxios');
+    Route::get('/dashboard/getAllData', [StoreController::class, 'getAllData'])->name('dashboard.getAllData');
 });
 
 require __DIR__.'/auth.php';
