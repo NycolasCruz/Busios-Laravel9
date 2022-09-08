@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreRequest;
 use App\Models\Store;
 
 class StoreController extends Controller
@@ -12,12 +12,14 @@ class StoreController extends Controller
         return view('dashboard');
     }
 
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        return Store::create($request->all());
+        $allData = $request->validated();
+
+        return Store::create($allData);
     }
 
-    public function getAxios()
+    public function getAllData()
     {
         return Store::all();
     }
