@@ -145,7 +145,7 @@
                         </div>
                         <div class="col-5">
                             <label class="form-label mt-1">Qual a renda mensal da loja?</label>
-                            <select class="form-select" required>
+                            <select id="income" class="form-select" required>
                                 <option value="" selected disabled>Qual a renda mensal da loja?</option>
                                 <option value="1">Menos que 10.000</option>
                                 <option value="2">Entre 10.000 e 50.000</option>
@@ -156,28 +156,52 @@
                     
                     <div class="row my-3">
                         <div class="col-6 d-flex">
-                            <input class="form-check-input me-2" value="1" type="checkbox" id="check-1">
+                            <input
+                                type="checkbox"
+                                id="check-1"
+                                class="form-check-input me-2 check-extras"
+                                value="Possui mais de 10 funcionários"
+                                name="items[]"
+                            >
                             <label class="form-check-label" for="check-1">
                                 Possui mais de 10 funcionários?
                             </label>
                         </div>
                         <div class="col-6 d-flex">
-                            <input class="form-check-input me-2" value="2" type="checkbox" id="check-2">
+                            <input
+                                type="checkbox"
+                                id="check-2"
+                                class="form-check-input me-2 check-extras"
+                                value="Possui filiais"
+                                name="items[]"
+                            >
                             <label class="form-check-label" for="check-2">
-                                Possuis filiais?
+                                Possui filiais?
                             </label>
                         </div>
                     </div>
 
                     <div class="row my-3">
                         <div class="col-6 d-flex">
-                            <input class="form-check-input me-2" value="3" type="checkbox" id="check-3">
+                            <input
+                                type="checkbox"
+                                id="check-3"
+                                class="form-check-input me-2 check-extras"
+                                value="Possui loja física e virtual"
+                                name="items[]"
+                            >
                             <label class="form-check-label" for="check-3">
                                 Possui loja física e virtual?
                             </label>
                         </div>
                         <div class="col-6 d-flex">
-                            <input class="form-check-input me-2" value="4" type="checkbox" id="check-4">
+                            <input
+                                type="checkbox"
+                                id="check-4"
+                                class="form-check-input me-2 check-extras"
+                                value="Faz entregas à domicílio"
+                                name="items[]"
+                            >
                             <label class="form-check-label" for="check-4">
                                 Faz entregas à domicílio?
                             </label>
@@ -198,12 +222,11 @@
         const loader = document.querySelector('#loader');
         loader.removeAttribute('hidden');
 
-        const response = await axios.get('/dashboard/getAxios');
+        const response = await axios.get('/dashboard/getAllData');
 
         loader.setAttribute('hidden', true);
 
         response.data.map((dataStore, i) => {
-            console.log(dataStore);
             document.querySelector('#tbody').innerHTML += `
                 <tr class="align-middle">
                     <td>${i + 1}</td>
@@ -225,10 +248,17 @@
 
     showStores()
 
+    let arrayExtras = [];
+
     // register form
     document.querySelector('#register-form').addEventListener('submit', async (event) => {
         event.preventDefault();
         const inputData = Array.from(event.target.querySelectorAll('div.row div input'));
+        const incomeValue = document.querySelector('#income').value;
+        const checkboxes = Array.from(event.target.querySelectorAll('input.check-extras'));
+
+        const checkboxesChecked = checkboxes.filter((checkbox) => checkbox.checked);
+        checkboxesChecked.forEach(checkbox=> arrayExtras.push(checkbox.value));
 
         Toast.fire({
             icon: 'info',
@@ -242,9 +272,11 @@
                 name: inputData[0].value,
                 branch: inputData[1].value,
                 description: inputData[2].value,
-                cpf: inputData[3].value,
-                number: inputData[4].value,
-                place: inputData[5].value
+                number: inputData[3].value,
+                cpf: inputData[4].value,
+                place: inputData[5].value,
+                income: incomeValue,
+                extras: arrayExtras
             });
 
             Toast.fire({
@@ -254,6 +286,7 @@
 
             inputData.forEach(input => input.value = '');
             document.querySelector('#tbody').innerHTML = '';
+            arrayExtras = [''];
             showStores();
         } catch (error) {
             console.error(error);
