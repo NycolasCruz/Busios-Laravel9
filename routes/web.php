@@ -19,9 +19,10 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [StoreController::class, 'index'])->name('dashboard.get');
-    Route::post('/dashboard', [StoreController::class, 'store'])->name('dashboard.post');
+    Route::get('/dashboard', [StoreController::class, 'index'])->name('dashboard.index');
+    Route::post('/dashboard', [StoreController::class, 'store'])->name('dashboard.store');
     Route::get('/dashboard/getAllData', [StoreController::class, 'getAllData'])->name('dashboard.getAllData');
+    Route::get('/dashboard/show/{id}', [StoreController::class, 'show'])->name('dashboard.show');
 });
 
 require __DIR__.'/auth.php';
