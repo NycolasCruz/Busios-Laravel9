@@ -23,4 +23,11 @@ class StoreController extends Controller
     {
         return Store::all();
     }
+
+    public function show($id)
+    {
+        $data = Store::findOrFail($id);
+
+        return $data;
+    }
 }
