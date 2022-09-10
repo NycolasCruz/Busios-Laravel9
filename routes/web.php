@@ -23,6 +23,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/dashboard', [StoreController::class, 'store'])->name('dashboard.store');
     Route::get('/dashboard/getAllData', [StoreController::class, 'getAllData'])->name('dashboard.getAllData');
     Route::get('/dashboard/show/{id}', [StoreController::class, 'show'])->name('dashboard.show');
+    Route::put('/dashboard/update/{id}', [StoreController::class, 'update'])->name('dashboard.update');
 });
 
 require __DIR__.'/auth.php';

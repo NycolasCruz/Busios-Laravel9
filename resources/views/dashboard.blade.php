@@ -9,22 +9,10 @@
                     <div class="p-3">
 
                         {{-- 
-                            register view
-                            nome
-                            logradouro
-                            telefone
-                            ramo
-                            cpf válido
-                            checkbox em json
-                            select => micro media ou grande empresa(sepearar por cores na tabela)
-                            só o user pode editar sua loja, mas eu posso votar na loja do outro
 
-                            show view    
-                            email do proprietário = auth email
-                            proprietário = auth user
+                            select (sepearar por cores na tabela)
 
                             menu minha loja
-                            menu ranking de votação
                         --}}
 
                         <div class="d-flex justify-content-between align-items-center mb-5">
@@ -245,6 +233,160 @@
         </div>
     </div>
 </div>
+
+{{-- edit modal --}}
+<div class="modal fade" id="edit-modal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fs-5" id="exampleModalLabel">Editar Loja</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="fa-solid fa-x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="edit-form">
+                    <div class="row">
+                        <div class="col-6">
+                            <label class="form-label mt-1">Nome da Loja</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Nome da Loja"
+                                autocomplete="none"
+                                required
+                            >
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label mt-1">Ramo</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Ramo"
+                                autocomplete="none"
+                                required
+                            >
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label mt-1">Descrição (opcional)</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Descrição"
+                                autocomplete="none"
+                            >
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label mt-1">Telefone</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Telefone"
+                                autocomplete="none"
+                                required
+                            >
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label mt-1">Cpf do Proprietário</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Cpf do Proprietário"
+                                autocomplete="none"
+                                required
+                            >
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label mt-1">Logradouro</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Logradouro"
+                                autocomplete="none"
+                                required
+                            >
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label mt-1">Qual a renda mensal da loja?</label>
+                            <select id="edit-income" class="form-select" required>
+                                <option value="" selected disabled>Qual a renda mensal da loja?</option>
+                                <option value="1">Menos que 10.000</option>
+                                <option value="2">Entre 10.000 e 50.000</option>
+                                <option value="3">Mais que 50.000</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="row my-3">
+                        <div class="col-6 d-flex">
+                            <input
+                                type="checkbox"
+                                id="check-1"
+                                class="form-check-input me-2 edit-check-extras"
+                                value="Possui mais de 10 funcionários"
+                                name="editItems[]"
+                            >
+                            <label class="form-check-label" for="check-1">
+                                Possui mais de 10 funcionários
+                            </label>
+                        </div>
+                        <div class="col-6 d-flex">
+                            <input
+                                type="checkbox"
+                                id="check-2"
+                                class="form-check-input me-2 edit-check-extras"
+                                value="Possui filiais"
+                                name="editItems[]"
+                            >
+                            <label class="form-check-label" for="check-2">
+                                Possui filiais
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="row my-3">
+                        <div class="col-6 d-flex">
+                            <input
+                                type="checkbox"
+                                id="check-3"
+                                class="form-check-input me-2 edit-check-extras"
+                                value="Possui loja física e virtual"
+                                name="editItems[]"
+                            >
+                            <label class="form-check-label" for="check-3">
+                                Possui loja física e virtual
+                            </label>
+                        </div>
+                        <div class="col-6 d-flex">
+                            <input
+                                type="checkbox"
+                                id="check-4"
+                                class="form-check-input me-2 edit-check-extras"
+                                value="Faz entregas à domicílio"
+                                name="editItems[]"
+                            >
+                            <label class="form-check-label" for="check-4">
+                                Faz entregas à domicílio
+                            </label>
+                        </div>
+                    </div>
+                `
+                </form>
+
+                {{-- loader --}}
+                <div class="d-flex justify-content-center">
+                    <div id="loader-edit" class="spinner-border text-primary" role="status" hidden>
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button type="button" class="btn bg-light text-gray-500" data-bs-dismiss="modal">Fechar</button>
+                <button type="submit" class="btn bg-primary text-white" form="edit-form">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('js')
@@ -279,7 +421,7 @@
                             class="btn bg-warning ms-2 text-white edit-button"
                             title="Editar Informações"
                             data-bs-toggle="modal"
-                            data-bs-target="#show-modal"
+                            data-bs-target="#edit-modal"
                             data-id="${dataStore.id}"
                         >
                             <i class="fas fa-edit"></i>
@@ -290,6 +432,7 @@
         });
 
         getSpecificStore();
+        getDataToEditStore();
     }
 
     showStores()
@@ -299,11 +442,10 @@
         event.preventDefault();
         const inputData = Array.from(event.target.querySelectorAll('div.row div input[type="text"]'));
         const incomeValue = document.querySelector('#income').value;
-        const checkboxes = Array.from(event.target.querySelectorAll('input.check-extras'));
 
+        const checkboxes = Array.from(event.target.querySelectorAll('input.check-extras'));
         const checkboxesChecked = checkboxes.filter((checkbox) => checkbox.checked);
         const checkboxesValues = checkboxesChecked.map(checkbox => checkbox.value);
-        console.log(checkboxesValues);
 
         Toast.fire({
             icon: 'info',
@@ -342,22 +484,36 @@
         }
     });
 
+    let id = 0;
+
     // get specific store
     function getSpecificStore() {
         document.querySelectorAll('.show-button').forEach(button => {
             button.addEventListener('click', async (event) => {
-                const showLoader = document.querySelector('#loader-show');
+                const loader = document.querySelector('#loader-show');
                 const button = event.relatedTarget;
-                const id = event.currentTarget.dataset.id;
+                id = event.currentTarget.dataset.id;
                 
-                showLoader.removeAttribute('hidden');
+                loader.removeAttribute('hidden');
                 document.querySelector('#show-modal-body').innerHTML = '';
 
                 const response = await axios.get('{{ route('dashboard.show', ':id') }}'.replace(':id', id));
 
-                showLoader.setAttribute('hidden', true);
+                loader.setAttribute('hidden', true);
 
                 document.querySelector('#show-modal-body').innerHTML = `
+                    <p class="text-gray-700 fw-bold fs-6 mb-3">
+                        Proprietário:
+                        <span class="fw-normal">
+                            teste
+                        </span>
+                    </p>
+                    <p class="text-gray-700 fw-bold fs-6 mb-3">
+                        Email do proprietário:
+                        <span class="fw-normal">
+                            teste
+                        </span>
+                    </p>
                     <p class="text-gray-700 fw-bold fs-6 mb-3">
                         Nome da loja:
                         <span class="fw-normal">
@@ -411,5 +567,52 @@
             })
         })
     }
+
+    function getDataToEditStore() {
+        document.querySelectorAll('.edit-button').forEach(button => {
+            button.addEventListener('click', async (event) => {
+                const loader = document.querySelector('#loader-edit');
+                const button = event.relatedTarget;
+                id = event.currentTarget.dataset.id;
+                
+                loader.removeAttribute('hidden');
+
+                // const response = await axios.get('{{ route('dashboard.show', ':id') }}'.replace(':id', id));
+
+                loader.setAttribute('hidden', true);
+            })
+        })
+    }
+
+    // edit store
+    document.querySelector('#edit-form').addEventListener('submit', async (event) => {
+        event.preventDefault();
+alert(1)
+        const inputData = Array.from(event.target.querySelectorAll('div.row div input[type="text"]'));
+        const incomeValue = document.querySelector('#edit-income').value;
+
+        const checkboxes = Array.from(event.target.querySelectorAll('input.edit-check-extras'));
+        const checkboxesChecked = checkboxes.filter((checkbox) => checkbox.checked);
+        const checkboxesValues = checkboxesChecked.map(checkbox => checkbox.value);
+
+        Toast.fire({
+            icon: 'info',
+            title: 'Aguarde um pouco..'
+        })
+
+        const response = await axios.put('{{ route('dashboard.update', ':id') }}'.replace(':id', id), {
+            name: inputData[0].value,
+            branch: inputData[1].value,
+            description: inputData[2].value,
+            number: inputData[3].value,
+            cpf: inputData[4].value,
+            place: inputData[5].value,
+            income: incomeValue,
+            extras: checkboxesValues
+        })
+
+        alert(response.data.message);
+        console.log("aee krlhou")
+    })
 </script>
 @endsection
