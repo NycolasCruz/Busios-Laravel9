@@ -11,12 +11,18 @@ class Store extends Model
 
     protected $table = 'store';
 
+    protected $casts = [
+        'extras' => 'array'
+    ];
+
     protected $fillable = [
         'name',
         'branch',
         'description',
         'cpf',
         'number',
-        'place'
+        'place',
+        'income',
+        'extras'
     ];
 }
