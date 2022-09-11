@@ -370,7 +370,6 @@
                             </label>
                         </div>
                     </div>
-                `
                 </form>
 
                 {{-- loader --}}
