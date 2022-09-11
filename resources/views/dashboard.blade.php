@@ -9,10 +9,15 @@
                     <div class="p-3">
 
                         {{-- 
-
-                            select (sepearar por cores na tabela)
+                            select (sepearar por cores na tabela com mutators e accessors)
 
                             menu minha loja
+                            máscaras
+                            fazer request para a action update
+                            exibir erros da request no toastr
+                            fazer lógica para exibir os campos income e extras no formulário de edição
+                            formatar extras na exibição dos dados
+                            limpar campos dos formulários ao fechar o modal
                         --}}
 
                         <div class="d-flex justify-content-between align-items-center mb-5">
@@ -42,7 +47,7 @@
                                     <th class="text-end">Ações</th>
                                 </tr>
                             </thead>
-                            <tbody id="tbody">
+                            <tbody id="tbody" hidden>
 
                             </tbody>
                         </table>
@@ -245,7 +250,14 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="edit-form">
+                {{-- loader --}}
+                <div class="d-flex justify-content-center">
+                    <div id="loader-edit" class="spinner-border text-primary" role="status" hidden>
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+
+                <form id="edit-form" hidden>
                     <div class="row">
                         <div class="col-6">
                             <label class="form-label mt-1">Nome da Loja</label>
@@ -371,13 +383,6 @@
                         </div>
                     </div>
                 </form>
-
-                {{-- loader --}}
-                <div class="d-flex justify-content-center">
-                    <div id="loader-edit" class="spinner-border text-primary" role="status" hidden>
-                        <span class="visually-hidden">Loading...</span>
-                    </div>
-                </div>
             </div>
             <div class="modal-footer d-flex justify-content-center">
                 <button type="button" class="btn bg-light text-gray-500" data-bs-dismiss="modal">Fechar</button>
@@ -393,14 +398,18 @@
     // get all stores
     async function showStores() {
         const loader = document.querySelector('#loader-allData');
+        const tbody = document.querySelector('#tbody');
+
         loader.removeAttribute('hidden');
+        tbody.setAttribute('hidden', true);
 
         const response = await axios.get('{{ route('dashboard.getAllData') }}');
 
         loader.setAttribute('hidden', true);
+        tbody.innerHTML = ''
 
         response.data.map((dataStore, i) => {
-            document.querySelector('#tbody').innerHTML += `
+            tbody.innerHTML += `
                 <tr class="align-middle">
                     <td>${i + 1}</td>
                     <td>${dataStore.name}</td>
@@ -430,6 +439,7 @@
             `
         });
 
+        tbody.removeAttribute('hidden');    
         getSpecificStore();
         getDataToEditStore();
     }
@@ -498,6 +508,20 @@
 
                 const response = await axios.get('{{ route('dashboard.show', ':id') }}'.replace(':id', id));
 
+                let income = ''
+
+                switch(response.data.income) {
+                    case 1:
+                        income = 'Menos de R$ 10.000,00'
+                        break;
+                    case 2:
+                        income = 'Entre R$ 10.000,00 e R$ 50.000,00'
+                        break;
+                    case 3:
+                        income = 'Mais que R$ 50.000,00'
+                        break;
+                }
+
                 loader.setAttribute('hidden', true);
 
                 document.querySelector('#show-modal-body').innerHTML = `
@@ -552,7 +576,7 @@
                     <p class="text-gray-700 fw-bold fs-6 mb-3">
                         Renda mensal:
                         <span class="fw-normal">
-                            ${response.data.income}
+                            ${income}
                         </span>
                     </p>
                     <p class="text-gray-700 fw-bold fs-6 mb-3">
@@ -572,13 +596,28 @@
             button.addEventListener('click', async (event) => {
                 const loader = document.querySelector('#loader-edit');
                 const button = event.relatedTarget;
+                const editForm = document.querySelector('#edit-form')
                 id = event.currentTarget.dataset.id;
-                
-                loader.removeAttribute('hidden');
 
-                // const response = await axios.get('{{ route('dashboard.show', ':id') }}'.replace(':id', id));
+                const inputData = Array.from(editForm.querySelectorAll('div.row div input[type="text"]'));
+                inputData.forEach(input => input.value = '');
+
+                loader.removeAttribute('hidden');
+                editForm.setAttribute('hidden', true);
+
+                const response = await axios.get('{{ route('dashboard.show', ':id') }}'.replace(':id', id));
 
                 loader.setAttribute('hidden', true);
+                editForm.removeAttribute('hidden');
+
+                inputData[0].value = response.data.name;
+                inputData[1].value = response.data.branch;
+                inputData[2].value = response.data.description;
+                inputData[3].value = response.data.number;
+                inputData[4].value = response.data.cpf;
+                inputData[5].value = response.data.place;
+                // income
+                // extras
             })
         })
     }
@@ -586,7 +625,7 @@
     // edit store
     document.querySelector('#edit-form').addEventListener('submit', async (event) => {
         event.preventDefault();
-alert(1)
+
         const inputData = Array.from(event.target.querySelectorAll('div.row div input[type="text"]'));
         const incomeValue = document.querySelector('#edit-income').value;
 
@@ -599,19 +638,34 @@ alert(1)
             title: 'Aguarde um pouco..'
         })
 
-        const response = await axios.put('{{ route('dashboard.update', ':id') }}'.replace(':id', id), {
-            name: inputData[0].value,
-            branch: inputData[1].value,
-            description: inputData[2].value,
-            number: inputData[3].value,
-            cpf: inputData[4].value,
-            place: inputData[5].value,
-            income: incomeValue,
-            extras: checkboxesValues
-        })
+        $('#edit-modal').modal('hide');
 
-        alert(response.data.message);
-        console.log("aee krlhou")
+        try {
+            const response = await axios.put('{{ route('dashboard.update', ':id') }}'.replace(':id', id), {
+                name: inputData[0].value,
+                branch: inputData[1].value,
+                description: inputData[2].value,
+                number: inputData[3].value,
+                cpf: inputData[4].value,
+                place: inputData[5].value,
+                income: incomeValue,
+                extras: checkboxesValues
+            })
+
+            Toast.fire({
+                icon: 'success',
+                title: 'Loja editada com sucesso!'
+            })
+
+            showStores();
+        } catch (error) {
+            console.error(error);
+
+            Toast.fire({
+                icon: 'error',
+                title: 'Erro ao editar loja!'
+            })
+        }
     })
 </script>
 @endsection
