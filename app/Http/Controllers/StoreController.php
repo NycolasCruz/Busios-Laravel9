@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\IncomeTypeEnum;
 use App\Http\Requests\StoreRequest;
 use App\Models\Store;
 use Illuminate\Http\Request;
@@ -10,7 +11,9 @@ class StoreController extends Controller
 {
     public function index()
     {
-        return view('dashboard');
+        $incomes = IncomeTypeEnum::cases();
+
+        return view('dashboard', ['incomes' => $incomes]);
     }
 
     public function store(StoreRequest $request)
@@ -34,7 +37,7 @@ class StoreController extends Controller
 
     public function update(Request $request)
     {
-        $data = Store::findOrFails($request->id)->update($request->all());
+        $data = Store::findOrFail($request->id)->update($request->all());
 
         return response()->json($data);
     }
