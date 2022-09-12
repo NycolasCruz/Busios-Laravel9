@@ -10,7 +10,7 @@
 
                         {{-- 
                             select (sepearar por cores na tabela com mutators e accessors)
-
+                            barra de pesquisa por nome da loja
                             menu minha loja
                             máscaras
                             fazer request para a action update
@@ -18,6 +18,8 @@
                             fazer lógica para exibir os campos income e extras no formulário de edição
                             formatar extras na exibição dos dados
                             limpar campos dos formulários ao fechar o modal
+                            o proprietário poderá editar, excluir e vincular um gerente à loja
+                            o gerente poderá editar e vincular um funcionário à loja
                         --}}
 
                         <div class="d-flex justify-content-between align-items-center mb-5">
