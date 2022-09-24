@@ -13,7 +13,7 @@
                             barra de pesquisa por nome da loja
                             menu minha loja
                             máscaras
-                            fazer request para a action update
+                            fazer arquivo request para a action update
                             exibir erros da request no toastr
                             fazer lógica para exibir os campos income e extras no formulário de edição
                             formatar extras na exibição dos dados
@@ -415,7 +415,7 @@
                 <tr class="align-middle">
                     <td>${i + 1}</td>
                     <td>${dataStore.name}</td>
-                    <td>Proprietário</td>
+                    <td>${dataStore.user.name}</td>
                     <td>${dataStore.branch}</td>
                     <td class="text-end">
                         <button
@@ -497,7 +497,7 @@
 
     let id = 0;
 
-    // get specific store
+    // get specific store (show)
     function getSpecificStore() {
         document.querySelectorAll('.show-button').forEach(button => {
             button.addEventListener('click', async (event) => {
@@ -510,9 +510,11 @@
 
                 const response = await axios.get('{{ route('dashboard.show', ':id') }}'.replace(':id', id));
 
+                const data = response.data
+
                 let income = ''
 
-                switch(response.data.income) {
+                switch(data.income) {
                     case 1:
                         income = 'Menos de R$ 10.000,00'
                         break;
@@ -530,49 +532,49 @@
                     <p class="text-gray-700 fw-bold fs-6 mb-3">
                         Proprietário:
                         <span class="fw-normal">
-                            teste
+                            ${data.user.name}
                         </span>
                     </p>
                     <p class="text-gray-700 fw-bold fs-6 mb-3">
                         Email do proprietário:
                         <span class="fw-normal">
-                            teste
+                            ${data.user.email}
                         </span>
                     </p>
                     <p class="text-gray-700 fw-bold fs-6 mb-3">
                         Nome da loja:
                         <span class="fw-normal">
-                            ${response.data.name}
+                            ${data.name}
                         </span>
                     </p>
                     <p class="text-gray-700 fw-bold fs-6 mb-3">
                         Ramo:
                         <span class="fw-normal">
-                            ${response.data.branch}
+                            ${data.branch}
                         </span>
                     </p>
                     <p class="text-gray-700 fw-bold fs-6 mb-3">
                         Descrição:
                         <span class="fw-normal">
-                            ${response.data.description}
+                            ${data.description}
                         </span>
                     </p>
                     <p class="text-gray-700 fw-bold fs-6 mb-3">
                         Telefone:
                         <span class="fw-normal">
-                            ${response.data.number}
+                            ${data.number}
                         </span>
                     </p>
                     <p class="text-gray-700 fw-bold fs-6 mb-3">
                         Cpf:
                         <span class="fw-normal">
-                            ${response.data.cpf}
+                            ${data.cpf}
                         </span>
                     </p>
                     <p class="text-gray-700 fw-bold fs-6 mb-3">
                         Logradouro:
                         <span class="fw-normal">
-                            ${response.data.place}
+                            ${data.place}
                         </span>
                     </p>
                     <p class="text-gray-700 fw-bold fs-6 mb-3">
@@ -586,13 +588,14 @@
                     </p>
                     <span class="d-flex align-items-center fw-normal ms-4">
                         <i class="fa-solid fa-caret-right me-2"></i>
-                        ${response.data.extras}
+                        ${data.extras}
                     </span>
                 `;
             })
         })
     }
 
+    // get specific store (edit)
     function getDataToEditStore() {
         document.querySelectorAll('.edit-button').forEach(button => {
             button.addEventListener('click', async (event) => {
