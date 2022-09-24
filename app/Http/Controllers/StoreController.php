@@ -20,19 +20,24 @@ class StoreController extends Controller
     {
         $allData = $request->validated();
 
+        $user = auth()->user();
+        $allData['user_id'] = $user->id;
+
         return Store::create($allData);
     }
 
     public function getAllData()
     {
-        return Store::all();
+        return Store::all()->load('user');
     }
 
     public function show($id)
     {
         $data = Store::findOrFail($id);
 
-        return response()->json($data);
+        $storeOwner = Store::with('user')->where('id', $data->id)->first();
+
+        return response()->json($storeOwner);
     }
 
     public function update(Request $request)
