@@ -9,17 +9,19 @@
                     <div class="p-3">
 
                         {{-- 
-                            select (sepearar por cores na tabela com mutators e accessors)
+                            separar o código em componentes
+                            criar um acessor para nome social 
                             barra de pesquisa por nome da loja
-                            menu minha loja
+                            botão para ver e excluir os currículos pensentes da loja ou enviar um curículo para a loja (many to many) 
+                            o proprietário poderá excluir a loja
+
                             máscaras
-                            fazer arquivo request para a action update
-                            exibir erros da request no toastr
-                            fazer lógica para exibir os campos income e extras no formulário de edição
+                            fazer arquivo request para a edição
+                            exibir erros da request em toastrs
+                            exibir os campos income e extras no formulário de edição
                             formatar extras na exibição dos dados
-                            limpar campos dos formulários ao fechar o modal
-                            o proprietário poderá editar, excluir e vincular um gerente à loja
-                            o gerente poderá editar e vincular um funcionário à loja
+                            limpar campos dos formulários ao fechar o modal e remover fechamento do modl ao submitar o formulário, fazendo-o apenas quando o formulário for submetido com sucesso
+                            validar cpf
                         --}}
 
                         <div class="d-flex justify-content-between align-items-center mb-5">
@@ -411,6 +413,9 @@
         tbody.innerHTML = ''
 
         response.data.map((dataStore, i) => {
+
+            let status = {{ Auth::user()->id }} != dataStore.user.id && "d-none"
+
             tbody.innerHTML += `
                 <tr class="align-middle">
                     <td>${i + 1}</td>
@@ -428,11 +433,11 @@
                             <i class="fas fa-eye"></i>
                         </button>
                         <button
-                            class="btn bg-warning ms-2 text-white edit-button"
+                            class="btn bg-warning ms-2 text-white edit-button ${status}"
                             title="Editar Informações"
                             data-bs-toggle="modal"
                             data-bs-target="#edit-modal"
-                            data-id="${dataStore.id}"
+                            data-id="${dataStore.id}"x
                         >
                             <i class="fas fa-edit"></i>
                         </button>
@@ -446,7 +451,7 @@
         getDataToEditStore();
     }
 
-    showStores()
+    window.onload = showStores;
 
     // register form
     document.querySelector('#register-form').addEventListener('submit', async (event) => {

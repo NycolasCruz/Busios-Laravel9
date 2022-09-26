@@ -48,7 +48,6 @@ class StoreRequest extends FormRequest
             'number.min' => 'O número deve ter 15 dígitos',
             'place.required' => 'O endereço é obrigatório',
             'income.required' => 'O rendimento é obrigatório',
-            'user_id.required' => 'O usuário é obrigatório'
         ];
     }
 
