@@ -30,9 +30,10 @@ class StoreRequest extends FormRequest
             'description' => 'nullable',
             'cpf' => 'required|min:11',
             'number' => 'required|min:15',
-            'place'=> 'required',
+            'place' => 'required',
             'income' => 'required',
-            'extras' => 'nullable'
+            'extras' => 'nullable',
+            'user_id' => 'nullable'
         ];
     }
 
@@ -55,6 +56,6 @@ class StoreRequest extends FormRequest
         $this->merge([
             'name' => Str::upper($this->name),
             'branch' => Str::upper($this->branch),
-        ]); 
+        ]);
     }
 }

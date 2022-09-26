@@ -9,10 +9,18 @@
                     <div class="p-3">
 
                         {{-- 
+                            criar um acessor para nome social 
+                            barra de pesquisa por nome da loja
+                            botão para ver e excluir os currículos pensentes da loja ou enviar um curículo para a loja (many to many) 
+                            o proprietário poderá excluir a loja
 
-                            select (sepearar por cores na tabela)
-
-                            menu minha loja
+                            máscaras
+                            fazer arquivo request para a edição
+                            exibir erros da request em toastrs
+                            exibir os campos income e extras no formulário de edição
+                            formatar extras na exibição dos dados
+                            limpar campos dos formulários ao fechar o modal e remover fechamento do modl ao submitar o formulário, fazendo-o apenas quando o formulário for submetido com sucesso
+                            validar cpf
                         --}}
 
                         <div class="d-flex justify-content-between align-items-center mb-5">
@@ -42,7 +50,7 @@
                                     <th class="text-end">Ações</th>
                                 </tr>
                             </thead>
-                            <tbody id="tbody">
+                            <tbody id="tbody" hidden>
 
                             </tbody>
                         </table>
@@ -245,7 +253,14 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="edit-form">
+                {{-- loader --}}
+                <div class="d-flex justify-content-center">
+                    <div id="loader-edit" class="spinner-border text-primary" role="status" hidden>
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+
+                <form id="edit-form" hidden>
                     <div class="row">
                         <div class="col-6">
                             <label class="form-label mt-1">Nome da Loja</label>
@@ -371,13 +386,6 @@
                         </div>
                     </div>
                 </form>
-
-                {{-- loader --}}
-                <div class="d-flex justify-content-center">
-                    <div id="loader-edit" class="spinner-border text-primary" role="status" hidden>
-                        <span class="visually-hidden">Loading...</span>
-                    </div>
-                </div>
             </div>
             <div class="modal-footer d-flex justify-content-center">
                 <button type="button" class="btn bg-light text-gray-500" data-bs-dismiss="modal">Fechar</button>
@@ -393,18 +401,25 @@
     // get all stores
     async function showStores() {
         const loader = document.querySelector('#loader-allData');
+        const tbody = document.querySelector('#tbody');
+
         loader.removeAttribute('hidden');
+        tbody.setAttribute('hidden', true);
 
         const response = await axios.get('{{ route('dashboard.getAllData') }}');
 
         loader.setAttribute('hidden', true);
+        tbody.innerHTML = ''
 
         response.data.map((dataStore, i) => {
-            document.querySelector('#tbody').innerHTML += `
+
+            let status = {{ Auth::user()->id }} != dataStore.user.id && "d-none"
+
+            tbody.innerHTML += `
                 <tr class="align-middle">
                     <td>${i + 1}</td>
                     <td>${dataStore.name}</td>
-                    <td>Proprietário</td>
+                    <td>${dataStore.user.name}</td>
                     <td>${dataStore.branch}</td>
                     <td class="text-end">
                         <button
@@ -417,7 +432,7 @@
                             <i class="fas fa-eye"></i>
                         </button>
                         <button
-                            class="btn bg-warning ms-2 text-white edit-button"
+                            class="btn bg-warning ms-2 text-white edit-button ${status}"
                             title="Editar Informações"
                             data-bs-toggle="modal"
                             data-bs-target="#edit-modal"
@@ -430,11 +445,12 @@
             `
         });
 
+        tbody.removeAttribute('hidden');    
         getSpecificStore();
         getDataToEditStore();
     }
 
-    showStores()
+    window.onload = showStores;
 
     // register form
     document.querySelector('#register-form').addEventListener('submit', async (event) => {
@@ -485,7 +501,7 @@
 
     let id = 0;
 
-    // get specific store
+    // get specific store (show)
     function getSpecificStore() {
         document.querySelectorAll('.show-button').forEach(button => {
             button.addEventListener('click', async (event) => {
@@ -498,61 +514,77 @@
 
                 const response = await axios.get('{{ route('dashboard.show', ':id') }}'.replace(':id', id));
 
+                const data = response.data
+
+                let income = ''
+
+                switch(data.income) {
+                    case 1:
+                        income = 'Menos de R$ 10.000,00'
+                        break;
+                    case 2:
+                        income = 'Entre R$ 10.000,00 e R$ 50.000,00'
+                        break;
+                    case 3:
+                        income = 'Mais que R$ 50.000,00'
+                        break;
+                }
+
                 loader.setAttribute('hidden', true);
 
                 document.querySelector('#show-modal-body').innerHTML = `
                     <p class="text-gray-700 fw-bold fs-6 mb-3">
                         Proprietário:
                         <span class="fw-normal">
-                            teste
+                            ${data.user.name}
                         </span>
                     </p>
                     <p class="text-gray-700 fw-bold fs-6 mb-3">
                         Email do proprietário:
                         <span class="fw-normal">
-                            teste
+                            ${data.user.email}
                         </span>
                     </p>
                     <p class="text-gray-700 fw-bold fs-6 mb-3">
                         Nome da loja:
                         <span class="fw-normal">
-                            ${response.data.name}
+                            ${data.name}
                         </span>
                     </p>
                     <p class="text-gray-700 fw-bold fs-6 mb-3">
                         Ramo:
                         <span class="fw-normal">
-                            ${response.data.branch}
+                            ${data.branch}
                         </span>
                     </p>
                     <p class="text-gray-700 fw-bold fs-6 mb-3">
                         Descrição:
                         <span class="fw-normal">
-                            ${response.data.description}
+                            ${data.description}
                         </span>
                     </p>
                     <p class="text-gray-700 fw-bold fs-6 mb-3">
                         Telefone:
                         <span class="fw-normal">
-                            ${response.data.number}
+                            ${data.number}
                         </span>
                     </p>
                     <p class="text-gray-700 fw-bold fs-6 mb-3">
                         Cpf:
                         <span class="fw-normal">
-                            ${response.data.cpf}
+                            ${data.cpf}
                         </span>
                     </p>
                     <p class="text-gray-700 fw-bold fs-6 mb-3">
                         Logradouro:
                         <span class="fw-normal">
-                            ${response.data.place}
+                            ${data.place}
                         </span>
                     </p>
                     <p class="text-gray-700 fw-bold fs-6 mb-3">
                         Renda mensal:
                         <span class="fw-normal">
-                            ${response.data.income}
+                            ${income}
                         </span>
                     </p>
                     <p class="text-gray-700 fw-bold fs-6 mb-3">
@@ -560,25 +592,41 @@
                     </p>
                     <span class="d-flex align-items-center fw-normal ms-4">
                         <i class="fa-solid fa-caret-right me-2"></i>
-                        ${response.data.extras}
+                        ${data.extras}
                     </span>
                 `;
             })
         })
     }
 
+    // get specific store (edit)
     function getDataToEditStore() {
         document.querySelectorAll('.edit-button').forEach(button => {
             button.addEventListener('click', async (event) => {
                 const loader = document.querySelector('#loader-edit');
                 const button = event.relatedTarget;
+                const editForm = document.querySelector('#edit-form')
                 id = event.currentTarget.dataset.id;
-                
-                loader.removeAttribute('hidden');
 
-                // const response = await axios.get('{{ route('dashboard.show', ':id') }}'.replace(':id', id));
+                const inputData = Array.from(editForm.querySelectorAll('div.row div input[type="text"]'));
+                inputData.forEach(input => input.value = '');
+
+                loader.removeAttribute('hidden');
+                editForm.setAttribute('hidden', true);
+
+                const response = await axios.get('{{ route('dashboard.show', ':id') }}'.replace(':id', id));
 
                 loader.setAttribute('hidden', true);
+                editForm.removeAttribute('hidden');
+
+                inputData[0].value = response.data.name;
+                inputData[1].value = response.data.branch;
+                inputData[2].value = response.data.description;
+                inputData[3].value = response.data.number;
+                inputData[4].value = response.data.cpf;
+                inputData[5].value = response.data.place;
+                // income
+                // extras
             })
         })
     }
@@ -586,7 +634,7 @@
     // edit store
     document.querySelector('#edit-form').addEventListener('submit', async (event) => {
         event.preventDefault();
-alert(1)
+
         const inputData = Array.from(event.target.querySelectorAll('div.row div input[type="text"]'));
         const incomeValue = document.querySelector('#edit-income').value;
 
@@ -599,19 +647,34 @@ alert(1)
             title: 'Aguarde um pouco..'
         })
 
-        const response = await axios.put('{{ route('dashboard.update', ':id') }}'.replace(':id', id), {
-            name: inputData[0].value,
-            branch: inputData[1].value,
-            description: inputData[2].value,
-            number: inputData[3].value,
-            cpf: inputData[4].value,
-            place: inputData[5].value,
-            income: incomeValue,
-            extras: checkboxesValues
-        })
+        $('#edit-modal').modal('hide');
 
-        alert(response.data.message);
-        console.log("aee krlhou")
+        try {
+            const response = await axios.put('{{ route('dashboard.update', ':id') }}'.replace(':id', id), {
+                name: inputData[0].value,
+                branch: inputData[1].value,
+                description: inputData[2].value,
+                number: inputData[3].value,
+                cpf: inputData[4].value,
+                place: inputData[5].value,
+                income: incomeValue,
+                extras: checkboxesValues
+            })
+
+            Toast.fire({
+                icon: 'success',
+                title: 'Loja editada com sucesso!'
+            })
+
+            showStores();
+        } catch (error) {
+            console.error(error);
+
+            Toast.fire({
+                icon: 'error',
+                title: 'Erro ao editar loja!'
+            })
+        }
     })
 </script>
 @endsection
