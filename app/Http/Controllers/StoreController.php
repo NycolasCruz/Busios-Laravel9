@@ -20,6 +20,7 @@ class StoreController extends Controller
     {
         $allData = $request->validated();
 
+        // vai pegar o usuário logado e salvar no banco
         $user = auth()->user();
         $allData['user_id'] = $user->id;
 
@@ -28,6 +29,7 @@ class StoreController extends Controller
 
     public function getAllData()
     {
+        // vai pegar tudo da model Store e carregar também a função user, q é o relacionamento, trazendo os dados do usuário
         return Store::all()->load('user');
     }
 
@@ -35,6 +37,7 @@ class StoreController extends Controller
     {
         $data = Store::findOrFail($id);
 
+        // vai pegar tudo da model Store e a função user, quando o id for igual ao id passado
         $storeOwner = Store::with('user')->where('id', $data->id)->first();
 
         return response()->json($storeOwner);
