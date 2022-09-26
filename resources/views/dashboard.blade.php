@@ -9,7 +9,6 @@
                     <div class="p-3">
 
                         {{-- 
-                            separar o código em componentes
                             criar um acessor para nome social 
                             barra de pesquisa por nome da loja
                             botão para ver e excluir os currículos pensentes da loja ou enviar um curículo para a loja (many to many) 
