@@ -436,7 +436,7 @@
                             title="Editar Informações"
                             data-bs-toggle="modal"
                             data-bs-target="#edit-modal"
-                            data-id="${dataStore.id}"x
+                            data-id="${dataStore.id}"
                         >
                             <i class="fas fa-edit"></i>
                         </button>
