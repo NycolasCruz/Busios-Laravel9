@@ -95,6 +95,7 @@
                     <div class="row">
                         <div class="col-6">
                             <label class="form-label mt-1">Nome da Loja</label>
+                            <input type="email" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full" id="email"  name="shop_name" required autofocus="autofocus">
                             <input
                                 type="text"
                                 class="form-control"
@@ -482,13 +483,12 @@
         tbody.innerHTML = ''
 
         response.data.map((dataStore, i) => {
-
             let showActionsToOwner = {{ Auth::user()->id }} != dataStore.user.id && "d-none"
 
             tbody.innerHTML += `
                 <tr class="align-middle">
                     <td>${i + 1}</td>
-                    <td>${dataStore.name}</td>
+                    <td>${dataStore.shop_name}</td>
                     <td>${dataStore.user.name}</td>
                     <td>${dataStore.branch}</td>
                     <td class="text-end">
@@ -557,14 +557,14 @@
 
         try {
             const response = await axios.post('{{ route('dashboard.store') }}', {
-                name: inputData[0].value,
+                shop_name: inputData[0].value,
                 branch: inputData[1].value,
                 description: inputData[2].value,
                 number: inputData[3].value,
                 cpf: inputData[4].value,
-                place: inputData[5].value,
+                address: inputData[5].value,
                 income: incomeValue,
-                extras: checkboxesValues
+                characteristics: checkboxesValues
             });
 
             Toast.fire({
@@ -634,7 +634,7 @@
                     <p class="text-gray-700 fw-bold fs-6 mb-3">
                         Nome da loja:
                         <span class="fw-normal">
-                            ${data.name}
+                            ${data.shop_name}
                         </span>
                     </p>
                     <p class="text-gray-700 fw-bold fs-6 mb-3">
@@ -664,7 +664,7 @@
                     <p class="text-gray-700 fw-bold fs-6 mb-3">
                         Logradouro:
                         <span class="fw-normal">
-                            ${data.place}
+                            ${data.address}
                         </span>
                     </p>
                     <p class="text-gray-700 fw-bold fs-6 mb-3">
@@ -678,7 +678,7 @@
                     </p>
                     <span class="d-flex align-items-center fw-normal ms-4">
                         <i class="fa-solid fa-caret-right me-2"></i>
-                        ${data.extras}
+                        ${data.characteristics}
                     </span>
                 `;
             })
@@ -705,12 +705,12 @@
                 loader.setAttribute('hidden', true);
                 editForm.removeAttribute('hidden');
 
-                inputData[0].value = response.data.name;
+                inputData[0].value = response.data.shop_name;
                 inputData[1].value = response.data.branch;
                 inputData[2].value = response.data.description;
                 inputData[3].value = response.data.number;
                 inputData[4].value = response.data.cpf;
-                inputData[5].value = response.data.place;
+                inputData[5].value = response.data.address;
                 // income
                 // extras
             })
@@ -737,14 +737,14 @@
 
         try {
             const response = await axios.put('{{ route('dashboard.update', ':id') }}'.replace(':id', id), {
-                name: inputData[0].value,
+                shop_name: inputData[0].value,
                 branch: inputData[1].value,
                 description: inputData[2].value,
                 number: inputData[3].value,
                 cpf: inputData[4].value,
-                place: inputData[5].value,
+                address: inputData[5].value,
                 income: incomeValue,
-                extras: checkboxesValues
+                characteristics: checkboxesValues
             })
 
             Toast.fire({
