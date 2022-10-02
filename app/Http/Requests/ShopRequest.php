@@ -25,14 +25,14 @@ class ShopRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
+            'shop_name' => 'required',
             'branch' => 'required',
             'description' => 'nullable',
             'cpf' => 'required|min:11',
             'number' => 'required|min:15',
-            'place' => 'required',
+            'address' => 'required',
             'income' => 'required',
-            'extras' => 'nullable',
+            'characteristics' => 'nullable',
             'user_id' => 'nullable'
         ];
     }
@@ -40,13 +40,13 @@ class ShopRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'O nome é obrigatório',
+            'shop_name.required' => 'O nome da loja é obrigatório',
             'branch.required' => 'O ramo é obrigatória',
             'cpf.required' => 'O CPF é obrigatório',
             'cpf.min' => 'O CPF deve ter 11 dígitos',
             'number.required' => 'O número é obrigatório',
             'number.min' => 'O número deve ter 15 dígitos',
-            'place.required' => 'O endereço é obrigatório',
+            'address.required' => 'O endereço é obrigatório',
             'income.required' => 'O rendimento é obrigatório',
         ];
     }
@@ -54,7 +54,7 @@ class ShopRequest extends FormRequest
     public function prepareForValidation()
     {
         $this->merge([
-            'name' => Str::upper($this->name),
+            'shop_name' => Str::upper($this->shop_name),
             'branch' => Str::upper($this->branch),
         ]);
     }
