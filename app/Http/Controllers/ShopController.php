@@ -16,7 +16,7 @@ class ShopController extends Controller
         return view('dashboard', ['incomes' => $incomes]);
     }
 
-    public function shop(ShopRequest $request)
+    public function store(ShopRequest $request)
     {
         $allData = $request->validated();
 
