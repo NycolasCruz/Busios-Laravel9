@@ -31,8 +31,9 @@ class ShopRequest extends FormRequest
             'cpf' => 'required|min:11',
             'number' => 'required|min:15',
             'address' => 'required',
-            'income' => 'required',
-            'characteristics' => 'nullable',
+            'income' => 'integer|required',
+            'characteristics' => 'array',
+            'characteristics.*' => 'integer|nullable',
             'user_id' => 'nullable'
         ];
     }
@@ -48,6 +49,8 @@ class ShopRequest extends FormRequest
             'number.min' => 'O número deve ter 15 dígitos',
             'address.required' => 'O endereço é obrigatório',
             'income.required' => 'O rendimento é obrigatório',
+            'income.integer' => 'O rendimento deve ser um número inteiro',
+            'characteristics.array' => 'As características devem ser um array',
         ];
     }
 
