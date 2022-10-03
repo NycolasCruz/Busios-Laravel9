@@ -7,9 +7,7 @@
                     <i class="fa-solid fa-x"></i>
                 </button>
             </div>
-            <div id="show-modal-body" class="modal-body">
-                
-            </div>
+            <div id="show-modal-body" class="modal-body"></div>
 
             {{-- loader --}}
             <div class="d-flex justify-content-center" style="margin-bottom: 2rem">
