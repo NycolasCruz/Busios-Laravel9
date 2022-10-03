@@ -13,47 +13,55 @@
         loader.setAttribute('hidden', true);
         tbody.innerHTML = ''
 
-        response.data.map((dataStore, i) => {
-            let showActionsToOwner = {{ Auth::user()->id }} != dataStore.user.id && "d-none"
+        response.data.map((data, i) => {
+            const showActionsToOwner = {{ Auth::user()->id }} != data.user.id && "d-none"
+            const showActionsToUser = {{ Auth::user()->id }} == data.user.id && "d-none"
 
             tbody.innerHTML += `
                 <tr class="align-middle">
                     <td>${i + 1}</td>
-                    <td>${dataStore.shop_name}</td>
-                    <td>${dataStore.user.name}</td>
-                    <td>${dataStore.branch}</td>
+                    <td>${data.shop_name}</td>
+                    <td>${data.user.name}</td>
+                    <td>${data.branch}</td>
                     <td class="text-end">
                         <button
-                            class="btn bg-primary text-white show-button"
+                            class="btn btn-icon bg-primary text-white show-button"
                             title="Ver Detalhes"
                             data-bs-toggle="modal"
                             data-bs-target="#show-modal"
-                            data-id="${dataStore.id}"
+                            data-id="${data.id}"
                         >
                             <i class="fas fa-eye"></i>
                         </button>
                         <button
-                            class="btn bg-dark ms-2 text-white"
+                            class="btn btn-icon bg-dark text-white ms-2 ${showActionsToUser}"
                             title="Enviar Currículo"
                             data-bs-toggle="modal"
                             data-bs-target="#curriculum-modal"
-                            data-id="${dataStore.id}"
+                            data-id="${data.id}"
                         >
-                            <i class="fa-regular fa-file-lines"></i>
+                            <i class="far fa-file-lines"></i>
                         </button>
                         <button
-                            class="btn bg-warning ms-2 text-white ${showActionsToOwner}"
+                            class="btn btn-icon bg-green text-white ms-2 ${showActionsToOwner}"
+                            title="Visualizar Currículos"
+                            data-id="${data.id}"
+                        >
+                            <i class="fas fa-user"></i>
+                        </button>
+                        <button
+                            class="btn btn-icon bg-warning text-white ms-2 edit-button ${showActionsToOwner}"
                             title="Editar Informações"
                             data-bs-toggle="modal"
                             data-bs-target="#edit-modal"
-                            data-id="${dataStore.id}"
+                            data-id="${data.id}"
                         >
                             <i class="fas fa-edit"></i>
                         </button>
                         <button
-                            class="btn bg-danger ms-2 text-white ${showActionsToOwner}"
-                            title="excluir Informações"
-                            data-id="${dataStore.id}"
+                            class="btn btn-icon bg-danger text-white ms-2 ${showActionsToOwner}"
+                            title="Excluir Informações"
+                            data-id="${data.id}"
                         >
                             <i class="fas fa-trash"></i>
                         </button>

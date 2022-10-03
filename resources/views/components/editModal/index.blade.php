@@ -21,7 +21,7 @@
                             <label class="form-label mt-1">Nome da Loja</label>
                             <input
                                 type="text"
-                                class="form-control"
+                                class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"
                                 placeholder="Nome da Loja"
                                 autocomplete="none"
                                 required
@@ -31,7 +31,7 @@
                             <label class="form-label mt-1">Ramo</label>
                             <input
                                 type="text"
-                                class="form-control"
+                                class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"
                                 placeholder="Ramo"
                                 autocomplete="none"
                                 required
@@ -41,7 +41,7 @@
                             <label class="form-label mt-1">Descrição (opcional)</label>
                             <input
                                 type="text"
-                                class="form-control"
+                                class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"
                                 placeholder="Descrição"
                                 autocomplete="none"
                             >
@@ -50,7 +50,7 @@
                             <label class="form-label mt-1">Telefone</label>
                             <input
                                 type="text"
-                                class="form-control"
+                                class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"
                                 placeholder="Telefone"
                                 autocomplete="none"
                                 required
@@ -60,7 +60,7 @@
                             <label class="form-label mt-1">Cpf do Proprietário</label>
                             <input
                                 type="text"
-                                class="form-control"
+                                class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"
                                 placeholder="Cpf do Proprietário"
                                 autocomplete="none"
                                 required
@@ -70,7 +70,7 @@
                             <label class="form-label mt-1">Logradouro</label>
                             <input
                                 type="text"
-                                class="form-control"
+                                class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"
                                 placeholder="Logradouro"
                                 autocomplete="none"
                                 required
@@ -78,7 +78,11 @@
                         </div>
                         <div class="col-6">
                             <label class="form-label mt-1">Qual a renda mensal da loja?</label>
-                            <select id="edit-income" class="form-select" required>
+                            <select
+                                id="edit-income"
+                                class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"
+                                required
+                            >
                                 <option value="" selected disabled>Qual a renda mensal da loja?</option>
                                 <option value="1">Menos que 10.000</option>
                                 <option value="2">Entre 10.000 e 50.000</option>
@@ -94,7 +98,7 @@
                                 id="check-1"
                                 class="form-check-input me-2 edit-check-extras"
                                 value="Possui mais de 10 funcionários"
-                                name="editItems[]"
+                                name="characteristics[]"
                             >
                             <label class="form-check-label" for="check-1">
                                 Possui mais de 10 funcionários
@@ -106,7 +110,7 @@
                                 id="check-2"
                                 class="form-check-input me-2 edit-check-extras"
                                 value="Possui filiais"
-                                name="editItems[]"
+                                name="characteristics[]"
                             >
                             <label class="form-check-label" for="check-2">
                                 Possui filiais
@@ -121,7 +125,7 @@
                                 id="check-3"
                                 class="form-check-input me-2 edit-check-extras"
                                 value="Possui loja física e virtual"
-                                name="editItems[]"
+                                name="characteristics[]"
                             >
                             <label class="form-check-label" for="check-3">
                                 Possui loja física e virtual
@@ -133,7 +137,7 @@
                                 id="check-4"
                                 class="form-check-input me-2 edit-check-extras"
                                 value="Faz entregas à domicílio"
-                                name="editItems[]"
+                                name="characteristics[]"
                             >
                             <label class="form-check-label" for="check-4">
                                 Faz entregas à domicílio
