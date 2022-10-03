@@ -7,25 +7,25 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User;
 
-class Store extends Model
+class Shop extends Model
 {
     use HasFactory;
 
-    protected $table = 'store';
+    protected $table = 'shop';
 
     protected $casts = [
-        'extras' => 'array'
+        'characteristics' => 'array'
     ];
 
     protected $fillable = [
-        'name',
+        'shop_name',
         'branch',
         'description',
         'cpf',
         'number',
-        'place',
+        'address',
         'income',
-        'extras',
+        'characteristics',
         'user_id'
     ];
 

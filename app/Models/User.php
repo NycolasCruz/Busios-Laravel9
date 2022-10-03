@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Store as Stores;
+use App\Models\Shop as Shop;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -43,8 +43,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function stores(): HasMany
+    public function shop(): HasMany
     {
-        return $this->hasMany(Stores::class);
+        return $this->hasMany(Shop::class);
     }
 }

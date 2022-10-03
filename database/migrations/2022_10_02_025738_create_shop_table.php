@@ -13,13 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('store', function (Blueprint $table) {
+        Schema::create('shop', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 100);
+            $table->string('shop_name', 100);
             $table->string('branch', 100);
             $table->text('description')->nullable();
-            $table->text('cpf');
             $table->text('number');
+            $table->text('cpf');
+            $table->text('address');
+            $table->integer('income');
+            $table->json('characteristics');
             $table->timestamps();
         });
     }
@@ -31,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('store');
+        Schema::dropIfExists('shop');
     }
 };

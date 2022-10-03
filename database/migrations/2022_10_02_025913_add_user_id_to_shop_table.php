@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('store', function (Blueprint $table) {
+        Schema::table('shop', function (Blueprint $table) {
             $table->foreignId('user_id')->constrained();
-            //constrained fala pro laravel que uma chave estrangeira será criada para esse usuário e atrela a chave à ele
+            //onDelete('cascade') fala pro laravel que se o usuário for deletado, a chave estrangeira também será
         });
     }
 
@@ -26,9 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('store', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            //onDelete('cascade') fala pro laravel que se o usuário for deletado, a chave estrangeira também será
+        Schema::table('shop', function (Blueprint $table) {
+            $table->dropConstrainedForeignId('user_id');
         });
     }
 };
