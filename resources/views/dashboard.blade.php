@@ -9,21 +9,10 @@
                     <div class="p-3">
 
                         {{-- 
-                            dividir arquivos em partes e usar Format Data
-                            dividir arquivos em partes e usar Format Data
-                            dividir arquivos em partes e usar Format Data
-                            dividir arquivos em partes e usar Format Data
-                            dividir arquivos em partes e usar Format Data
-
-
-                            tooltip
-
-
-                            colocar linter no projeto react
-
+                            usar Format Data
                             criar um acessor para nome social 
                             barra de pesquisa por nome da loja
-                            botão para ver e excluir os currículos pensentes da loja ou enviar um curículo para a loja (many to many) 
+                            botão para ver os currículos pensentes da loja ou enviar um curículo para a loja (many to many) 
                             o proprietário poderá excluir a loja
 
                             máscaras
