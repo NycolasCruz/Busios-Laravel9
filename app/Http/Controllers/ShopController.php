@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
+    protected Shop $repository;
+    
+    public function __construct(Shop $model){
+        $this->repository = $model;
+    }
+    
     public function index()
     {
         $incomes = IncomeTypeEnum::cases();
@@ -24,28 +30,28 @@ class ShopController extends Controller
         $user = auth()->user();
         $allData['user_id'] = $user->id;
 
-        return Shop::create($allData);
+        return $this->repository->create($allData);
     }
 
     public function getAllData()
     {
         // vai pegar tudo da model Shop e carregar também a função user, q é o relacionamento, trazendo os dados do usuário
-        return Shop::all()->load('user');
+        return $this->repository->all()->load('user');
     }
 
     public function show($id)
     {
-        $data = Shop::findOrFail($id);
+        $data = $this->repository->findOrFail($id);
 
         // vai pegar tudo da model Shop e a função user, quando o id for igual ao id passado
-        $shopOwner = Shop::with('user')->where('id', $data->id)->first();
+        $shopOwner = $this->repository->with('user')->where('id', $data->id)->first();
 
         return response()->json($shopOwner);
     }
 
     public function update(Request $request)
     {
-        $data = Shop::findOrFail($request->id)->update($request->all());
+        $data = $this->repository->findOrFail($request->id)->update($request->all());
 
         return response()->json($data);
     }
