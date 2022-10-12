@@ -1,7 +1,6 @@
 @section('js')
 <script>
-    // get all stores
-    async function showStores() {
+    async function handleShowAllShops() {
         const loader = document.querySelector('#loader-allData');
         const tbody = document.querySelector('#tbody');
 
@@ -71,11 +70,11 @@
         });
 
         tbody.removeAttribute('hidden');    
-        getSpecificStore();
-        getDataToEditStore();
+        handleShowSpecificShop();
+        fillOutForm();
     }
-
-    window.onload = showStores;
+    
+    window.onload = handleShowAllShops;
 
     // register form
     document.querySelector('#register-form').addEventListener('submit', async (event) => {
@@ -113,7 +112,7 @@
 
             inputData.forEach(input => input.value = '');
             document.querySelector('#tbody').innerHTML = '';
-            showStores();
+            handleShowAllShops();
         } catch (error) {
             console.error(error);
 
@@ -126,8 +125,7 @@
 
     let id = 0;
 
-    // get specific store (show)
-    function getSpecificStore() {
+    function handleShowSpecificShop() {
         document.querySelectorAll('.show-button').forEach(button => {
             button.addEventListener('click', async (event) => {
                 const loader = document.querySelector('#loader-show');
@@ -224,8 +222,7 @@
         })
     }
 
-    // get specific store (edit)
-    function getDataToEditStore() {
+    function fillOutForm() {
         document.querySelectorAll('.edit-button').forEach(button => {
             button.addEventListener('click', async (event) => {
                 const loader = document.querySelector('#loader-edit');
@@ -256,7 +253,7 @@
         })
     }
 
-    // edit store
+    // edit shop
     document.querySelector('#edit-form').addEventListener('submit', async (event) => {
         event.preventDefault();
 
@@ -291,7 +288,7 @@
                 title: 'Loja editada com sucesso!'
             })
 
-            showStores();
+            handleShowAllShops();
         } catch (error) {
             console.error(error);
 
