@@ -237,13 +237,7 @@
     // edit shop
     document.querySelector('#edit-form').addEventListener('submit', async (event) => {
         event.preventDefault();
-
-        const inputData = Array.from(event.target.querySelectorAll('div.row div input[type="text"]'));
-        const incomeValue = document.querySelector('.edit-income').value;
-
-        const checkboxes = Array.from(event.target.querySelectorAll('input.edit-check-extras'));
-        const checkboxesChecked = checkboxes.filter((checkbox) => checkbox.checked);
-        const checkboxesValues = checkboxesChecked.map(checkbox => checkbox.value);
+        const formData = new FormData(event.target);
 
         Toast.fire({
             icon: 'info',
@@ -251,16 +245,7 @@
         })
 
         try {
-            const response = await axios.put('{{ route('dashboard.update', ':id') }}'.replace(':id', id), {
-                shop_name: inputData[0].value,
-                branch: inputData[1].value,
-                description: inputData[2].value,
-                number: inputData[3].value,
-                cpf: inputData[4].value,
-                address: inputData[5].value,
-                income: incomeValue,
-                characteristics: checkboxesValues
-            })
+            await axios.post('{{ route('dashboard.update', ':id') }}'.replace(':id', id), formData)
 
             Toast.fire({
                 icon: 'success',
