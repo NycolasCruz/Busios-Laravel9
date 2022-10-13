@@ -10,11 +10,12 @@ use Illuminate\Http\Request;
 class ShopController extends Controller
 {
     protected Shop $repository;
-    
-    public function __construct(Shop $model){
+
+    public function __construct(Shop $model)
+    {
         $this->repository = $model;
     }
-    
+
     public function index()
     {
         $incomes = IncomeTypeEnum::cases();
@@ -52,7 +53,6 @@ class ShopController extends Controller
     public function update(Request $request)
     {
         $data = $this->repository->findOrFail($request->id)->update($request->all());
-
         return response()->json($data);
     }
 }
