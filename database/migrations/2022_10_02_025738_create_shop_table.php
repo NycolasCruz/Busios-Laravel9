@@ -22,7 +22,7 @@ return new class extends Migration
             $table->text('cpf');
             $table->text('address');
             $table->integer('income');
-            $table->json('characteristics');
+            $table->json('characteristics')->nullable();
             $table->timestamps();
         });
     }
