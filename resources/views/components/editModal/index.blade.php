@@ -22,8 +22,9 @@
                             <input
                                 type="text"
                                 class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"
+                                name="shop_name"
                                 placeholder="Nome da Loja"
-                                autocomplete="none"
+                                autocomplete="off"
                                 required
                             >
                         </div>
@@ -32,8 +33,9 @@
                             <input
                                 type="text"
                                 class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"
+                                name="branch"
                                 placeholder="Ramo"
-                                autocomplete="none"
+                                autocomplete="off"
                                 required
                             >
                         </div>
@@ -42,8 +44,9 @@
                             <input
                                 type="text"
                                 class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"
+                                name="description"
                                 placeholder="Descrição"
-                                autocomplete="none"
+                                autocomplete="off"
                             >
                         </div>
                         <div class="col-6">
@@ -51,8 +54,9 @@
                             <input
                                 type="text"
                                 class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"
+                                name="number"
                                 placeholder="Telefone"
-                                autocomplete="none"
+                                autocomplete="off"
                                 required
                             >
                         </div>
@@ -61,8 +65,9 @@
                             <input
                                 type="text"
                                 class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"
+                                name="cpf"
                                 placeholder="Cpf do Proprietário"
-                                autocomplete="none"
+                                autocomplete="off"
                                 required
                             >
                         </div>
@@ -71,16 +76,17 @@
                             <input
                                 type="text"
                                 class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"
+                                name="address"
                                 placeholder="Logradouro"
-                                autocomplete="none"
+                                autocomplete="off"
                                 required
                             >
                         </div>
                         <div class="col-6">
                             <label class="form-label mt-1">Qual a renda mensal da loja?</label>
                             <select
-                                id="edit-income"
-                                class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"
+                                class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full edit-income"
+                                name="income"
                                 required
                             >
                                 <option value="" selected disabled>Qual a renda mensal da loja?</option>
@@ -94,25 +100,25 @@
                     <div class="row my-3">
                         <div class="col-6 d-flex">
                             <input
+                                id="edit-check-1"
                                 type="checkbox"
-                                id="check-1"
-                                class="form-check-input me-2 edit-check-extras"
-                                value="Possui mais de 10 funcionários"
+                                class="form-check-input me-2"
+                                value="1"
                                 name="characteristics[]"
                             >
-                            <label class="form-check-label" for="check-1">
+                            <label class="form-check-label" for="edit-check-1">
                                 Possui mais de 10 funcionários
                             </label>
                         </div>
                         <div class="col-6 d-flex">
                             <input
+                                id="edit-check-2"
                                 type="checkbox"
-                                id="check-2"
-                                class="form-check-input me-2 edit-check-extras"
-                                value="Possui filiais"
+                                class="form-check-input me-2"
+                                value="2"
                                 name="characteristics[]"
                             >
-                            <label class="form-check-label" for="check-2">
+                            <label class="form-check-label" for="edit-check-2">
                                 Possui filiais
                             </label>
                         </div>
@@ -121,25 +127,25 @@
                     <div class="row my-3">
                         <div class="col-6 d-flex">
                             <input
+                                id="edit-check-3"
                                 type="checkbox"
-                                id="check-3"
-                                class="form-check-input me-2 edit-check-extras"
-                                value="Possui loja física e virtual"
+                                class="form-check-input me-2"
+                                value="3"
                                 name="characteristics[]"
                             >
-                            <label class="form-check-label" for="check-3">
+                            <label class="form-check-label" for="edit-check-3">
                                 Possui loja física e virtual
                             </label>
                         </div>
                         <div class="col-6 d-flex">
                             <input
+                                id="edit-check-4"
                                 type="checkbox"
-                                id="check-4"
-                                class="form-check-input me-2 edit-check-extras"
-                                value="Faz entregas à domicílio"
+                                class="form-check-input me-2"
+                                value="4"
                                 name="characteristics[]"
                             >
-                            <label class="form-check-label" for="check-4">
+                            <label class="form-check-label" for="edit-check-4">
                                 Faz entregas à domicílio
                             </label>
                         </div>
