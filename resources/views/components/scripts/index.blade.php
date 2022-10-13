@@ -7,12 +7,12 @@
         loader.removeAttribute('hidden');
         tbody.setAttribute('hidden', true);
 
-        const response = await axios.get('{{ route('dashboard.getAllData') }}');
+        const { data: allData } = await axios.get('{{ route('dashboard.getAllData') }}');
 
         loader.setAttribute('hidden', true);
         tbody.innerHTML = ''
 
-        response.data.map((data, i) => {
+        allData.map((data, i) => {
             const showActionsToOwner = {{ Auth::user()->id }} != data.user.id && "d-none"
             const showActionsToUser = {{ Auth::user()->id }} == data.user.id && "d-none"
 
@@ -79,38 +79,22 @@
     // register form
     document.querySelector('#register-form').addEventListener('submit', async (event) => {
         event.preventDefault();
-        const inputData = Array.from(event.target.querySelectorAll('div.row div input[type="text"]'));
-        const incomeValue = document.querySelector('#income').value;
-
-        const checkboxes = Array.from(event.target.querySelectorAll('input.check-extras'));
-        const checkboxesChecked = checkboxes.filter((checkbox) => checkbox.checked);
-        const checkboxesValues = checkboxesChecked.map(checkbox => checkbox.value);
+        const formData = new FormData(event.target);
 
         Toast.fire({
             icon: 'info',
             title: 'Aguarde um pouco..'
         })
 
-        $('#register-modal').modal('hide');
-
         try {
-            const response = await axios.post('{{ route('dashboard.store') }}', {
-                shop_name: inputData[0].value,
-                branch: inputData[1].value,
-                description: inputData[2].value,
-                number: inputData[3].value,
-                cpf: inputData[4].value,
-                address: inputData[5].value,
-                income: incomeValue,
-                characteristics: checkboxesValues
-            });
+            await axios.post('{{ route('dashboard.store') }}', formData );
 
             Toast.fire({
                 icon: 'success',
                 title: 'Loja cadastrada com sucesso!'
             })
 
-            inputData.forEach(input => input.value = '');
+            $('#register-modal').modal('hide');
             document.querySelector('#tbody').innerHTML = '';
             handleShowAllShops();
         } catch (error) {
@@ -135,9 +119,7 @@
                 loader.removeAttribute('hidden');
                 document.querySelector('#show-modal-body').innerHTML = '';
 
-                const response = await axios.get('{{ route('dashboard.show', ':id') }}'.replace(':id', id));
-
-                const data = response.data
+                const { data } = await axios.get('{{ route('dashboard.show', ':id') }}'.replace(':id', id));
 
                 let income = ''
 
@@ -231,22 +213,21 @@
                 id = event.currentTarget.dataset.id;
 
                 const inputData = Array.from(editForm.querySelectorAll('div.row div input[type="text"]'));
-                inputData.forEach(input => input.value = '');
 
                 loader.removeAttribute('hidden');
                 editForm.setAttribute('hidden', true);
 
-                const response = await axios.get('{{ route('dashboard.show', ':id') }}'.replace(':id', id));
+                const { data } = await axios.get('{{ route('dashboard.show', ':id') }}'.replace(':id', id));
 
                 loader.setAttribute('hidden', true);
                 editForm.removeAttribute('hidden');
 
-                inputData[0].value = response.data.shop_name;
-                inputData[1].value = response.data.branch;
-                inputData[2].value = response.data.description;
-                inputData[3].value = response.data.number;
-                inputData[4].value = response.data.cpf;
-                inputData[5].value = response.data.address;
+                inputData[0].value = data.shop_name;
+                inputData[1].value = data.branch;
+                inputData[2].value = data.description;
+                inputData[3].value = data.number;
+                inputData[4].value = data.cpf;
+                inputData[5].value = data.address;
                 // income
                 // extras
             })
@@ -258,7 +239,7 @@
         event.preventDefault();
 
         const inputData = Array.from(event.target.querySelectorAll('div.row div input[type="text"]'));
-        const incomeValue = document.querySelector('#edit-income').value;
+        const incomeValue = document.querySelector('.edit-income').value;
 
         const checkboxes = Array.from(event.target.querySelectorAll('input.edit-check-extras'));
         const checkboxesChecked = checkboxes.filter((checkbox) => checkbox.checked);
@@ -268,8 +249,6 @@
             icon: 'info',
             title: 'Aguarde um pouco..'
         })
-
-        $('#edit-modal').modal('hide');
 
         try {
             const response = await axios.put('{{ route('dashboard.update', ':id') }}'.replace(':id', id), {
@@ -288,6 +267,7 @@
                 title: 'Loja editada com sucesso!'
             })
 
+            $('#edit-modal').modal('hide');
             handleShowAllShops();
         } catch (error) {
             console.error(error);
@@ -297,6 +277,11 @@
                 title: 'Erro ao editar loja!'
             })
         }
+    })
+
+    // clear all data whenever register modal closes
+    $('#register-modal').on('hidden.bs.modal', event => {
+        event.target.querySelector('form').reset();
     })
 </script>
 @endsection
