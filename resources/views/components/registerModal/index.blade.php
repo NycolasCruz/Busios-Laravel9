@@ -17,7 +17,7 @@
                                 class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"
                                 name="shop_name"
                                 placeholder="Nome da loja"
-                                autocomplete="none"
+                                autocomplete="off"
                                 required
                             >
                         </div>
@@ -28,7 +28,7 @@
                                 class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"
                                 name="branch"
                                 placeholder="Ramo"
-                                autocomplete="none"
+                                autocomplete="off"
                                 required
                             >
                         </div>
@@ -39,8 +39,7 @@
                                 class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"
                                 name="description"
                                 placeholder="Descrição"
-                                autocomplete="none"
-                                required
+                                autocomplete="off"
                             >
                         </div>
                         <div class="col-6">
@@ -50,7 +49,7 @@
                                 class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"
                                 name="number"
                                 placeholder="Telefone"
-                                autocomplete="none"
+                                autocomplete="off"
                                 required
                             >
                         </div>
@@ -61,7 +60,7 @@
                                 class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"
                                 name="cpf"
                                 placeholder="Cpf do proprietário"
-                                autocomplete="none"
+                                autocomplete="off"
                                 required
                             >
                         </div>
@@ -70,17 +69,17 @@
                             <input
                                 type="text"
                                 class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"
-                                name="cpf"
+                                name="address"
                                 placeholder="Logradouro"
-                                autocomplete="none"
+                                autocomplete="off"
                                 required
                             >
                         </div>
                         <div class="col-6">
                             <label class="form-label mt-1">Qual a renda mensal da loja?</label>
                             <select
-                                id="income"
                                 class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"
+                                name="income"
                                 required
                             >
                                 <option value="" selected disabled>Qual a renda mensal da loja?</option>
@@ -95,8 +94,7 @@
                         <div class="col-6 d-flex">
                             <input
                                 type="checkbox"
-                                id="check-1"
-                                class="form-check-input me-2 check-extras"
+                                class="form-check-input me-2"
                                 value="1"
                                 name="characteristics[]"
                             >
@@ -108,7 +106,7 @@
                             <input
                                 type="checkbox"
                                 id="check-2"
-                                class="form-check-input me-2 check-extras"
+                                class="form-check-input me-2"
                                 value="2"
                                 name="characteristics[]"
                             >
@@ -123,7 +121,7 @@
                             <input
                                 type="checkbox"
                                 id="check-3"
-                                class="form-check-input me-2 check-extras"
+                                class="form-check-input me-2"
                                 value="3"
                                 name="characteristics[]"
                             >
@@ -135,7 +133,7 @@
                             <input
                                 type="checkbox"
                                 id="check-4"
-                                class="form-check-input me-2 check-extras"
+                                class="form-check-input me-2"
                                 value="4"
                                 name="characteristics[]"
                             >
