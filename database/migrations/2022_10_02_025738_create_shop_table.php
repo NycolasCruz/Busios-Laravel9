@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('shop_name', 100);
             $table->string('branch', 100);
             $table->text('description')->nullable();
-            $table->text('number');
-            $table->text('cpf');
-            $table->text('address');
+            $table->string('number');
+            $table->string('cpf');
+            $table->string('address');
             $table->integer('income');
             $table->json('characteristics')->nullable();
             $table->timestamps();
