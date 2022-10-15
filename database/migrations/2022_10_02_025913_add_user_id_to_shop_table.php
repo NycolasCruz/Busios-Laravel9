@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::table('shop', function (Blueprint $table) {
             $table->foreignId('user_id')->constrained();
-            //onDelete('cascade') fala pro laravel que se o usuário for deletado, a chave estrangeira também será
         });
     }
 
