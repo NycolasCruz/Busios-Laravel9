@@ -8,14 +8,21 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="p-3">
 
-                        {{-- 
+                        {{--
+                            adicionar label: envie um currículo para ser analisado pela loja, ela poderá contratar você
+
+                            criar um log de status no perfil (currículo enviado, pendente, aprovado ou reprovado)
+
+                            many to many: a loja vai verificar em uma página diferente quem está interessado em trabalhar nela (através dos currículos) e adicionar ou remover os interessados, caso o currículo seja aprovado, o usuário será adicionado como funcionário da loja, fazendo assim a relação, onde uma loja pode ter vários funcionários e um funcionário pode trabalhar em várias lojas
+
+                            adicionar campo horário de funcionamento na loja no local da faixa salarial (manha e tarde, tarde e noite, noite e madrugada, madrugada e manha, apenas manha, apenas tarde, apenas noite, apenas madrugada)
+
                             criar um acessor para nome social
                             máscaras
-                            fazer arquivo request para a edição
-                            exibir erros da request em toastrs
+                            fazer arquivo request para a edição currículo
+                            exibir erros da request em toasts
                             exibir os campos income e extras no formulário de edição
                             formatar características na exibição dos dados
-                            limpar campos dos formulários ao fechar o modal e remover fechamento do modl ao submitar o formulário, fazendo-o apenas quando o formulário for submetido com sucesso
                             validar cpf
                         --}}
 
