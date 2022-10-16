@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\IncomeTypeEnum;
-use App\Http\Requests\ShopRequest;
+use App\Http\Requests\StoreShopRequest;
 use App\Models\Shop;
 use Illuminate\Http\Request;
 
@@ -23,7 +23,7 @@ class ShopController extends Controller
         return view('dashboard', ['incomes' => $incomes]);
     }
 
-    public function store(ShopRequest $request)
+    public function store(StoreShopRequest $request)
     {
         $data = $request->validated();
         $user = auth()->user()->id;
