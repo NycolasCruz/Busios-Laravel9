@@ -25,13 +25,12 @@ class ShopController extends Controller
 
     public function store(ShopRequest $request)
     {
-        $allData = $request->validated();
+        $data = $request->validated();
+        $user = auth()->user()->id;
 
-        // vai pegar o usuário logado e salvar no banco
-        $user = auth()->user();
-        $allData['user_id'] = $user->id;
+        $data['user_id'] = $user;
 
-        return $this->repository->create($allData);
+        return $this->repository->create($data);
     }
 
     public function getAllData()
@@ -40,9 +39,9 @@ class ShopController extends Controller
         return $this->repository->all()->load('user');
     }
 
-    public function show($id)
+    public function show($shop_id)
     {
-        $data = $this->repository->findOrFail($id);
+        $data = $this->repository->findOrFail($shop_id);
 
         // vai pegar tudo da model Shop e a função user, quando o id for igual ao id passado
         $shopOwner = $this->repository->with('user')->where('id', $data->id)->first();
@@ -52,7 +51,7 @@ class ShopController extends Controller
 
     public function update(Request $request)
     {
-        $data = $this->repository->findOrFail($request->id)->update($request->all());
+        $data = $this->repository->findOrFail($request->shop_id)->update($request->all());
         return response()->json($data);
     }
 }
