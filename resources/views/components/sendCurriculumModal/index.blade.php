@@ -8,20 +8,22 @@
                 </button>
             </div>
             <div class="modal-body">
-                <label class="form-label mt-1" for="curriculum">
-                  	Envie seu currículo inserindo seus principais dados
-                </label>
-                <textarea
-					type="text"
-					id="curriculum"
-					class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-					placeholder="Insira seus dados aqui"
-					rows="4"
-				></textarea>
+                <form id="curriculum-form">
+                    <label class="form-label mt-1" for="curriculum">
+                        Envie seu currículo inserindo seus principais dados
+                    </label>
+                    <textarea
+                        type="text"
+                        id="curriculum"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        placeholder="Insira seus dados aqui"
+                        rows="4"
+                    ></textarea>
+                </form>
             </div>
             <div class="modal-footer d-flex justify-content-center">
                 <button type="button" class="btn bg-light text-gray-500" data-bs-dismiss="modal">Fechar</button>
-                <button type="submit" class="btn bg-primary text-white" form="register-form">Enviar</button>
+                <button type="submit" class="btn bg-primary text-white" form="curriculum-form">Enviar</button>
             </div>
         </div>
     </div>
