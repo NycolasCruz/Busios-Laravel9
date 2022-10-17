@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCurriculumRequest;
 use App\Models\Curriculum;
-use Illuminate\Http\Request;
 
 class CurriculumController extends Controller
 {
@@ -14,13 +14,11 @@ class CurriculumController extends Controller
         $this->repository = $model;
     }
 
-    public function store(Request $request)
+    public function store(StoreCurriculumRequest $request)
     {
-        $data = $request->only('curriculum');
-        $user = auth()->user()->id;
+        $data = $request->validated();
         $shop = $request->shop_id;
 
-        $data['user_id'] = $user;
         $data['shop_id'] = $shop;
 
         return $this->repository->create($data);
