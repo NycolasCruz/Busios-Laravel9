@@ -34,39 +34,47 @@
 
 ## 🕹️ Instalação
 
-<!-- copie o .env
+(será refeito mais bonitinho quando eu tiver tempo ksksks)
 
-instale o docker desktop, caso não tenha:
+Instale o docker desktop caso não o tenha <a href="https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header">clicando neste link aqui</a>
 
-https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header
 
-instale o pacote de atualização do kernel do Linux do WSL 2
-https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi
+Instale o pacote de atualização do kernel do Linux do WSL 2 <a href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi">clicando aqui também</a>
 
-Suba os containers do projeto
+agora clone o repositório do projeto e em seguida entre na sua respectiva pasta. Com o terminal aberto na pasta do correta, execute o comando abaixo para subir os containers do projeto para o Docker:
+
+````
 docker-compose up -d
+````
 
-acesse o container
+Acesse o container utilizando:
+````
 docker-compose exec app bash
+````
 
-instale as dependencias do projeto
+E instale as dependências do projeto:
+````
 composer install
+````
 
-instale os pacoters do node
+Instale também os pacotes do node:
+````
 npm install
+````
 
-gere a key do nprojeto laravel
+Copie o arquivo .env.example para um novo arquivo .env e gere a chave encriptografada:
+````
 php artisan key:generate
+````
 
-Acesse o projeto http://localhost:8989
-
-instale o dbeaver
-faça a conexão cokm o banco de dados
-
-rode as migrations
+E por fim faça a conexão com o banco de dados e rode as migrations:
+````
 php artisan migrate
+````
 
-conteine rfeito pelo especialioza ti -->
+Agora é só acessar o projeto na porta http://localhost:8989
+
+Container feito pelo <a href="https://github.com/carlosfgti">Carlos</a> do EspecializaTi :heart:
 
 ## 🐧 Autor
 
