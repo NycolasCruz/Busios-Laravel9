@@ -35,7 +35,6 @@ class ShopController extends Controller
 
     public function getAllData()
     {
-        // vai pegar tudo da model Shop e carregar também a função user, q é o relacionamento, trazendo os dados do usuário
         return $this->repository->all()->load('user');
     }
 
@@ -43,7 +42,6 @@ class ShopController extends Controller
     {
         $data = $this->repository->findOrFail($shop_id);
 
-        // vai pegar tudo da model Shop e a função user, quando o id for igual ao id passado
         $shopOwner = $this->repository->with('user')->where('id', $data->id)->first();
 
         return response()->json($shopOwner);
