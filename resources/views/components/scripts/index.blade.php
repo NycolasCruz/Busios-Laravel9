@@ -103,7 +103,7 @@
             button.addEventListener('click', async (event) => {
                 const loader = document.querySelector('#loader-show');
                 const button = event.relatedTarget;
-                id = event.target.dataset.id;
+                id = event.currentTarget.dataset.id;
                 
                 loader.removeAttribute('hidden');
                 document.querySelector('#show-modal-body').innerHTML = '';
@@ -199,7 +199,7 @@
                 const loader = document.querySelector('#loader-edit');
                 const button = event.relatedTarget;
                 const editForm = document.querySelector('#edit-form')
-                id = event.target.dataset.id;
+                id = event.currentTarget.dataset.id;
 
                 const inputData = Array.from(editForm.querySelectorAll('div.row div input[type="text"]'));
 
@@ -243,14 +243,17 @@
 
     function handleSendCurriculum() {
         document.querySelectorAll('.curriculum-buttom').forEach(button => {
-            button.addEventListener('click', event => id = event.target.dataset.id);
+            button.addEventListener('click', event => id = event.currentTarget.dataset.id);
         })
 
         document.querySelector('#curriculum-form').addEventListener('submit', async (event) => {
             event.preventDefault();
             const curriculumValue = document.querySelector('#curriculum').value;
             waitToast();
-            
+            console.log(id);
+            setTimeout(() => {
+                console.log(id);
+            }, 2000);
             try {
                 await axios.post('{{ route('curriculum.store', ':id') }}'.replace(':id', id), {
                     curriculum: curriculumValue,
