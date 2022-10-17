@@ -33,7 +33,7 @@
                             <i class="fas fa-eye"></i>
                         </button>
                         <button
-                            class="btn btn-icon bg-dark text-white ms-2 ${showActionsToUser}"
+                            class="btn btn-icon bg-dark text-white ms-2 curriculum-buttom ${showActionsToUser}"
                             title="Enviar Currículo"
                             data-bs-toggle="modal"
                             data-bs-target="#curriculum-modal"
@@ -72,6 +72,7 @@
         tbody.removeAttribute('hidden');    
         handleShowSpecificShop();
         fillOutForm();
+        handleSendCurriculum();
     }
     
     window.onload = handleShowAllShops;
@@ -80,30 +81,18 @@
     document.querySelector('#register-form').addEventListener('submit', async (event) => {
         event.preventDefault();
         const formData = new FormData(event.target);
-
-        Toast.fire({
-            icon: 'info',
-            title: 'Aguarde um pouco..'
-        })
+        waitToast();
 
         try {
             await axios.post('{{ route('dashboard.store') }}', formData );
 
-            Toast.fire({
-                icon: 'success',
-                title: 'Loja cadastrada com sucesso!'
-            })
-
+            successToast('Loja cadastrada com sucesso!');
             $('#register-modal').modal('hide');
             document.querySelector('#tbody').innerHTML = '';
             handleShowAllShops();
         } catch (error) {
             console.error(error);
-
-            Toast.fire({
-                icon: 'error',
-                title: 'Erro ao cadastrar a loja'
-            })
+            errorToast('Erro ao cadastrar a loja!');
         }
     });
 
@@ -238,35 +227,76 @@
     document.querySelector('#edit-form').addEventListener('submit', async (event) => {
         event.preventDefault();
         const formData = new FormData(event.target);
-
-        Toast.fire({
-            icon: 'info',
-            title: 'Aguarde um pouco..'
-        })
+        waitToast();
 
         try {
             await axios.post('{{ route('dashboard.update', ':id') }}'.replace(':id', id), formData)
 
-            Toast.fire({
-                icon: 'success',
-                title: 'Loja editada com sucesso!'
-            })
-
+            successToast('Loja editada com sucesso!');
             $('#edit-modal').modal('hide');
             handleShowAllShops();
         } catch (error) {
             console.error(error);
-
-            Toast.fire({
-                icon: 'error',
-                title: 'Erro ao editar loja!'
-            })
+            errorToast('Erro ao editar a loja!');
         }
     })
+
+    function handleSendCurriculum() {
+        document.querySelectorAll('.curriculum-buttom').forEach(button => {
+            button.addEventListener('click', event => id = event.currentTarget.dataset.id);
+        })
+
+        document.querySelector('#curriculum-form').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const curriculumValue = document.querySelector('#curriculum').value;
+            waitToast();
+
+            try {
+                await axios.post('{{ route('curriculum.store', ':id') }}'.replace(':id', id), {
+                    curriculum: curriculumValue,
+                    user_id: {{ Auth::user()->id }}
+                })
+
+                successToast('Currículo enviado com sucesso!');
+                $('#curriculum-modal').modal('hide');
+            } catch (error) {
+                console.error(error);
+                errorToast('Erro ao enviar o currículo!');
+            }
+       })
+    }
 
     // clear all data whenever register modal closes
     $('#register-modal').on('hidden.bs.modal', event => {
         event.target.querySelector('form').reset();
     })
+
+    // clear all data whenever curriculum modal closes
+    $('#curriculum-modal').on('hidden.bs.modal', event => {
+        event.target.querySelector('form').reset();
+    })
+
+    function waitToast() {
+        return (
+            Toast.fire({
+                icon: 'info',
+                title: 'Aguarde um pouco..'
+            })
+        )
+    }
+
+    function successToast(title) {
+        Toast.fire({
+            icon: 'success',
+            title: title
+        })
+    }
+
+    function errorToast(title) {
+        Toast.fire({
+            icon: 'error',
+            title: title
+        })
+    }
 </script>
 @endsection
