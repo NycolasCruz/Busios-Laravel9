@@ -253,7 +253,8 @@
             
             try {
                 await axios.post('{{ route('curriculum.store', ':id') }}'.replace(':id', id), {
-                    curriculum: curriculumValue
+                    curriculum: curriculumValue,
+                    user_id: {{ Auth::user()->id }}
                 })
 
                 successToast('Currículo enviado com sucesso!');
