@@ -250,10 +250,6 @@
             event.preventDefault();
             const curriculumValue = document.querySelector('#curriculum').value;
             waitToast();
-            console.log(id);
-            setTimeout(() => {
-                console.log(id);
-            }, 2000);
             try {
                 await axios.post('{{ route('curriculum.store', ':id') }}'.replace(':id', id), {
                     curriculum: curriculumValue,
