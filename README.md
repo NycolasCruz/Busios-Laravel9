@@ -17,17 +17,18 @@
 
 ## 🖥️ Sobre
 
-<p align="justify">O projeto tem como função principal fixar meus conhecimentos sobre Laravel, fazendo o uso de boas práticas e de um código limpo, também pesquisei em utilizei blibliotecas que contibuam positivamente com o ecossistema da aplicação, melhorando e otimizando seus resultados.</p>
+<p align="justify">O projeto tem como função principal criar e gerenciar lojas, permitindo admitir funcionários e até mesmo enviar um currículo para alguma empresa cadastrada, visualizando no seu perfil o status de aprovação do mesmo. O objetivo é fazer um sistema simples mas performático, fixando meus conhecimentos com back-end</p>
 
 ## 🔧 Características
 
 - [ ] Projeto base finalizado
-- [x] Cadastro de lojas
+- [x] Cadastro, edição, exclusão e gerência de lojas
+- [ ] Sistema de avaliação e admissão de funcionários através de envios de currículos
+- [ ] Atualizações no perfil sobre o estado de aprovação do currículo
 - [x] Interface limpa e intuitiva
 - [ ] Validação de dados
 - [ ] Máscaras nos campos
 - [x] Permissões para usuários
-- [x] Relacionamentos entre tabelas
 - [x] Autenticação e cadastro de usuários
 - [x] Requisições sem recarregamento da página
 - [X] Containerização com Docker
