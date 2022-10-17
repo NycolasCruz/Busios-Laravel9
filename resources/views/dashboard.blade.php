@@ -13,7 +13,7 @@
 
                             criar um log de status no perfil (currículo enviado, pendente, aprovado ou reprovado)
 
-                            many to many: a loja vai verificar em uma página diferente quem está interessado em trabalhar nela (através dos currículos) e adicionar ou remover os interessados, caso o currículo seja aprovado, o usuário será adicionado como funcionário da loja, fazendo assim a relação, onde uma loja pode ter vários funcionários e um funcionário pode trabalhar em várias lojas
+                            many to many: a loja vai verificar em uma página diferente[essa página de detalhes da loja será acessada pelo botão na tabela da própria loja] quem está interessado em trabalhar nela (através dos currículos) e adicionar ou remover os interessados, caso o currículo seja aprovado, o usuário será adicionado como funcionário da loja, fazendo assim a relação, onde uma loja pode ter vários funcionários e um funcionário pode trabalhar em várias lojas
 
                             adicionar campo horário de funcionamento na loja no local da faixa salarial (manha e tarde, tarde e noite, noite e madrugada, madrugada e manha, apenas manha, apenas tarde, apenas noite, apenas madrugada)
 
