@@ -41,7 +41,7 @@ Instale o pacote de atualização do kernel do Linux do WSL 2 <a href="https://w
 
 Agora clone o repositório do projeto e em seguida entre na sua respectiva pasta. Com o terminal aberto na pasta do correta, execute o comando abaixo para subir os containers do projeto para o Docker:
 ````
-docker-compose up -d
+docker compose up -d
 ````
 
 Acesse o container utilizando:
