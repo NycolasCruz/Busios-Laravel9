@@ -73,6 +73,8 @@ Agora é só acessar o projeto na porta http://localhost:8989
 
 Container feito pelo <a href="https://github.com/carlosfgti">Carlos</a> do EspecializaTi <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Microsoft-Teams-Animated-Emojis/master/Emojis/Smilies/Purple%20Heart.png" alt="PO" width="20" height="20" />
 
+OBS: Por algum motivo o container ficou super pesado, apresentando lentidão para fazer simples requisições, em breve irei iniciar meus estudos com docker e criar meu próprio container mais otimizado.
+
 ## 🐧 Autor
 
 <a href="https://github.com/NycolasCruz">
