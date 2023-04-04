@@ -79,6 +79,8 @@ Container feito pelo <a href="https://github.com/carlosfgti">Carlos</a> do Espec
 
 OBS: Por algum motivo o container ficou super pesado, apresentando lentidão para fazer simples requisições, em breve irei iniciar meus estudos com docker e criar meu próprio container mais otimizado.
 
+OBS 2: O npm não está mais funcionando, mesmo tendo um comando que instala o mesmo no Dockerfile. Tenha o NodeJS instalado na sua máquina para rodar o npm.
+
 ## 🐧 Autor
 
 <a href="https://github.com/NycolasCruz">
