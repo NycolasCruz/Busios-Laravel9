@@ -37,7 +37,7 @@
 
 Instale o docker desktop caso não o tenha <a href="https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header">clicando neste link aqui</a>
 
-Instale também o WSL e o Ubunto na sua Microsoft Store
+Instale também o WSL e o Ubuntu na sua Microsoft Store
 
 Instale o pacote de atualização do kernel do Linux do WSL 2 <a href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi">clicando aqui também</a>
 
