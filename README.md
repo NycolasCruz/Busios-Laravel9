@@ -35,13 +35,15 @@
 
 ## 🕹️ Instalação
 
-Instale o docker desktop <a href="https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header">clicando neste link aqui</a>
+Instale o docker desktop <a href="https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header">clicando neste link aqui.</a>
 
-Instale também o WSL e o Ubuntu na sua Microsoft Store
+Instale também o WSL e o Ubuntu na sua Microsoft Store.
 
-Instale o pacote de atualização do kernel do Linux do WSL 2 <a href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi">clicando aqui também</a>
+Instale o pacote de atualização do kernel do Linux do WSL 2 <a href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi">clicando aqui também.</a>
 
-Agora clone o repositório do projeto e em seguida entre no seu editor de código com o WSL utilizando a distribuição Ubuntu. Com o terminal aberto na pasta do correta, execute o comando abaixo para subir os containers do projeto para o Docker:
+Agora clone o repositório do projeto e em seguida entre em seu editor de código com o WSL utilizando a distribuição Ubuntu.
+
+Com o terminal aberto na pasta do correta, execute o comando abaixo para subir os containers do projeto para o Docker:
 ````
 docker compose up -d
 ````
@@ -70,16 +72,16 @@ php artisan key:generate
 
 E por fim faça a conexão com o banco de dados e rode as migrations:
 
-OBS 2: Foi utilizado Postgres como gerenciador
+OBS 2: Foi utilizado Postgres como gerenciador.
 ````
 php artisan migrate
 ````
 
-Agora é só acessar o projeto na porta http://localhost:8989
+Agora é só acessar o projeto na porta http://localhost:8989!
 
 Container feito pelo <a href="https://github.com/carlosfgti">Carlos</a> do EspecializaTi <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Microsoft-Teams-Animated-Emojis/master/Emojis/Smilies/Purple%20Heart.png" alt="PO" width="20" height="20" />
 
-OBS 3: Por algum motivo o container ficou super pesado, apresentando lentidão para fazer simples requisições, em breve irei iniciar meus estudos com docker e criar meu próprio container mais otimizado.
+OBS 3: Por algum motivo o container ficou super pesado, apresentando lentidão para fazer simples requisições, em breve irei corrigir o problema criando meu próprio container Docker.
 
 ## 🐧 Autor
 
