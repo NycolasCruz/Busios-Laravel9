@@ -17,9 +17,3 @@ enum IncomeTypeEnum: int
         };
     }
 }
-
-// documentation
-// IncomeTypeEnum::cases()->value pra pegar todos os valores num loop
-// IncomeTypeEnum::LESS_10000->value pra pegar um valor do caso do enum
-// IncomeTypeEnum::LESS_10000->getDescription() pra pegar a descrição do caso do enum
-// IncoeTypeEnum::tryFrom($value)->getDescription() pra pegar a descrição do caso do enum a partir de um valor
