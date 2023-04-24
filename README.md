@@ -59,8 +59,6 @@ composer install
 ````
 
 Instale também os pacotes do node:
-
-OBS: O npm não está mais funcionando mesmo tendo um comando que instala o mesmo no Dockerfile. Tenha o NodeJS instalado na sua máquina para rodar o npm.
 ````
 npm install
 ````
@@ -72,16 +70,16 @@ php artisan key:generate
 
 E por fim faça a conexão com o banco de dados e rode as migrations:
 
-OBS 2: Foi utilizado Postgres como gerenciador.
+OBS 1: Foi utilizado Postgres como gerenciador.
 ````
 php artisan migrate
 ````
 
-Agora é só acessar o projeto na porta http://localhost:8989!
+Agora é só acessar o projeto na porta <a href="http://localhost:8989">8989</a>!
 
 Container feito pelo <a href="https://github.com/carlosfgti">Carlos</a> do EspecializaTi <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Microsoft-Teams-Animated-Emojis/master/Emojis/Smilies/Purple%20Heart.png" alt="PO" width="20" height="20" />
 
-OBS 3: Por algum motivo o container ficou super pesado, apresentando lentidão para fazer simples requisições, em breve irei corrigir o problema criando meu próprio container Docker.
+OBS 2: Por algum motivo o container ficou super pesado, apresentando lentidão para fazer simples requisições, em breve irei corrigir o problema.
 
 ## 🐧 Autor
 
