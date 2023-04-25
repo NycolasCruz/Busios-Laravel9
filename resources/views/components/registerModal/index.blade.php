@@ -21,6 +21,7 @@
                                 required
                             >
                         </div>
+
                         <div class="col-6">
                             <label class="form-label mt-1">Ramo</label>
                             <input
@@ -32,6 +33,7 @@
                                 required
                             >
                         </div>
+
                         <div class="col-12">
                             <label class="form-label mt-1">Descrição (opcional)</label>
                             <input
@@ -42,6 +44,7 @@
                                 autocomplete="off"
                             >
                         </div>
+
                         <div class="col-6">
                             <label class="form-label mt-1">Telefone</label>
                             <input
@@ -53,6 +56,7 @@
                                 required
                             >
                         </div>
+
                         <div class="col-6">
                             <label class="form-label mt-1">Cpf do Proprietário</label>
                             <input
@@ -64,6 +68,7 @@
                                 required
                             >
                         </div>
+
                         <div class="col-6">
                             <label class="form-label mt-1">Logradouro</label>
                             <input
@@ -75,6 +80,7 @@
                                 required
                             >
                         </div>
+
                         <div class="col-6">
                             <label class="form-label mt-1">Qual a renda mensal da loja?</label>
                             <select
@@ -144,8 +150,14 @@
                     </div>
                 </form>
             </div>
-            <div class="modal-footer d-flex justify-content-center">
-                <button type="button" class="btn bg-light text-gray-500" data-bs-dismiss="modal">Fechar</button>
+
+            <div class="modal-footer flex justify-center border-0">
+                <button
+                    type="button"
+                    class="btn bg-slate-200 hover:bg-slate-200 text-gray-600 hover:text-gray-600" data-bs-dismiss="modal"
+                >
+                    Fechar
+                </button>
                 <button type="submit" class="btn bg-primary text-white" form="register-form">Salvar</button>
             </div>
         </div>

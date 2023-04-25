@@ -16,8 +16,13 @@
                 </div>
             </div>
 
-            <div class="modal-footer d-flex justify-content-center">
-                <button type="button" class="btn bg-light text-gray-500" data-bs-dismiss="modal">Fechar</button>
+            <div class="modal-footer flex justify-center border-0">
+                <button
+                    type="button"
+                    class="btn bg-slate-200 hover:bg-slate-200 text-gray-600 hover:text-gray-600" data-bs-dismiss="modal"
+                >
+                    Fechar
+                </button>
             </div>
         </div>
     </div>

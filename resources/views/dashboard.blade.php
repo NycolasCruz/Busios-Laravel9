@@ -46,7 +46,7 @@
 
                                         <input
                                             type="text"
-                                            class="form-control form-control-solid border-1 ps-15"
+                                            class="form-control form-control-solid rounded-lg ps-15"
                                             filter="search"
                                             placeholder="Pesquisar Loja"
                                         >

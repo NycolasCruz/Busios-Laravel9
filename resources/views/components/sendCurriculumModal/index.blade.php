@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title fs-5" id="exampleModalLabel">Visualizar Loja</h5>
+                <h5 class="modal-title fs-5" id="exampleModalLabel">Enviar Currículo</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     <i class="fa-solid fa-x"></i>
                 </button>
@@ -21,8 +21,14 @@
                     ></textarea>
                 </form>
             </div>
-            <div class="modal-footer d-flex justify-content-center">
-                <button type="button" class="btn bg-light text-gray-500" data-bs-dismiss="modal">Fechar</button>
+
+            <div class="modal-footer flex justify-center border-0">
+                <button
+                    type="button"
+                    class="btn bg-slate-200 hover:bg-slate-200 text-gray-600 hover:text-gray-600" data-bs-dismiss="modal"
+                >
+                    Fechar
+                </button>
                 <button type="submit" class="btn bg-primary text-white" form="curriculum-form">Enviar</button>
             </div>
         </div>
