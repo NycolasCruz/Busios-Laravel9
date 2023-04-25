@@ -4,20 +4,19 @@
 
 <p>Sistema desenvolvido com as seguintes tecnologias:</p>
 
+- PHP
 - Laravel
 - Laravel Breeze
-- PHP
 - JavaScript
 - Axios
-- Tailwind
-- Bootstrap
 - Font Awesome
+- Tailwind
 - Sweet Alert
 - Docker
 
 ## 🖥️ Sobre
 
-<p align="justify">O projeto tem como função principal criar e gerenciar lojas, permitindo admitir funcionários e até mesmo enviar um currículo para alguma empresa cadastrada, visualizando no seu perfil o status de aprovação do mesmo. O objetivo é fazer um sistema simples mas performático, fixando meus conhecimentos com back-end.</p>
+<p align="justify">O projeto tem como principal função criar e gerenciar lojas, permitindo admitir funcionários e até mesmo enviar um currículo para alguma empresa cadastrada, visualizando no seu perfil o status de aprovação do mesmo. O objetivo é fazer um sistema simples mas performático, fixando meus conhecimentos com back-end.</p>
 
 ## 🔧 Características
 

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\IncomeTypeEnum;
 use App\Http\Requests\StoreShopRequest;
 use App\Models\Shop;
 use Illuminate\Http\Request;
@@ -18,9 +17,8 @@ class ShopController extends Controller
 
     public function index()
     {
-        $incomes = IncomeTypeEnum::cases();
 
-        return view('dashboard', ['incomes' => $incomes]);
+        return view('dashboard');
     }
 
     public function store(StoreShopRequest $request)
