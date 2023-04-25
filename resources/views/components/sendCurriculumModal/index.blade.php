@@ -10,7 +10,7 @@
             <div class="modal-body">
                 <form id="curriculum-form">
                     <label class="form-label mt-1" for="curriculum">
-                        Envie seu currículo inserindo seus principais dados
+                        Envie um currículo para ser analisado pela loja
                     </label>
                     <textarea
                         type="text"
