@@ -87,7 +87,7 @@
             await axios.post('{{ route('dashboard.store') }}', formData );
 
             successToast('Loja cadastrada com sucesso!');
-            $('#register-modal').modal('hide');
+            bootstrap.Modal.getInstance('#register-modal').hide();
             document.querySelector('#tbody').innerHTML = '';
             handleShowAllShops();
         } catch (error) {
@@ -97,6 +97,53 @@
     });
 
     let id = 0;
+
+    function fillOutForm() {
+        document.querySelectorAll('.edit-button').forEach(button => {
+            button.addEventListener('click', async (event) => {
+                const loader = document.querySelector('#loader-edit');
+                const editForm = document.querySelector('#edit-form')
+                id = event.currentTarget.dataset.id;
+
+                const inputData = Array.from(editForm.querySelectorAll('div.row div input[type="text"]'));
+
+                loader.removeAttribute('hidden');
+                editForm.setAttribute('hidden', true);
+
+                const { data } = await axios.get('{{ route('dashboard.show', ':id') }}'.replace(':id', id));
+
+                loader.setAttribute('hidden', true);
+                editForm.removeAttribute('hidden');
+
+                inputData[0].value = data.shop_name;
+                inputData[1].value = data.branch;
+                inputData[2].value = data.description;
+                inputData[3].value = data.number;
+                inputData[4].value = data.cpf;
+                inputData[5].value = data.address;
+                // income
+                // extras
+            })
+        })
+    }
+
+    // edit shop
+    document.querySelector('#edit-form').addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        waitToast();
+
+        try {
+            await axios.post('{{ route('dashboard.update', ':id') }}'.replace(':id', id), formData)
+
+            successToast('Loja editada com sucesso!');
+            bootstrap.Modal.getIntansce('#edit-modal').hide();
+            handleShowAllShops();
+        } catch (error) {
+            console.error(error);
+            errorToast('Erro ao editar a loja!');
+        }
+    })
 
     function handleShowSpecificShop() {
         document.querySelectorAll('.show-button').forEach(button => {
@@ -193,54 +240,6 @@
         })
     }
 
-    function fillOutForm() {
-        document.querySelectorAll('.edit-button').forEach(button => {
-            button.addEventListener('click', async (event) => {
-                const loader = document.querySelector('#loader-edit');
-                const button = event.relatedTarget;
-                const editForm = document.querySelector('#edit-form')
-                id = event.currentTarget.dataset.id;
-
-                const inputData = Array.from(editForm.querySelectorAll('div.row div input[type="text"]'));
-
-                loader.removeAttribute('hidden');
-                editForm.setAttribute('hidden', true);
-
-                const { data } = await axios.get('{{ route('dashboard.show', ':id') }}'.replace(':id', id));
-
-                loader.setAttribute('hidden', true);
-                editForm.removeAttribute('hidden');
-
-                inputData[0].value = data.shop_name;
-                inputData[1].value = data.branch;
-                inputData[2].value = data.description;
-                inputData[3].value = data.number;
-                inputData[4].value = data.cpf;
-                inputData[5].value = data.address;
-                // income
-                // extras
-            })
-        })
-    }
-
-    // edit shop
-    document.querySelector('#edit-form').addEventListener('submit', async (event) => {
-        event.preventDefault();
-        const formData = new FormData(event.target);
-        waitToast();
-
-        try {
-            await axios.post('{{ route('dashboard.update', ':id') }}'.replace(':id', id), formData)
-
-            successToast('Loja editada com sucesso!');
-            $('#edit-modal').modal('hide');
-            handleShowAllShops();
-        } catch (error) {
-            console.error(error);
-            errorToast('Erro ao editar a loja!');
-        }
-    })
-
     function handleSendCurriculum() {
         document.querySelectorAll('.curriculum-buttom').forEach(button => {
             button.addEventListener('click', event => id = event.currentTarget.dataset.id);
@@ -258,7 +257,7 @@
                 })
 
                 successToast('Currículo enviado com sucesso!');
-                $('#curriculum-modal').modal('hide');
+                bootstrap.Modal.getIntansce('#curriculum-modal').hide();
             } catch (error) {
                 console.error(error);
                 errorToast('Erro ao enviar o currículo!');
@@ -267,12 +266,12 @@
     }
 
     // clear all data whenever register modal closes
-    $('#register-modal').on('hidden.bs.modal', event => {
+    document.querySelector('#register-modal').addEventListener('hidden.bs.modal', event => {
         event.target.querySelector('form').reset();
     })
 
     // clear all data whenever curriculum modal closes
-    $('#curriculum-modal').on('hidden.bs.modal', event => {
+    document.querySelector('#curriculum-modal').addEventListener('hidden.bs.modal', event => {
         event.target.querySelector('form').reset();
     })
 
