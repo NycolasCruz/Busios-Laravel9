@@ -11,6 +11,7 @@
 - Axios
 - Font Awesome
 - Tailwind
+- Bootstrap
 - Sweet Alert
 - Docker
 
