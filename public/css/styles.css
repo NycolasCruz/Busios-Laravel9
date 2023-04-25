@@ -42,13 +42,8 @@
     background-color: #f5f8fa !important;
     border-color: #f5f8fa !important;
     color: #5e6278 !important;
-    transition: color .2s ease,background-color .2s ease !important;
 }
 
 .ps-15 {
     padding-left: 3.75rem !important;
-}
-
-.border-1 {
-    border-radius: .5rem !important;
 }
