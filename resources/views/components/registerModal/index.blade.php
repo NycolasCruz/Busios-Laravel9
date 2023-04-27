@@ -1,14 +1,15 @@
-<div class="modal fade" id="register-modal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="register-modal" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title fs-5" id="exampleModalLabel">Cadastrar Loja</h5>
+                <h5 class="modal-title fs-5">Cadastrar Loja</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     <i class="fa-solid fa-x"></i>
                 </button>
             </div>
-            <div class="modal-body">
-                <form id="register-form">
+
+            <form id="register-form">
+                <div class="modal-body">
                     <div class="row">
                         <div class="col-6">
                             <label class="form-label mt-1">Nome da Loja</label>
@@ -148,18 +149,18 @@
                             </label>
                         </div>
                     </div>
-                </form>
-            </div>
+                </div>
 
-            <div class="modal-footer flex justify-center border-0">
-                <button
-                    type="button"
-                    class="btn bg-slate-200 hover:bg-slate-200 text-gray-600 hover:text-gray-600" data-bs-dismiss="modal"
-                >
-                    Fechar
-                </button>
-                <button type="submit" class="btn bg-primary text-white" form="register-form">Salvar</button>
-            </div>
+                <div class="modal-footer flex justify-center border-0">
+                    <button
+                        type="button"
+                        class="btn bg-slate-200 hover:bg-slate-200 text-gray-600 hover:text-gray-600" data-bs-dismiss="modal"
+                    >
+                        Fechar
+                    </button>
+                    <button type="submit" class="btn bg-sky-500 hover:bg-sky-500 border-sky-500 text-white">Salvar</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

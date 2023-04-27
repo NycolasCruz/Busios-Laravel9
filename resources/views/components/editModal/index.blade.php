@@ -1,8 +1,8 @@
-<div class="modal fade" id="edit-modal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="edit-modal" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title fs-5" id="exampleModalLabel">Editar Loja</h5>
+                <h5 class="modal-title fs-5">Editar Loja</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     <i class="fa-solid fa-x"></i>
                 </button>
@@ -10,7 +10,7 @@
             <div class="modal-body">
                 {{-- loader --}}
                 <div class="d-flex justify-content-center">
-                    <div id="loader-edit" class="spinner-border text-primary" role="status" hidden>
+                    <div id="loader-edit" class="spinner-border text-sky-500" role="status" hidden>
                         <span class="visually-hidden">Loading...</span>
                     </div>
                 </div>
@@ -168,7 +168,7 @@
                 >
                     Fechar
                 </button>
-                <button type="submit" class="btn bg-primary text-white" form="edit-form">Salvar</button>
+                <button type="submit" class="btn bg-sky-500 hover:bg-sky-500 border-sky-500 text-white" form="edit-form">Salvar</button>
             </div>
         </div>
     </div>

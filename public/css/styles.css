@@ -1,14 +1,5 @@
-.text-primary {
-    color: #009ef7 !important;
-}
-
 .text-gray {
     color: #bfbfbf !important;
-}
-
-.bg-primary {
-    background-color: #009ef7 !important;
-    border-color: #009ef7 !important;
 }
 
 .bg-warning {
@@ -26,18 +17,6 @@
     border-color: #50cd89 !important;
 }
 
-.btn {
-    height: 2.6rem !important;
-}
-
-.btn:hover {
-    border-color: #FFFFFF !important;
-}
-
-.btn-icon {
-    width: 2.8rem !important;
-}
-
 .form-control-solid {
     background-color: #f5f8fa !important;
     border-color: #f5f8fa !important;
@@ -47,3 +26,10 @@
 .ps-15 {
     padding-left: 3.75rem !important;
 }
+
+/* .btn {
+    height: 2.6rem !important;
+} */
+/* .btn-icon {
+    width: 2.8rem !important;
+} */

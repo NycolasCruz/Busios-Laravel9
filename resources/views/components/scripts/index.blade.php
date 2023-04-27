@@ -24,7 +24,7 @@
                     <td>${data.branch}</td>
                     <td class="text-end">
                         <button
-                            class="btn btn-icon bg-primary text-white show-button"
+                            class="btn btn-icon bg-sky-500 hover:bg-sky-500 border-sky-500 text-white show-button"
                             title="Ver Detalhes"
                             data-bs-toggle="modal"
                             data-bs-target="#show-modal"

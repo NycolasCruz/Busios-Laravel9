@@ -9,7 +9,7 @@
                     <div class="p-3">
                         <div class="d-flex justify-content-between align-items-center mb-5">
                             <div class="d-flex align-items-center">
-                                <i class="fas fa-cart-shopping text-primary fs-1"></i>
+                                <i class="fas fa-cart-shopping text-sky-500 fs-1"></i>
                                 <h1 class="ms-4 fs-1">Lojas</h2>
                             </div>
 
@@ -55,7 +55,7 @@
                                
                                 <button
                                     type="button"
-                                    class="btn bg-primary text-white"
+                                    class="btn bg-sky-500 hover:bg-sky-500 border-sky-500 text-white"
                                     data-bs-toggle="modal" 
                                     data-bs-target="#register-modal"
                                 >
@@ -80,7 +80,7 @@
 
                         {{-- loader --}}
                         <div class="d-flex justify-content-center">
-                            <div id="loader-allData" class="spinner-border text-primary" role="status" hidden>
+                            <div id="loader-allData" class="spinner-border text-sky-500" role="status" hidden>
                                 <span class="visually-hidden">Loading...</span>
                             </div>
                         </div>
