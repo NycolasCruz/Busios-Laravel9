@@ -9,7 +9,7 @@
             </div>
             <div class="modal-body">
                 {{-- loader --}}
-                <div class="d-flex justify-content-center">
+                <div class="d-flex justify-center">
                     <div id="loader-edit" class="spinner-border text-sky-500" role="status" hidden>
                         <span class="visually-hidden">Loading...</span>
                     </div>
@@ -168,7 +168,13 @@
                 >
                     Fechar
                 </button>
-                <button type="submit" class="btn bg-sky-500 hover:bg-sky-500 border-sky-500 text-white" form="edit-form">Salvar</button>
+                <button
+                    type="submit"
+                    class="btn bg-sky-500 hover:bg-sky-500 focus:bg-sky-500 border-sky-500 focus:border-sky-500 text-white"
+                    form="edit-form"
+                >
+                    Salvar
+                </button>
             </div>
         </div>
     </div>

@@ -4,7 +4,10 @@
 
 .bg-warning {
     background-color: #ffbc34 !important;
+    background-color: rgb(251 191 36);
     border-color: #ffbc34 !important;
+
+    /* bg-amber-400 */
 }
 
 .bg-light {
@@ -27,9 +30,7 @@
     padding-left: 3.75rem !important;
 }
 
-/* .btn {
-    height: 2.6rem !important;
-} */
-/* .btn-icon {
+.btn-icon {
     width: 2.8rem !important;
-} */
+    height: 2.6rem !important;
+}

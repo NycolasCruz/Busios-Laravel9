@@ -7,17 +7,16 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="p-3">
-                        <div class="d-flex justify-content-between align-items-center mb-5">
-                            <div class="d-flex align-items-center">
+                        <div class="d-flex justify-between items-center mb-5">
+                            <div class="d-flex items-center">
                                 <i class="fas fa-cart-shopping text-sky-500 fs-1"></i>
                                 <h1 class="ms-4 fs-1">Lojas</h2>
                             </div>
 
-                            <div class="d-flex justify-content-lg-end">
-
+                            <div class="d-flex">
                                 {{-- search --}}
                                 <div class="card-title pe-3">
-                                    <div class="d-flex align-items-center position-relative">
+                                    <div class="d-flex items-center position-relative">
                                         <span class="svg-icon svg-icon-1 position-absolute text-gray ms-4">
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
@@ -55,7 +54,7 @@
                                
                                 <button
                                     type="button"
-                                    class="btn bg-sky-500 hover:bg-sky-500 border-sky-500 text-white"
+                                    class="btn bg-sky-500 hover:bg-sky-500 focus:bg-sky-500 border-sky-500 focus:border-sky-500 text-white"
                                     data-bs-toggle="modal" 
                                     data-bs-target="#register-modal"
                                 >
@@ -79,7 +78,7 @@
                         </table>
 
                         {{-- loader --}}
-                        <div class="d-flex justify-content-center">
+                        <div class="d-flex justify-center">
                             <div id="loader-allData" class="spinner-border text-sky-500" role="status" hidden>
                                 <span class="visually-hidden">Loading...</span>
                             </div>

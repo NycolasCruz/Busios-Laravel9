@@ -7,7 +7,7 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <a href="/" class="d-flex align-items-center fs-1 fw-bold" style="color: #8181ff;">
+                <a href="/" class="d-flex items-center text-indigo-400 hover:text-indigo-500 fs-1 font-bold">
                     BUSIOS
                 </a>
 

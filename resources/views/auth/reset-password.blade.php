@@ -1,10 +1,10 @@
-@extends('layouts.main')
+{{-- @extends('layouts.main')
 @section('reset-password')
 
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
-            <a href="/" class="fs-1 fw-bold" style="color: #8181ff;">
+            <a href="/" class="text-indigo-400 hover:text-indigo-500 fs-1 font-bold">
                 BUSIOS
             </a>
         </x-slot>
@@ -50,4 +50,4 @@
     </x-auth-card>
 </x-guest-layout>
 
-@endsection
+@endsection --}}

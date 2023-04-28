@@ -24,7 +24,7 @@
                     <td>${data.branch}</td>
                     <td class="text-end">
                         <button
-                            class="btn btn-icon bg-sky-500 hover:bg-sky-500 border-sky-500 text-white show-button"
+                            class="btn btn-icon w-67 bg-sky-500 hover:bg-sky-500 focus:bg-sky-500 border-sky-500 focus:border-sky-500 text-white show-button"
                             title="Ver Detalhes"
                             data-bs-toggle="modal"
                             data-bs-target="#show-modal"
@@ -174,64 +174,64 @@
                 loader.setAttribute('hidden', true);
 
                 document.querySelector('#show-modal-body').innerHTML = `
-                    <p class="text-gray-700 fw-bold fs-6 mb-3">
+                    <p class="text-gray-700 font-bold fs-6 mb-3">
                         Proprietário:
                         <span class="fw-normal">
                             ${data.user.name}
                         </span>
                     </p>
-                    <p class="text-gray-700 fw-bold fs-6 mb-3">
+                    <p class="text-gray-700 font-bold fs-6 mb-3">
                         Email do proprietário:
                         <span class="fw-normal">
                             ${data.user.email}
                         </span>
                     </p>
-                    <p class="text-gray-700 fw-bold fs-6 mb-3">
+                    <p class="text-gray-700 font-bold fs-6 mb-3">
                         Nome da loja:
                         <span class="fw-normal">
                             ${data.shop_name}
                         </span>
                     </p>
-                    <p class="text-gray-700 fw-bold fs-6 mb-3">
+                    <p class="text-gray-700 font-bold fs-6 mb-3">
                         Ramo:
                         <span class="fw-normal">
                             ${data.branch}
                         </span>
                     </p>
-                    <p class="text-gray-700 fw-bold fs-6 mb-3">
+                    <p class="text-gray-700 font-bold fs-6 mb-3">
                         Descrição:
                         <span class="fw-normal">
                             ${data.description}
                         </span>
                     </p>
-                    <p class="text-gray-700 fw-bold fs-6 mb-3">
+                    <p class="text-gray-700 font-bold fs-6 mb-3">
                         Telefone:
                         <span class="fw-normal">
                             ${data.number}
                         </span>
                     </p>
-                    <p class="text-gray-700 fw-bold fs-6 mb-3">
+                    <p class="text-gray-700 font-bold fs-6 mb-3">
                         Cpf:
                         <span class="fw-normal">
                             ${data.cpf}
                         </span>
                     </p>
-                    <p class="text-gray-700 fw-bold fs-6 mb-3">
+                    <p class="text-gray-700 font-bold fs-6 mb-3">
                         Logradouro:
                         <span class="fw-normal">
                             ${data.address}
                         </span>
                     </p>
-                    <p class="text-gray-700 fw-bold fs-6 mb-3">
+                    <p class="text-gray-700 font-bold fs-6 mb-3">
                         Renda mensal:
                         <span class="fw-normal">
                             ${income}
                         </span>
                     </p>
-                    <p class="text-gray-700 fw-bold fs-6 mb-3">
+                    <p class="text-gray-700 font-bold fs-6 mb-3">
                         Extras
                     </p>
-                    <span class="d-flex align-items-center fw-normal ms-4">
+                    <span class="d-flex items-center fw-normal ms-4">
                         <i class="fa-solid fa-caret-right me-2"></i>
                         ${data.characteristics}
                     </span>
