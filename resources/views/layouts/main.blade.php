@@ -28,8 +28,6 @@
     </head>
     <body>
         @yield('dashboard')
-        @yield('confirm-password')
-        @yield('forgot-password')
         @yield('login')
         @yield('register')
         @yield('reset-password')
