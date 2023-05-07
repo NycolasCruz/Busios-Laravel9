@@ -81,7 +81,6 @@
     document.querySelector('#register-form').addEventListener('submit', async (event) => {
         event.preventDefault();
         const formData = new FormData(event.target);
-        waitToast();
 
         try {
             await axios.post('{{ route('dashboard.store') }}', formData );
@@ -131,7 +130,6 @@
     document.querySelector('#edit-form').addEventListener('submit', async (event) => {
         event.preventDefault();
         const formData = new FormData(event.target);
-        waitToast();
 
         try {
             await axios.post('{{ route('dashboard.update', ':id') }}'.replace(':id', id), formData)
@@ -248,7 +246,6 @@
         document.querySelector('#curriculum-form').addEventListener('submit', async (event) => {
             event.preventDefault();
             const curriculumValue = document.querySelector('#curriculum').value;
-            waitToast();
 
             try {
                 await axios.post('{{ route('curriculum.store', ':id') }}'.replace(':id', id), {
@@ -274,15 +271,6 @@
     document.querySelector('#curriculum-modal').addEventListener('hidden.bs.modal', event => {
         event.target.querySelector('form').reset();
     })
-
-    function waitToast() {
-        return (
-            Toast.fire({
-                icon: 'info',
-                title: 'Aguarde um pouco..'
-            })
-        )
-    }
 
     function successToast(title) {
         Toast.fire({
