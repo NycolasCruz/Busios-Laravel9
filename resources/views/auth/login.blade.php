@@ -4,9 +4,9 @@
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
-            <a href="/" class="fs-1 fw-bold" style="color: #8181ff;">
+            <div class="text-indigo-400 font-bold fs-1">
                 BUSIOS
-            </a>
+            </div>
         </x-slot>
 
         <!-- Session Status -->
@@ -20,10 +20,10 @@
 
             <!-- Email Address -->
             <div>
-                <label class="form-label fw-bolder text-dark fs-6 mb-0">Email</label>
+                <label class="form-label font-bold fs-6 mb-0" for="login-email">Email</label>
 
                 <x-input
-                    id="email"
+                    id="login-email"
                     class="block mt-1 w-full"
                     type="email"
                     name="email"
@@ -35,22 +35,10 @@
 
             <!-- Password -->
             <div class="mt-4">
-                <div class="d-flex justify-content-between mb-2">
-                    <label class="form-label fw-bolder text-dark fs-6 mb-0">Senha</label>
-
-                    {{-- @if (Route::has('password.request'))
-                        <a
-                            class="fs-6 fw-bolder"
-                            href="{{ route('password.request') }}"
-                            style="color: #8181ff;"
-                        >
-                            Esqueceu sua senha?
-                        </a>
-                    @endif --}}
-                </div>
+                <label class="form-label font-bold text-dark fs-6 mb-0" for="login-password">Senha</label>
 
                 <x-input
-                    id="password"
+                    id="login-password"
                     class="block mt-1 w-full"
                     type="password"
                     name="password"
@@ -61,14 +49,8 @@
 
             <div class="flex items-center justify-end my-4">
             <x-button
-                class="btn text-white"
-                style="
-                    background-color: #8181ff;
-                    width: 100%;
-                    justify-content: center;
-                    padding: 1rem !important;
-                    font-size: 13px;
-                "
+                class="btn justify-center text-white"
+                style=" width: 100%; padding: 1rem !important; font-size: 13px;"
             >
                 {{ __('Entrar') }}
             </x-button>
@@ -76,11 +58,7 @@
 
 
             <div class="text-end">
-                <a
-                    class="fs-6 fw-bolder"
-                    href="{{ route('register') }}"
-                    style="color: #8181ff;"
-                >
+                <a class="text-indigo-400 hover:text-indigo-500 fs-6 font-bold" href="{{ route('register') }}">
                     Não tem cadastro? Registre-se
                 </a>
             </div>

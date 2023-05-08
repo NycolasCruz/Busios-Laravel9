@@ -1,54 +1,14 @@
-.text-primary {
-    color: #009ef7 !important;
-}
-
-.text-gray {
-    color: #bfbfbf !important;
-}
-
-.bg-primary {
-    background-color: #009ef7 !important;
-    border-color: #009ef7 !important;
-}
-
-.bg-warning {
-    background-color: #ffbc34 !important;
-    border-color: #ffbc34 !important;
-}
-
-.bg-light {
-    background-color: #f8f9fa !important;
-    border-color: #f8f9fa !important;
-}
-
-.bg-green {
-    background-color: #50cd89 !important;
-    border-color: #50cd89 !important;
-}
-
-.btn {
-    height: 2.6rem !important;
-}
-
-.btn:hover {
-    border-color: #FFFFFF !important;
-}
-
-.btn-icon {
-    width: 2.8rem !important;
-}
-
 .form-control-solid {
     background-color: #f5f8fa !important;
     border-color: #f5f8fa !important;
-    color: #5e6278 !important;
-    transition: color .2s ease,background-color .2s ease !important;
+    padding-left: 4rem !important;
 }
 
 .ps-15 {
     padding-left: 3.75rem !important;
 }
 
-.border-1 {
-    border-radius: .5rem !important;
+.btn-icon {
+    width: 2.8rem !important;
+    height: 2.6rem !important;
 }

@@ -11,6 +11,7 @@
 - Axios
 - Font Awesome
 - Tailwind
+- Bootstrap
 - Sweet Alert
 - Docker
 
@@ -69,7 +70,7 @@ php artisan key:generate
 
 E por fim faça a conexão com o banco de dados e rode as migrations:
 
-OBS 1: Foi utilizado Postgres como gerenciador.
+OBS: Foi utilizado MySQL como banco, na porta 3388 e host localhost.
 ````
 php artisan migrate
 ````
@@ -77,8 +78,6 @@ php artisan migrate
 Agora é só acessar o projeto na porta <a href="http://localhost:8989">8989</a>!
 
 Container feito pelo <a href="https://github.com/carlosfgti">Carlos</a> do EspecializaTi <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Microsoft-Teams-Animated-Emojis/master/Emojis/Smilies/Purple%20Heart.png" alt="PO" width="20" height="20" />
-
-OBS 2: Por algum motivo o container ficou super pesado, apresentando lentidão para fazer simples requisições, em breve irei corrigir o problema.
 
 ## 🐧 Autor
 

@@ -7,18 +7,17 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="p-3">
-                        <div class="d-flex justify-content-between align-items-center mb-5">
-                            <div class="d-flex align-items-center">
-                                <i class="fas fa-cart-shopping text-primary fs-1"></i>
+                        <div class="d-flex justify-between items-center mb-5">
+                            <div class="d-flex items-center">
+                                <i class="fas fa-cart-shopping text-sky-500 fs-1"></i>
                                 <h1 class="ms-4 fs-1">Lojas</h2>
                             </div>
 
-                            <div class="d-flex justify-content-lg-end">
-
+                            <div class="d-flex">
                                 {{-- search --}}
                                 <div class="card-title pe-3">
-                                    <div class="d-flex align-items-center position-relative">
-                                        <span class="svg-icon svg-icon-1 position-absolute text-gray ms-4">
+                                    <div class="d-flex items-center position-relative">
+                                        <span class="svg-icon svg-icon-1 position-absolute text-gray-400 ms-4">
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 width="24"
@@ -46,7 +45,7 @@
 
                                         <input
                                             type="text"
-                                            class="form-control form-control-solid border-1 ps-15"
+                                            class="form-control form-control-solid text-gray-400 focus:text-gray-400 rounded-lg pl-16"
                                             filter="search"
                                             placeholder="Pesquisar Loja"
                                         >
@@ -55,7 +54,7 @@
                                
                                 <button
                                     type="button"
-                                    class="btn bg-primary text-white"
+                                    class="btn bg-sky-500 hover:bg-sky-600 focus:bg-sky-600 border-sky-500 focus:border-sky-600 focus:ring-2 text-white"
                                     data-bs-toggle="modal" 
                                     data-bs-target="#register-modal"
                                 >
@@ -79,8 +78,8 @@
                         </table>
 
                         {{-- loader --}}
-                        <div class="d-flex justify-content-center">
-                            <div id="loader-allData" class="spinner-border text-primary" role="status" hidden>
+                        <div class="d-flex justify-center">
+                            <div id="loader-allData" class="spinner-border text-sky-500" role="status" hidden>
                                 <span class="visually-hidden">Loading...</span>
                             </div>
                         </div>
