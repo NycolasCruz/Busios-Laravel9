@@ -12,19 +12,19 @@
         loader.setAttribute('hidden', true);
         tbody.innerHTML = ''
 
-        allData.map((data, i) => {
+        allData.map((data, index) => {
             const showActionsToOwner = {{ Auth::user()->id }} != data.user.id && "d-none"
             const showActionsToUser = {{ Auth::user()->id }} == data.user.id && "d-none"
 
             tbody.innerHTML += `
                 <tr class="align-middle">
-                    <td>${i + 1}</td>
+                    <td>${index + 1}</td>
                     <td>${data.shop_name}</td>
                     <td>${data.user.name}</td>
                     <td>${data.branch}</td>
                     <td class="text-end">
                         <button
-                            class="btn btn-icon w-67 bg-sky-500 hover:bg-sky-500 focus:bg-sky-500 border-sky-500 focus:border-sky-500 text-white show-button"
+                            class="btn btn-icon bg-sky-500 hover:bg-sky-600 focus:bg-sky-600 border-sky-500 focus:border-sky-600 focus:ring-2 text-white show-button"
                             title="Ver Detalhes"
                             data-bs-toggle="modal"
                             data-bs-target="#show-modal"
@@ -33,7 +33,7 @@
                             <i class="fas fa-eye"></i>
                         </button>
                         <button
-                            class="btn btn-icon bg-dark text-white ms-2 curriculum-buttom ${showActionsToUser}"
+                            class="btn btn-icon bg-slate-950 hover:bg-slate-800 focus:bg-slate-800 border-slate-950 focus:border-slate-800 focus:ring-2 focus:ring-slate-600 text-white ms-2 curriculum-buttom ${showActionsToUser}"
                             title="Enviar Currículo"
                             data-bs-toggle="modal"
                             data-bs-target="#curriculum-modal"
@@ -42,14 +42,14 @@
                             <i class="far fa-file-lines"></i>
                         </button>
                         <button
-                            class="btn btn-icon bg-green text-white ms-2 ${showActionsToOwner}"
+                            class="btn btn-icon bg-emerald-500 hover:bg-emerald-600 focus:bg-emerald-600 border-emerald-500 focus:border-emerald-600 focus:ring-2 focus:ring-emerald-400 text-white ms-2 ${showActionsToOwner}"
                             title="Visualizar Currículos"
                             data-id="${data.id}"
                         >
                             <i class="fas fa-user"></i>
                         </button>
                         <button
-                            class="btn btn-icon bg-warning text-white ms-2 edit-button ${showActionsToOwner}"
+                            class="btn btn-icon bg-amber-400 hover:bg-yellow-500 focus:bg-yellow-500 border-amber-400 focus:border-yellow-500 focus:ring-2 focus:ring-amber-300 text-white ms-2 md:mt-0 sm:mt-1 edit-button ${showActionsToOwner}"
                             title="Editar Informações"
                             data-bs-toggle="modal"
                             data-bs-target="#edit-modal"
@@ -58,7 +58,7 @@
                             <i class="fas fa-edit"></i>
                         </button>
                         <button
-                            class="btn btn-icon bg-danger text-white ms-2 ${showActionsToOwner}"
+                            class="btn btn-icon bg-red-600 hover:bg-red-500 focus:bg-red-500 border-red-600 focus:border-red-500 focus:ring-2 focus:ring-red-300 text-white ms-2 lg:mt-0 md:mt-1 sm:mt-1 ${showActionsToOwner}"
                             title="Excluir Informações"
                             data-id="${data.id}"
                         >
@@ -97,6 +97,7 @@
 
     let id = 0;
 
+    // popular o formulário
     function fillOutForm() {
         document.querySelectorAll('.edit-button').forEach(button => {
             button.addEventListener('click', async (event) => {

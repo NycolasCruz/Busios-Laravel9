@@ -17,7 +17,7 @@
                                 {{-- search --}}
                                 <div class="card-title pe-3">
                                     <div class="d-flex items-center position-relative">
-                                        <span class="svg-icon svg-icon-1 position-absolute text-gray ms-4">
+                                        <span class="svg-icon svg-icon-1 position-absolute text-gray-400 ms-4">
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 width="24"
@@ -45,7 +45,7 @@
 
                                         <input
                                             type="text"
-                                            class="form-control form-control-solid rounded-lg ps-15"
+                                            class="form-control form-control-solid text-gray-400 focus:text-gray-400 rounded-lg pl-16"
                                             filter="search"
                                             placeholder="Pesquisar Loja"
                                         >
@@ -54,7 +54,7 @@
                                
                                 <button
                                     type="button"
-                                    class="btn bg-sky-500 hover:bg-sky-500 focus:bg-sky-500 border-sky-500 focus:border-sky-500 text-white"
+                                    class="btn bg-sky-500 hover:bg-sky-600 focus:bg-sky-600 border-sky-500 focus:border-sky-600 focus:ring-2 text-white"
                                     data-bs-toggle="modal" 
                                     data-bs-target="#register-modal"
                                 >
