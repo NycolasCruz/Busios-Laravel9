@@ -98,7 +98,7 @@
                     </div>
                     
                     <div class="row my-3">
-                        <div class="col-6 d-flex">
+                        <div class="col-6 flex">
                             <input
                                 type="checkbox"
                                 class="form-check-input me-2"
@@ -109,7 +109,7 @@
                                 Possui mais de 10 funcionários
                             </label>
                         </div>
-                        <div class="col-6 d-flex">
+                        <div class="col-6 flex">
                             <input
                                 type="checkbox"
                                 id="check-2"
@@ -124,7 +124,7 @@
                     </div>
 
                     <div class="row my-3">
-                        <div class="col-6 d-flex">
+                        <div class="col-6 flex">
                             <input
                                 type="checkbox"
                                 id="check-3"
@@ -136,7 +136,7 @@
                                 Possui loja física e virtual
                             </label>
                         </div>
-                        <div class="col-6 d-flex">
+                        <div class="col-6 flex">
                             <input
                                 type="checkbox"
                                 id="check-4"

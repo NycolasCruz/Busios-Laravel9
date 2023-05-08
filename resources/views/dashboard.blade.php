@@ -7,16 +7,16 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="p-3">
-                        <div class="d-flex justify-between items-center mb-5">
-                            <div class="d-flex items-center">
+                        <div class="flex justify-between items-center mb-5">
+                            <div class="flex items-center">
                                 <i class="fas fa-cart-shopping text-sky-500 fs-1"></i>
                                 <h1 class="ms-4 fs-1">Lojas</h2>
                             </div>
 
-                            <div class="d-flex">
+                            <div class="flex">
                                 {{-- search --}}
                                 <div class="card-title pe-3">
-                                    <div class="d-flex items-center position-relative">
+                                    <div class="flex items-center position-relative">
                                         <span class="svg-icon svg-icon-1 position-absolute text-gray-400 ms-4">
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
@@ -78,7 +78,7 @@
                         </table>
 
                         {{-- loader --}}
-                        <div class="d-flex justify-center">
+                        <div class="flex justify-center">
                             <div id="loader-allData" class="spinner-border text-sky-500" role="status" hidden>
                                 <span class="visually-hidden">Loading...</span>
                             </div>

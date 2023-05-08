@@ -9,7 +9,7 @@
             </div>
             <div class="modal-body">
                 {{-- loader --}}
-                <div class="d-flex justify-center">
+                <div class="flex justify-center">
                     <div id="loader-edit" class="spinner-border text-sky-500" role="status" hidden>
                         <span class="visually-hidden">Loading...</span>
                     </div>
@@ -105,7 +105,7 @@
                     </div>
                     
                     <div class="row my-3">
-                        <div class="col-6 d-flex">
+                        <div class="col-6 flex">
                             <input
                                 id="edit-check-1"
                                 type="checkbox"
@@ -118,7 +118,7 @@
                             </label>
                         </div>
 
-                        <div class="col-6 d-flex">
+                        <div class="col-6 flex">
                             <input
                                 id="edit-check-2"
                                 type="checkbox"
@@ -133,7 +133,7 @@
                     </div>
 
                     <div class="row my-3">
-                        <div class="col-6 d-flex">
+                        <div class="col-6 flex">
                             <input
                                 id="edit-check-3"
                                 type="checkbox"
@@ -145,7 +145,7 @@
                                 Possui loja física e virtual
                             </label>
                         </div>
-                        <div class="col-6 d-flex">
+                        <div class="col-6 flex">
                             <input
                                 id="edit-check-4"
                                 type="checkbox"

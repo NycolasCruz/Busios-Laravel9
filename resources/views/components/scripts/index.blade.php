@@ -230,7 +230,7 @@
                     <p class="text-gray-700 font-bold fs-6 mb-3">
                         Extras
                     </p>
-                    <span class="d-flex items-center fw-normal ms-4">
+                    <span class="flex items-center fw-normal ms-4">
                         <i class="fa-solid fa-caret-right me-2"></i>
                         ${data.characteristics}
                     </span>
