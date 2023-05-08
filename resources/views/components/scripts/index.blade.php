@@ -136,7 +136,7 @@
             await axios.post('{{ route('dashboard.update', ':id') }}'.replace(':id', id), formData)
 
             successToast('Loja editada com sucesso!');
-            bootstrap.Modal.getIntansce('#edit-modal').hide();
+            bootstrap.Modal.getInstance('#edit-modal').hide();
             handleShowAllShops();
         } catch (error) {
             console.error(error);
