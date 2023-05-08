@@ -1,29 +1,7 @@
-.text-gray {
-    color: #bfbfbf !important;
-}
-
-.bg-warning {
-    background-color: #ffbc34 !important;
-    background-color: rgb(251 191 36);
-    border-color: #ffbc34 !important;
-
-    /* bg-amber-400 */
-}
-
-.bg-light {
-    background-color: #f8f9fa !important;
-    border-color: #f8f9fa !important;
-}
-
-.bg-green {
-    background-color: #50cd89 !important;
-    border-color: #50cd89 !important;
-}
-
 .form-control-solid {
     background-color: #f5f8fa !important;
     border-color: #f5f8fa !important;
-    color: #5e6278 !important;
+    padding-left: 4rem !important;
 }
 
 .ps-15 {
