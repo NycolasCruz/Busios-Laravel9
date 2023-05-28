@@ -36,11 +36,11 @@ Instale o docker desktop <a href="https://desktop.docker.com/win/main/amd64/Dock
 
 Instale também o WSL e o Ubuntu na sua Microsoft Store.
 
-Instale o pacote de atualização do kernel do Linux do WSL 2 <a href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi">clicando aqui também</a>.
+Caso encontre problemas, instale o pacote de atualização do kernel do Linux do WSL 2 <a href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi">clicando aqui também</a>.
 
-Agora clone o repositório do projeto e em seguida entre em seu editor de código com o WSL utilizando a distribuição Ubuntu.
+Agora clone o repositório do projeto no Ubunto e em seguida entre em seu editor de código com o WSL utilizando a distribuição Ubuntu.
 
-Com o terminal aberto na pasta do correta, execute o comando abaixo para subir os containers do projeto para o Docker:
+Com o terminal aberto na pasta correta, execute o comando abaixo para subir os containers do projeto para o Docker:
 ````
 docker compose up -d
 ````
