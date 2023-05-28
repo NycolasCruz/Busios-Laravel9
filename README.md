@@ -17,16 +17,13 @@
 
 ## 🖥️ Sobre
 
-<p align="justify">O projeto tem como principal função criar e gerenciar lojas, permitindo admitir funcionários e até mesmo enviar um currículo para alguma empresa cadastrada, visualizando no seu perfil o status de aprovação do mesmo. O objetivo é fazer um sistema simples mas performático, fixando meus conhecimentos com back-end.</p>
+<p align="justify">O projeto tem como principal função criar e gerenciar lojas. O objetivo é ser um sistema simples, mas performático e que possa ser facilmente adptado a qualquer problemática que tenha a gestão como solução, como a administração de suas tarefas do dia a dia ou da sua empresa.</p>
 
 ## 🔧 Características
 
 - [ ] Projeto base finalizado
-- [x] Cadastro, edição, exclusão e gerência de lojas
-- [ ] Sistema de avaliação e admissão de funcionários através de envios de currículos
-- [ ] Atualizações no perfil sobre o estado de aprovação do currículo
+- [ ] Cadastro, edição e exclusão de lojas
 - [x] Interface limpa e intuitiva
-- [ ] Validação de dados
 - [ ] Máscaras nos campos
 - [x] Permissões para usuários
 - [x] Autenticação e cadastro de usuários
