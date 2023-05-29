@@ -1,16 +1,19 @@
-@section('js')
+@section("js")
 <script>
+    const numberMask = IMask(document.querySelector("#numberMask"), {mask: "(00) 90000-0000"});
+    const cpfMask = IMask(document.querySelector("#cpfMask"), {mask: "000.000.000-00"});
+
     async function handleShowAllShops() {
-        const loader = document.querySelector('#loader-allData');
-        const tbody = document.querySelector('#tbody');
+        const loader = document.querySelector("#loader-allData");
+        const tbody = document.querySelector("#tbody");
 
-        loader.removeAttribute('hidden');
-        tbody.setAttribute('hidden', true);
+        loader.removeAttribute("hidden");
+        tbody.setAttribute("hidden", true);
 
-        const { data: allData } = await axios.get('{{ route('dashboard.getAllData') }}');
+        const { data: allData } = await axios.get("{{ route('dashboard.getAllData') }}");
 
-        loader.setAttribute('hidden', true);
-        tbody.innerHTML = ''
+        loader.setAttribute("hidden", true);
+        tbody.innerHTML = ""
 
         allData.map((data, index) => {
             const showActionsToOwner = {{ Auth::user()->id }} != data.user.id && "d-none"
@@ -33,22 +36,6 @@
                             <i class="fas fa-eye"></i>
                         </button>
                         <button
-                            class="btn btn-icon bg-slate-950 hover:bg-slate-800 focus:bg-slate-800 border-slate-950 focus:border-slate-800 focus:ring-2 focus:ring-slate-600 text-white ms-2 curriculum-buttom ${showActionsToUser}"
-                            title="Enviar Currículo"
-                            data-bs-toggle="modal"
-                            data-bs-target="#curriculum-modal"
-                            data-id="${data.id}"
-                        >
-                            <i class="far fa-file-lines"></i>
-                        </button>
-                        <button
-                            class="btn btn-icon bg-emerald-500 hover:bg-emerald-600 focus:bg-emerald-600 border-emerald-500 focus:border-emerald-600 focus:ring-2 focus:ring-emerald-400 text-white ms-2 ${showActionsToOwner}"
-                            title="Visualizar Currículos"
-                            data-id="${data.id}"
-                        >
-                            <i class="fas fa-user"></i>
-                        </button>
-                        <button
                             class="btn btn-icon bg-amber-400 hover:bg-yellow-500 focus:bg-yellow-500 border-amber-400 focus:border-yellow-500 focus:ring-2 focus:ring-amber-300 text-white ms-2 md:mt-0 sm:mt-1 edit-button ${showActionsToOwner}"
                             title="Editar Informações"
                             data-bs-toggle="modal"
@@ -69,7 +56,7 @@
             `
         });
 
-        tbody.removeAttribute('hidden');    
+        tbody.removeAttribute("hidden");    
         handleShowSpecificShop();
         fillOutForm();
         handleSendCurriculum();
@@ -78,20 +65,20 @@
     window.onload = handleShowAllShops;
 
     // register form
-    document.querySelector('#register-form').addEventListener('submit', async (event) => {
+    document.querySelector("#register-form").addEventListener("submit", async (event) => {
         event.preventDefault();
         const formData = new FormData(event.target);
 
         try {
-            await axios.post('{{ route('dashboard.store') }}', formData );
+            await axios.post("{{ route('dashboard.store') }}", formData );
 
-            successToast('Loja cadastrada com sucesso!');
-            bootstrap.Modal.getInstance('#register-modal').hide();
-            document.querySelector('#tbody').innerHTML = '';
+            successToast("Loja cadastrada com sucesso!");
+            bootstrap.Modal.getInstance("#register-modal").hide();
+            document.querySelector("#tbody").innerHTML = "";
             handleShowAllShops();
         } catch (error) {
             console.error(error);
-            errorToast('Erro ao cadastrar a loja!');
+            errorToast("Erro ao cadastrar a loja!");
         }
     });
 
@@ -99,21 +86,21 @@
 
     // popular o formulário
     function fillOutForm() {
-        document.querySelectorAll('.edit-button').forEach(button => {
-            button.addEventListener('click', async (event) => {
-                const loader = document.querySelector('#loader-edit');
-                const editForm = document.querySelector('#edit-form')
+        document.querySelectorAll(".edit-button").forEach(button => {
+            button.addEventListener("click", async (event) => {
+                const loader = document.querySelector("#loader-edit");
+                const editForm = document.querySelector("#edit-form")
                 id = event.currentTarget.dataset.id;
 
-                const inputData = Array.from(editForm.querySelectorAll('div.row div input[type="text"]'));
+                const inputData = Array.from(editForm.querySelectorAll("div.row div input[type='text']"));
 
-                loader.removeAttribute('hidden');
-                editForm.setAttribute('hidden', true);
+                loader.removeAttribute("hidden");
+                editForm.setAttribute("hidden", true);
 
-                const { data } = await axios.get('{{ route('dashboard.show', ':id') }}'.replace(':id', id));
+                const { data } = await axios.get("{{ route('dashboard.show', ':id') }}".replace(":id", id));
 
-                loader.setAttribute('hidden', true);
-                editForm.removeAttribute('hidden');
+                loader.setAttribute("hidden", true);
+                editForm.removeAttribute("hidden");
 
                 inputData[0].value = data.shop_name;
                 inputData[1].value = data.branch;
@@ -121,58 +108,58 @@
                 inputData[3].value = data.number;
                 inputData[4].value = data.cpf;
                 inputData[5].value = data.address;
-                // income
+                // employees
                 // extras
             })
         })
     }
 
     // edit shop
-    document.querySelector('#edit-form').addEventListener('submit', async (event) => {
+    document.querySelector("#edit-form").addEventListener("submit", async (event) => {
         event.preventDefault();
         const formData = new FormData(event.target);
 
         try {
-            await axios.post('{{ route('dashboard.update', ':id') }}'.replace(':id', id), formData)
+            await axios.post("{{ route('dashboard.update', ':id') }}".replace(":id", id), formData)
 
-            successToast('Loja editada com sucesso!');
-            bootstrap.Modal.getInstance('#edit-modal').hide();
+            successToast("Loja editada com sucesso!");
+            bootstrap.Modal.getInstance("#edit-modal").hide();
             handleShowAllShops();
         } catch (error) {
             console.error(error);
-            errorToast('Erro ao editar a loja!');
+            errorToast("Erro ao editar a loja!");
         }
     })
 
     function handleShowSpecificShop() {
-        document.querySelectorAll('.show-button').forEach(button => {
-            button.addEventListener('click', async (event) => {
-                const loader = document.querySelector('#loader-show');
+        document.querySelectorAll(".show-button").forEach(button => {
+            button.addEventListener("click", async (event) => {
+                const loader = document.querySelector("#loader-show");
                 const button = event.relatedTarget;
                 id = event.currentTarget.dataset.id;
                 
-                loader.removeAttribute('hidden');
-                document.querySelector('#show-modal-body').innerHTML = '';
+                loader.removeAttribute("hidden");
+                document.querySelector("#show-modal-body").innerHTML = "";
 
-                const { data } = await axios.get('{{ route('dashboard.show', ':id') }}'.replace(':id', id));
+                const { data } = await axios.get("{{ route('dashboard.show', ':id') }}".replace(":id", id));
 
-                let income = ''
+                let employees = ""
 
-                switch(data.income) {
+                switch(data.employees) {
                     case 1:
-                        income = 'Menos de R$ 10.000,00'
+                        employees = "Menos de 10 funcionários"
                         break;
                     case 2:
-                        income = 'Entre R$ 10.000,00 e R$ 50.000,00'
+                        employees = "Entre 10 e 100 funcionários"
                         break;
                     case 3:
-                        income = 'Mais que R$ 50.000,00'
+                        employees = "Mais que 100 funcionários"
                         break;
                 }
 
-                loader.setAttribute('hidden', true);
+                loader.setAttribute("hidden", true);
 
-                document.querySelector('#show-modal-body').innerHTML = `
+                document.querySelector("#show-modal-body").innerHTML = `
                     <p class="text-gray-700 font-bold fs-6 mb-3">
                         Proprietário:
                         <span class="fw-normal">
@@ -224,7 +211,7 @@
                     <p class="text-gray-700 font-bold fs-6 mb-3">
                         Renda mensal:
                         <span class="fw-normal">
-                            ${income}
+                            ${employees}
                         </span>
                     </p>
                     <p class="text-gray-700 font-bold fs-6 mb-3">
@@ -239,50 +226,21 @@
         })
     }
 
-    function handleSendCurriculum() {
-        document.querySelectorAll('.curriculum-buttom').forEach(button => {
-            button.addEventListener('click', event => id = event.currentTarget.dataset.id);
-        })
-
-        document.querySelector('#curriculum-form').addEventListener('submit', async (event) => {
-            event.preventDefault();
-            const curriculumValue = document.querySelector('#curriculum').value;
-
-            try {
-                await axios.post('{{ route('curriculum.store', ':id') }}'.replace(':id', id), {
-                    curriculum: curriculumValue,
-                    user_id: {{ Auth::user()->id }}
-                })
-
-                successToast('Currículo enviado com sucesso!');
-                bootstrap.Modal.getIntansce('#curriculum-modal').hide();
-            } catch (error) {
-                console.error(error);
-                errorToast('Erro ao enviar o currículo!');
-            }
-       })
-    }
-
     // clear all data whenever register modal closes
-    document.querySelector('#register-modal').addEventListener('hidden.bs.modal', event => {
-        event.target.querySelector('form').reset();
-    })
-
-    // clear all data whenever curriculum modal closes
-    document.querySelector('#curriculum-modal').addEventListener('hidden.bs.modal', event => {
-        event.target.querySelector('form').reset();
+    document.querySelector("#register-modal").addEventListener("hidden.bs.modal", event => {
+        event.target.querySelector("form").reset();
     })
 
     function successToast(title) {
         Toast.fire({
-            icon: 'success',
+            icon: "success",
             title: title
         })
     }
 
     function errorToast(title) {
         Toast.fire({
-            icon: 'error',
+            icon: "error",
             title: title
         })
     }

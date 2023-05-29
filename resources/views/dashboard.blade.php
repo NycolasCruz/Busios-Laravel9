@@ -93,7 +93,6 @@
 @include('components.registerModal.index')
 @include('components.showModal.index')
 @include('components.editModal.index')
-@include('components.sendCurriculumModal.index')
 @endsection
 
 @include('components.scripts.index')
