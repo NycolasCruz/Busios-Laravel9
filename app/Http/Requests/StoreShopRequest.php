@@ -31,7 +31,7 @@ class StoreShopRequest extends FormRequest
             'cpf' => 'string|required|size:14',
             'number' => 'string|required|size:15',
             'address' => 'string|required',
-            'income' => 'integer|required',
+            'employees' => 'integer|required',
             'characteristics' => 'array',
             'characteristics.*' => 'integer|nullable',
         ];
@@ -47,8 +47,8 @@ class StoreShopRequest extends FormRequest
             'number.required' => 'O número é obrigatório',
             'number.size' => 'O número deve conter 15 caracteres',
             'address.required' => 'O endereço é obrigatório',
-            'income.required' => 'O rendimento é obrigatório',
-            'income.integer' => 'O rendimento deve ser um número inteiro',
+            'employees.required' => 'O número de funcionários é obrigatório',
+            'employees.integer' => 'O número de funcionários deve ser um número inteiro',
             'characteristics.array' => 'As características devem ser um array',
             'characteristics.*.integer' => 'As características devem ser um número inteiro',
         ];
