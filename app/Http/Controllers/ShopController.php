@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreShopRequest;
+use App\Http\Requests\UpdateShopRequest;
 use App\Models\Shop;
-use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
@@ -17,7 +17,6 @@ class ShopController extends Controller
 
     public function index()
     {
-
         return view('dashboard');
     }
 
@@ -45,7 +44,7 @@ class ShopController extends Controller
         return response()->json($shopOwner);
     }
 
-    public function update(Request $request)
+    public function update(UpdateShopRequest $request)
     {
         $data = $this->repository->findOrFail($request->shop_id)->update($request->all());
         return response()->json($data);

@@ -35,6 +35,9 @@
         {{-- sweet alert --}}
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+        {{-- input mask --}}
+        <script src="https://unpkg.com/imask"></script>
+
         {{-- Toast --}}
         <script>
             const Toast = Swal.mixin({

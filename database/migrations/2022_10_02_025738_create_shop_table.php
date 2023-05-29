@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('number');
             $table->string('cpf');
             $table->string('address');
-            $table->integer('income');
+            $table->integer('employees');
             $table->json('characteristics')->nullable();
             $table->timestamps();
         });

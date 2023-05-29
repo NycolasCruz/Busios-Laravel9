@@ -24,7 +24,7 @@ class Shop extends Model
         'cpf',
         'number',
         'address',
-        'income',
+        'employees',
         'characteristics',
         'user_id'
     ];

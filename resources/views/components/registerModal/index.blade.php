@@ -15,7 +15,7 @@
                             <label class="form-label mt-1">Nome da Loja</label>
                             <input
                                 type="text"
-                                class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"
+                                class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full number"
                                 name="shop_name"
                                 placeholder="Nome da loja"
                                 autocomplete="off"
@@ -50,6 +50,7 @@
                             <label class="form-label mt-1">Telefone</label>
                             <input
                                 type="text"
+                                id="numberMask"
                                 class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"
                                 name="number"
                                 placeholder="Telefone"
@@ -62,6 +63,7 @@
                             <label class="form-label mt-1">Cpf do Proprietário</label>
                             <input
                                 type="text"
+                                id="cpfMask"
                                 class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"
                                 name="cpf"
                                 placeholder="Cpf do proprietário"
@@ -83,16 +85,16 @@
                         </div>
 
                         <div class="col-6">
-                            <label class="form-label mt-1">Qual a renda mensal da loja?</label>
+                            <label class="form-label mt-1">Quantos funcionários a loja têm?</label>
                             <select
                                 class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"
-                                name="income"
+                                name="employees"
                                 required
                             >
-                                <option value="" selected disabled>Qual a renda mensal da loja?</option>
-                                <option value="1">Menos que 10.000</option>
-                                <option value="2">Entre 10.000 e 50.000</option>
-                                <option value="3">Mais que 50.000</option>
+                                <option value="" selected disabled>Selecione?</option>
+                                <option value="1">Menos que 10</option>
+                                <option value="2">Entre 10 e 100</option>
+                                <option value="3">Mais 100</option>
                             </select>
                         </div>
                     </div>
@@ -106,7 +108,7 @@
                                 name="characteristics[]"
                             >
                             <label class="form-check-label" for="check-1">
-                                Possui mais de 10 funcionários
+                                Possui site próprio
                             </label>
                         </div>
                         <div class="col-6 flex">

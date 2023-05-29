@@ -92,8 +92,8 @@
                         <div class="col-6">
                             <label class="form-label mt-1">Qual a renda mensal da loja?</label>
                             <select
-                                class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full edit-income"
-                                name="income"
+                                class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"
+                                name="employees"
                                 required
                             >
                                 <option selected disabled>Qual a renda mensal da loja?</option>
