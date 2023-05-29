@@ -24,7 +24,7 @@
 - [ ] Projeto base finalizado
 - [ ] Cadastro, edição e exclusão de lojas
 - [x] Interface limpa e intuitiva
-- [ ] Máscaras nos campos
+- [x] Máscaras nos campos
 - [x] Permissões para usuários
 - [x] Autenticação e cadastro de usuários
 - [x] Requisições sem recarregamento da página
