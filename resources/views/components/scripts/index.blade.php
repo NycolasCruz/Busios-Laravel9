@@ -58,8 +58,7 @@
 
         tbody.removeAttribute("hidden");    
         handleShowSpecificShop();
-        fillOutForm();
-        handleSendCurriculum();
+        fillOutTheForm();
     }
     
     window.onload = handleShowAllShops;
@@ -82,10 +81,9 @@
         }
     });
 
-    let id = 0;
+    let id;
 
-    // popular o formulário
-    function fillOutForm() {
+    function fillOutTheForm() {
         document.querySelectorAll(".edit-button").forEach(button => {
             button.addEventListener("click", async (event) => {
                 const loader = document.querySelector("#loader-edit");
@@ -108,7 +106,7 @@
                 inputData[3].value = data.number;
                 inputData[4].value = data.cpf;
                 inputData[5].value = data.address;
-                // employees
+                // numberOfEmployees
                 // extras
             })
         })
@@ -143,17 +141,17 @@
 
                 const { data } = await axios.get("{{ route('dashboard.show', ':id') }}".replace(":id", id));
 
-                let employees = ""
+                let numberOfEmployees
 
                 switch(data.employees) {
                     case 1:
-                        employees = "Menos de 10 funcionários"
+                        numberOfEmployees = "Menos de 10 funcionários"
                         break;
                     case 2:
-                        employees = "Entre 10 e 100 funcionários"
+                        numberOfEmployees = "Entre 10 e 100 funcionários"
                         break;
                     case 3:
-                        employees = "Mais que 100 funcionários"
+                        numberOfEmployees = "Mais que 100 funcionários"
                         break;
                 }
 
@@ -187,7 +185,7 @@
                     <p class="text-gray-700 font-bold fs-6 mb-3">
                         Descrição:
                         <span class="fw-normal">
-                            ${data.description}
+                            ${data.description || "Sem descrição"}
                         </span>
                     </p>
                     <p class="text-gray-700 font-bold fs-6 mb-3">
@@ -209,18 +207,39 @@
                         </span>
                     </p>
                     <p class="text-gray-700 font-bold fs-6 mb-3">
-                        Renda mensal:
+                        Quantidade de funcionários:
                         <span class="fw-normal">
-                            ${employees}
+                            ${numberOfEmployees}
                         </span>
                     </p>
                     <p class="text-gray-700 font-bold fs-6 mb-3">
-                        Extras
+                        Extras:
                     </p>
-                    <span class="flex items-center fw-normal ms-4">
-                        <i class="fa-solid fa-caret-right me-2"></i>
-                        ${data.characteristics}
-                    </span>
+                    ${data.characteristics.map(function(characteristic) {
+                        let translatedCharacteristic
+
+                        switch(characteristic) {
+                            case "1":
+                                translatedCharacteristic = "Possui estacionamento"
+                                break;
+                            case "2":
+                                translatedCharacteristic = "Possui área de lazer"
+                                break;
+                            case "3":
+                                translatedCharacteristic = "Possui área de alimentação"
+                                break;
+                            case "4":
+                                translatedCharacteristic = "Possui cinema"
+                                break;
+                        }
+
+                        return `
+                            <div class="flex items-center fw-normal ms-4">
+                                <i class="fa-solid fa-caret-right me-2"></i>
+                                ${translatedCharacteristic}
+                            </div>
+                        `
+                    }).join("")}
                 `;
             })
         })
