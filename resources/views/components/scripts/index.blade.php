@@ -1,7 +1,7 @@
 @section("js")
 <script>
-    const numberMask = IMask(document.querySelector("#numberMask"), {mask: "(00) 90000-0000"});
-    const cpfMask = IMask(document.querySelector("#cpfMask"), {mask: "000.000.000-00"});
+    const numberMask = IMask(document.querySelector(".numberMask"), {mask: "(00) 90000-0000"});
+    const cpfMask = IMask(document.querySelector(".cpfMask"), {mask: "000.000.000-00"});
 
     async function handleShowAllShops() {
         const loader = document.querySelector("#loader-allData");
