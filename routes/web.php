@@ -16,21 +16,17 @@ use App\Http\Controllers\ShopController;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+	return view('auth.login');
 });
 
 Route::middleware(['auth'])->group(function () {
-    // shop
-    Route::group(['prefix' => 'dashboard'], function () {
-        Route::get('/', [ShopController::class, 'index'])->name('dashboard.index');
-        Route::post('/', [ShopController::class, 'store'])->name('dashboard.store');
-        Route::get('/getAllData', [ShopController::class, 'getAllData'])->name('dashboard.getAllData');
-        Route::get('/show/{shop_id}', [ShopController::class, 'show'])->name('dashboard.show');
-        Route::post('/update/{shop_id}', [ShopController::class, 'update'])->name('dashboard.update');
-    });
-
-    // curriculum
-    Route::post('/dashboard/curriculum/{shop_id}', [CurriculumController::class, 'store'])->name('curriculum.store');
+	Route::group(['prefix' => 'dashboard'], function () {
+		Route::get('/', [ShopController::class, 'index'])->name('dashboard.index');
+		Route::post('/', [ShopController::class, 'store'])->name('dashboard.store');
+		Route::get('/getAllData', [ShopController::class, 'getAllData'])->name('dashboard.getAllData');
+		Route::get('/show/{shop_id}', [ShopController::class, 'show'])->name('dashboard.show');
+		Route::post('/update/{shop_id}', [ShopController::class, 'update'])->name('dashboard.update');
+	});
 });
 
 require __DIR__ . '/auth.php';
