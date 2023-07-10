@@ -2,7 +2,7 @@
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title fs-5">Cadastrar Loja</h5>
+				<h5 class="modal-title fs-5"></h5>
 				<button
 					type="button"
 					class="btn-close pb-3"
@@ -43,9 +43,9 @@
 						</div>
 
 						<div class="col-12">
-							<label class="mb-0.5 mt-2" for="description"
-								>Descrição (opcional)</label
-							>
+							<label class="mb-0.5 mt-2" for="description">
+								Descrição (opcional)
+							</label>
 							<input
 								id="description"
 								type="text"
@@ -80,6 +80,7 @@
 								autocomplete="off"
 								required
 							/>
+							<div id="cpf-feedback" class="d-block invalid-feedback"></div>
 						</div>
 
 						<div class="col-6">
@@ -96,9 +97,9 @@
 						</div>
 
 						<div class="col-6">
-							<label class="mb-0.5 mt-2" for="employees"
-								>Quantos funcionários a loja possui?</label
-							>
+							<label class="mb-0.5 mt-2" for="employees">
+								Quantos funcionários a loja possui?
+							</label>
 							<select
 								id="employees"
 								class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block w-full"
@@ -176,6 +177,7 @@
 						Fechar
 					</button>
 					<button
+						id="save-button"
 						type="submit"
 						class="btn bg-sky-500 hover:bg-sky-600 focus:bg-sky-600 border-sky-500 focus:border-sky-600 focus:ring-2 text-white"
 					>

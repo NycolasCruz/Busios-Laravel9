@@ -1,5 +1,5 @@
-@extends('layouts.main')
-@section('dashboard')
+@extends("layouts.main")
+@section("dashboard")
 
 <x-app-layout>
     <div class="py-12">
@@ -55,6 +55,7 @@
 								</div>
 	
 								<button
+									id="register-button"
 									type="button"
 									class="btn bg-sky-500 hover:bg-sky-600 focus:bg-sky-600 border-sky-500 focus:border-sky-600 focus:ring-2 text-white"
 									data-bs-toggle="modal"
@@ -97,9 +98,8 @@
 	</div>	
 </x-app-layout>
 
-@include('components.registerModal.index')
-@include('components.showModal.index')
-@include('components.editModal.index')
+@include("components.registerModal.index")
+@include("components.showModal.index")
 @endsection
 
-@include('components.scripts.index')
+@include("components.scripts.index")

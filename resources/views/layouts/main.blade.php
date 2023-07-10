@@ -24,9 +24,12 @@
 	</head>
 
 	<body>
-		@yield('dashboard')
-		@yield('login')
-		@yield('register')
+		@yield("dashboard")
+		@yield("login")
+		@yield("register")
+
+		{{-- validação de cpf --}}
+		<script src="/js/validateCpf.js"></script>
 
 		{{-- bootstrap --}}
 		<script
@@ -62,6 +65,6 @@
 			});
 		</script>
 
-		@yield('js')
+		@yield("js")
 	</body>
 </html>
