@@ -131,10 +131,11 @@
 			button.addEventListener("click", async (event) => {
 				const loader = document.querySelector("#loader-show");
 				const button = event.relatedTarget;
+				const showModalBody = document.querySelector("#show-modal-body");
 				id = event.currentTarget.dataset.id;
 
 				loader.removeAttribute("hidden");
-				document.querySelector("#show-modal-body").innerHTML = "";
+				showModalBody.innerHTML = "";
 
 				const { data } = await axios.get(
 					"{{ route('dashboard.show', ':id') }}".replace(":id", id),
@@ -155,93 +156,97 @@
 				}
 
 				loader.setAttribute("hidden", true);
-
-				document.querySelector("#show-modal-body").innerHTML = `
-						<p class="text-gray-700 font-bold fs-6 mb-3">
-							Proprietário:
-							<span class="fw-normal">
-								${data.user.name}
-							</span>
-						</p>
-						<p class="text-gray-700 font-bold fs-6 mb-3">
-							Email do proprietário:
-							<span class="fw-normal">
-								${data.user.email}
-							</span>
-						</p>
-						<p class="text-gray-700 font-bold fs-6 mb-3">
-							Nome da loja:
-							<span class="fw-normal">
-								${data.shop_name}
-							</span>
-						</p>
-						<p class="text-gray-700 font-bold fs-6 mb-3">
-							Ramo:
-							<span class="fw-normal">
-								${data.branch}
-							</span>
-						</p>
-						<p class="text-gray-700 font-bold fs-6 mb-3">
-							Descrição:
-							<span class="fw-normal">
-								${data.description || "Sem descrição"}
-							</span>
-						</p>
-						<p class="text-gray-700 font-bold fs-6 mb-3">
-							Telefone:
-							<span class="fw-normal">
-								${data.number}
-							</span>
-						</p>
-						<p class="text-gray-700 font-bold fs-6 mb-3">
-							Cpf:
-							<span class="fw-normal">
-								${data.cpf}
-							</span>
-						</p>
-						<p class="text-gray-700 font-bold fs-6 mb-3">
-							Logradouro:
-							<span class="fw-normal">
-								${data.address}
-							</span>
-						</p>
-						<p class="text-gray-700 font-bold fs-6 mb-3">
-							Quantidade de funcionários:
-							<span class="fw-normal">
-								${numberOfEmployees}
-							</span>
-						</p>
+				showModalBody.innerHTML = `
+					<p class="text-gray-700 font-bold fs-6 mb-3">
+						Proprietário:
+						<span class="fw-normal">
+							${data.user.name}
+						</span>
+					</p>
+					<p class="text-gray-700 font-bold fs-6 mb-3">
+						Email do proprietário:
+						<span class="fw-normal">
+							${data.user.email}
+						</span>
+					</p>
+					<p class="text-gray-700 font-bold fs-6 mb-3">
+						Nome da loja:
+						<span class="fw-normal">
+							${data.shop_name}
+						</span>
+					</p>
+					<p class="text-gray-700 font-bold fs-6 mb-3">
+						Ramo:
+						<span class="fw-normal">
+							${data.branch}
+						</span>
+					</p>
+					<p class="text-gray-700 font-bold fs-6 mb-3">
+						Descrição:
+						<span class="fw-normal">
+							${data.description || "Sem descrição"}
+						</span>
+					</p>
+					<p class="text-gray-700 font-bold fs-6 mb-3">
+						Telefone:
+						<span class="fw-normal">
+							${data.number}
+						</span>
+					</p>
+					<p class="text-gray-700 font-bold fs-6 mb-3">
+						Cpf:
+						<span class="fw-normal">
+							${data.cpf}
+						</span>
+					</p>
+					<p class="text-gray-700 font-bold fs-6 mb-3">
+						Logradouro:
+						<span class="fw-normal">
+							${data.address}
+						</span>
+					</p>
+					<p class="text-gray-700 font-bold fs-6 mb-3">
+						Quantidade de funcionários:
+						<span class="fw-normal">
+							${numberOfEmployees}
+						</span>
+					</p>
+					${data.characteristics ? `
 						<p class="text-gray-700 font-bold fs-6 mb-3">
 							Extras:
 						</p>
-						${data.characteristics
-							.map((characteristic) => {
-								let translatedCharacteristic;
+					` : ""}
+					${data.characteristics ? data.characteristics
+						.map((characteristic) => {
+							let translatedCharacteristic;
 
-								switch (characteristic) {
-									case "1":
-										translatedCharacteristic = "Possui site próprio";
-										break;
-									case "2":
-										translatedCharacteristic = "Possui filiais";
-										break;
-									case "3":
-										translatedCharacteristic = "Possui loja física e virtual";
-										break;
-									case "4":
-										translatedCharacteristic = "Faz entregas à domicílio";
-										break;
-								}
+							switch (characteristic) {
+								case "1":
+									translatedCharacteristic =
+										"Possui site próprio";
+									break;
+								case "2":
+									translatedCharacteristic = "Possui filiais";
+									break;
+								case "3":
+									translatedCharacteristic =
+										"Possui loja física e virtual";
+									break;
+								case "4":
+									translatedCharacteristic =
+										"Faz entregas à domicílio";
+									break;
+							}
 
-								return `
+							return `
 								<div class="flex items-center fw-normal ms-4">
 									<i class="fa-solid fa-caret-right me-2"></i>
 									${translatedCharacteristic}
 								</div>
 							`;
-							})
-							.join("")}
-					`;
+						}).join("")
+					: ""}
+				`;
 			});
 		});
 	}
