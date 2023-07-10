@@ -1,267 +1,275 @@
 @section("js")
 <script>
-    const numberMask = IMask(document.querySelector(".numberMask"), {mask: "(00) 90000-0000"});
-    const cpfMask = IMask(document.querySelector(".cpfMask"), {mask: "000.000.000-00"});
+	const numberMask = IMask(document.querySelector(".numberMask"), { mask: "(00) 90000-0000" });
+	const cpfMask = IMask(document.querySelector(".cpfMask"), { mask: "000.000.000-00" });
 
-    async function handleShowAllShops() {
-        const loader = document.querySelector("#loader-allData");
-        const tbody = document.querySelector("#tbody");
+	async function handleShowAllShops() {
+		const loader = document.querySelector("#loader-allData");
+		const tbody = document.querySelector("#tbody");
 
-        loader.removeAttribute("hidden");
-        tbody.setAttribute("hidden", true);
+		loader.removeAttribute("hidden");
+		tbody.setAttribute("hidden", true);
 
-        const { data: allData } = await axios.get("{{ route('dashboard.getAllData') }}");
+		const { data: allData } = await axios.get("{{ route('dashboard.getAllData') }}");
 
-        loader.setAttribute("hidden", true);
-        tbody.innerHTML = ""
+		loader.setAttribute("hidden", true);
+		tbody.innerHTML = "";
 
-        allData.map((data, index) => {
-            const showActionsToOwner = {{ Auth::user()->id }} != data.user.id && "d-none"
-            const showActionsToUser = {{ Auth::user()->id }} == data.user.id && "d-none"
+		allData.map((data, index) => {
+		const showActionsToOwner = {{ Auth::user()->id }} !== data.user.id && "d-none"
+		const showActionsToUser = {{ Auth::user()->id }} === data.user.id && "d-none"
 
-            tbody.innerHTML += `
-                <tr class="align-middle">
-                    <td>${index + 1}</td>
-                    <td>${data.shop_name}</td>
-                    <td>${data.user.name}</td>
-                    <td>${data.branch}</td>
-                    <td class="text-end">
-                        <button
-                            class="btn btn-icon bg-sky-500 hover:bg-sky-600 focus:bg-sky-600 border-sky-500 focus:border-sky-600 focus:ring-2 text-white show-button"
-                            title="Ver Detalhes"
-                            data-bs-toggle="modal"
-                            data-bs-target="#show-modal"
-                            data-id="${data.id}"
-                        >
-                            <i class="fas fa-eye"></i>
-                        </button>
-                        <button
-                            class="btn btn-icon bg-amber-400 hover:bg-yellow-500 focus:bg-yellow-500 border-amber-400 focus:border-yellow-500 focus:ring-2 focus:ring-amber-300 text-white ms-2 md:mt-0 sm:mt-1 edit-button ${showActionsToOwner}"
-                            title="Editar Informações"
-                            data-bs-toggle="modal"
-                            data-bs-target="#edit-modal"
-                            data-id="${data.id}"
-                        >
-                            <i class="fas fa-edit"></i>
-                        </button>
-                        <button
-                            class="btn btn-icon bg-red-600 hover:bg-red-500 focus:bg-red-500 border-red-600 focus:border-red-500 focus:ring-2 focus:ring-red-300 text-white ms-2 lg:mt-0 md:mt-1 sm:mt-1 ${showActionsToOwner}"
-                            title="Excluir Informações"
-                            data-id="${data.id}"
-                        >
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </td>
-                </tr>
-            `
-        });
+			tbody.innerHTML += `
+					<tr class="align-middle">
+						<td>${index + 1}</td>
+						<td>${data.shop_name}</td>
+						<td>${data.user.name}</td>
+						<td>${data.branch}</td>
+						<td class="text-end">
+							<button
+								class="btn btn-icon bg-sky-500 hover:bg-sky-600 focus:bg-sky-600 border-sky-500 focus:border-sky-600 focus:ring-2 text-white show-button"
+								title="Ver Detalhes"
+								data-bs-toggle="modal"
+								data-bs-target="#show-modal"
+								data-id="${data.id}"
+							>
+								<i class="fas fa-eye"></i>
+							</button>
+							<button
+								class="btn btn-icon bg-amber-400 hover:bg-yellow-500 focus:bg-yellow-500 border-amber-400 focus:border-yellow-500 focus:ring-2 focus:ring-amber-300 text-white ms-2 md:mt-0 sm:mt-1 edit-button ${showActionsToOwner}"
+								title="Editar Informações"
+								data-bs-toggle="modal"
+								data-bs-target="#edit-modal"
+								data-id="${data.id}"
+							>
+								<i class="fas fa-edit"></i>
+							</button>
+							<button
+								class="btn btn-icon bg-red-600 hover:bg-red-500 focus:bg-red-500 border-red-600 focus:border-red-500 focus:ring-2 focus:ring-red-300 text-white ms-2 lg:mt-0 md:mt-1 sm:mt-1 ${showActionsToOwner}"
+								title="Excluir Informações"
+								data-id="${data.id}"
+							>
+								<i class="fas fa-trash"></i>
+							</button>
+						</td>
+					</tr>
+				`;
+		});
 
-        tbody.removeAttribute("hidden");    
-        handleShowSpecificShop();
-        fillOutTheForm();
-    }
-    
-    window.onload = handleShowAllShops;
+		tbody.removeAttribute("hidden");
+		handleShowSpecificShop();
+		fillOutTheForm();
+	}
 
-    // register form
-    document.querySelector("#register-form").addEventListener("submit", async (event) => {
-        event.preventDefault();
-        const formData = new FormData(event.target);
+	window.onload = handleShowAllShops;
 
-        try {
-            await axios.post("{{ route('dashboard.store') }}", formData );
+	// register form
+	document.querySelector("#register-form").addEventListener("submit", async (event) => {
+		event.preventDefault();
+		const formData = new FormData(event.target);
 
-            successToast("Loja cadastrada com sucesso!");
-            bootstrap.Modal.getInstance("#register-modal").hide();
-            document.querySelector("#tbody").innerHTML = "";
-            handleShowAllShops();
-        } catch (error) {
-            console.error(error);
-            errorToast("Erro ao cadastrar a loja!");
-        }
-    });
+		try {
+			await axios.post("{{ route('dashboard.store') }}", formData);
 
-    let id;
+			successToast("Loja cadastrada com sucesso!");
+			bootstrap.Modal.getInstance("#register-modal").hide();
+			document.querySelector("#tbody").innerHTML = "";
+			handleShowAllShops();
+		} catch (error) {
+			console.error(error);
+			errorToast("Erro ao cadastrar a loja!");
+		}
+	});
 
-    function fillOutTheForm() {
-        document.querySelectorAll(".edit-button").forEach(button => {
-            button.addEventListener("click", async (event) => {
-                const loader = document.querySelector("#loader-edit");
-                const editForm = document.querySelector("#edit-form")
-                id = event.currentTarget.dataset.id;
+	let id;
 
-                const inputData = Array.from(editForm.querySelectorAll("div.row div input[type='text']"));
+	function fillOutTheForm() {
+		document.querySelectorAll(".edit-button").forEach((button) => {
+			button.addEventListener("click", async (event) => {
+				const loader = document.querySelector("#loader-edit");
+				const editForm = document.querySelector("#edit-form");
+				id = event.currentTarget.dataset.id;
 
-                loader.removeAttribute("hidden");
-                editForm.setAttribute("hidden", true);
+				const inputData = Array.from(
+					editForm.querySelectorAll("div.row div input[type='text']"),
+				);
 
-                const { data } = await axios.get("{{ route('dashboard.show', ':id') }}".replace(":id", id));
+				loader.removeAttribute("hidden");
+				editForm.setAttribute("hidden", true);
 
-                loader.setAttribute("hidden", true);
-                editForm.removeAttribute("hidden");
+				const { data } = await axios.get(
+					"{{ route('dashboard.show', ':id') }}".replace(":id", id),
+				);
 
-                inputData[0].value = data.shop_name;
-                inputData[1].value = data.branch;
-                inputData[2].value = data.description;
-                inputData[3].value = data.number;
-                inputData[4].value = data.cpf;
-                inputData[5].value = data.address;
-                // numberOfEmployees
-                // extras
-            })
-        })
-    }
+				loader.setAttribute("hidden", true);
+				editForm.removeAttribute("hidden");
 
-    // edit shop
-    document.querySelector("#edit-form").addEventListener("submit", async (event) => {
-        event.preventDefault();
-        const formData = new FormData(event.target);
+				inputData[0].value = data.shop_name;
+				inputData[1].value = data.branch;
+				inputData[2].value = data.description;
+				inputData[3].value = data.number;
+				inputData[4].value = data.cpf;
+				inputData[5].value = data.address;
+				// numberOfEmployees
+				// extras
+			});
+		});
+	}
 
-        try {
-            await axios.post("{{ route('dashboard.update', ':id') }}".replace(":id", id), formData)
+	// edit shop
+	document.querySelector("#edit-form").addEventListener("submit", async (event) => {
+		event.preventDefault();
+		const formData = new FormData(event.target);
 
-            successToast("Loja editada com sucesso!");
-            bootstrap.Modal.getInstance("#edit-modal").hide();
-            handleShowAllShops();
-        } catch (error) {
-            console.error(error);
-            errorToast("Erro ao editar a loja!");
-        }
-    })
+		try {
+			await axios.post("{{ route('dashboard.update', ':id') }}".replace(":id", id), formData);
 
-    function handleShowSpecificShop() {
-        document.querySelectorAll(".show-button").forEach(button => {
-            button.addEventListener("click", async (event) => {
-                const loader = document.querySelector("#loader-show");
-                const button = event.relatedTarget;
-                id = event.currentTarget.dataset.id;
-                
-                loader.removeAttribute("hidden");
-                document.querySelector("#show-modal-body").innerHTML = "";
+			successToast("Loja editada com sucesso!");
+			bootstrap.Modal.getInstance("#edit-modal").hide();
+			handleShowAllShops();
+		} catch (error) {
+			console.error(error);
+			errorToast("Erro ao editar a loja!");
+		}
+	});
 
-                const { data } = await axios.get("{{ route('dashboard.show', ':id') }}".replace(":id", id));
+	function handleShowSpecificShop() {
+		document.querySelectorAll(".show-button").forEach((button) => {
+			button.addEventListener("click", async (event) => {
+				const loader = document.querySelector("#loader-show");
+				const button = event.relatedTarget;
+				id = event.currentTarget.dataset.id;
 
-                let numberOfEmployees
+				loader.removeAttribute("hidden");
+				document.querySelector("#show-modal-body").innerHTML = "";
 
-                switch(data.employees) {
-                    case 1:
-                        numberOfEmployees = "Menos de 10 funcionários"
-                        break;
-                    case 2:
-                        numberOfEmployees = "Entre 10 e 100 funcionários"
-                        break;
-                    case 3:
-                        numberOfEmployees = "Mais que 100 funcionários"
-                        break;
-                }
+				const { data } = await axios.get(
+					"{{ route('dashboard.show', ':id') }}".replace(":id", id),
+				);
 
-                loader.setAttribute("hidden", true);
+				let numberOfEmployees;
 
-                document.querySelector("#show-modal-body").innerHTML = `
-                    <p class="text-gray-700 font-bold fs-6 mb-3">
-                        Proprietário:
-                        <span class="fw-normal">
-                            ${data.user.name}
-                        </span>
-                    </p>
-                    <p class="text-gray-700 font-bold fs-6 mb-3">
-                        Email do proprietário:
-                        <span class="fw-normal">
-                            ${data.user.email}
-                        </span>
-                    </p>
-                    <p class="text-gray-700 font-bold fs-6 mb-3">
-                        Nome da loja:
-                        <span class="fw-normal">
-                            ${data.shop_name}
-                        </span>
-                    </p>
-                    <p class="text-gray-700 font-bold fs-6 mb-3">
-                        Ramo:
-                        <span class="fw-normal">
-                            ${data.branch}
-                        </span>
-                    </p>
-                    <p class="text-gray-700 font-bold fs-6 mb-3">
-                        Descrição:
-                        <span class="fw-normal">
-                            ${data.description || "Sem descrição"}
-                        </span>
-                    </p>
-                    <p class="text-gray-700 font-bold fs-6 mb-3">
-                        Telefone:
-                        <span class="fw-normal">
-                            ${data.number}
-                        </span>
-                    </p>
-                    <p class="text-gray-700 font-bold fs-6 mb-3">
-                        Cpf:
-                        <span class="fw-normal">
-                            ${data.cpf}
-                        </span>
-                    </p>
-                    <p class="text-gray-700 font-bold fs-6 mb-3">
-                        Logradouro:
-                        <span class="fw-normal">
-                            ${data.address}
-                        </span>
-                    </p>
-                    <p class="text-gray-700 font-bold fs-6 mb-3">
-                        Quantidade de funcionários:
-                        <span class="fw-normal">
-                            ${numberOfEmployees}
-                        </span>
-                    </p>
-                    <p class="text-gray-700 font-bold fs-6 mb-3">
-                        Extras:
-                    </p>
-                    ${data.characteristics.map(function(characteristic) {
-                        let translatedCharacteristic
+				switch (data.employees) {
+					case 1:
+						numberOfEmployees = "Menos de 10 funcionários";
+						break;
+					case 2:
+						numberOfEmployees = "Entre 10 e 100 funcionários";
+						break;
+					case 3:
+						numberOfEmployees = "Mais que 100 funcionários";
+						break;
+				}
 
-                        switch(characteristic) {
-                            case "1":
-                                translatedCharacteristic = "Possui estacionamento"
-                                break;
-                            case "2":
-                                translatedCharacteristic = "Possui área de lazer"
-                                break;
-                            case "3":
-                                translatedCharacteristic = "Possui área de alimentação"
-                                break;
-                            case "4":
-                                translatedCharacteristic = "Possui cinema"
-                                break;
-                        }
+				loader.setAttribute("hidden", true);
 
-                        return `
-                            <div class="flex items-center fw-normal ms-4">
-                                <i class="fa-solid fa-caret-right me-2"></i>
-                                ${translatedCharacteristic}
-                            </div>
-                        `
-                    }).join("")}
-                `;
-            })
-        })
-    }
+				document.querySelector("#show-modal-body").innerHTML = `
+						<p class="text-gray-700 font-bold fs-6 mb-3">
+							Proprietário:
+							<span class="fw-normal">
+								${data.user.name}
+							</span>
+						</p>
+						<p class="text-gray-700 font-bold fs-6 mb-3">
+							Email do proprietário:
+							<span class="fw-normal">
+								${data.user.email}
+							</span>
+						</p>
+						<p class="text-gray-700 font-bold fs-6 mb-3">
+							Nome da loja:
+							<span class="fw-normal">
+								${data.shop_name}
+							</span>
+						</p>
+						<p class="text-gray-700 font-bold fs-6 mb-3">
+							Ramo:
+							<span class="fw-normal">
+								${data.branch}
+							</span>
+						</p>
+						<p class="text-gray-700 font-bold fs-6 mb-3">
+							Descrição:
+							<span class="fw-normal">
+								${data.description || "Sem descrição"}
+							</span>
+						</p>
+						<p class="text-gray-700 font-bold fs-6 mb-3">
+							Telefone:
+							<span class="fw-normal">
+								${data.number}
+							</span>
+						</p>
+						<p class="text-gray-700 font-bold fs-6 mb-3">
+							Cpf:
+							<span class="fw-normal">
+								${data.cpf}
+							</span>
+						</p>
+						<p class="text-gray-700 font-bold fs-6 mb-3">
+							Logradouro:
+							<span class="fw-normal">
+								${data.address}
+							</span>
+						</p>
+						<p class="text-gray-700 font-bold fs-6 mb-3">
+							Quantidade de funcionários:
+							<span class="fw-normal">
+								${numberOfEmployees}
+							</span>
+						</p>
+						<p class="text-gray-700 font-bold fs-6 mb-3">
+							Extras:
+						</p>
+						${data.characteristics
+							.map((characteristic) => {
+								let translatedCharacteristic;
 
-    // clear all data whenever register modal closes
-    document.querySelector("#register-modal").addEventListener("hidden.bs.modal", event => {
-        event.target.querySelector("form").reset();
-    })
+								switch (characteristic) {
+									case "1":
+										translatedCharacteristic = "Possui estacionamento";
+										break;
+									case "2":
+										translatedCharacteristic = "Possui área de lazer";
+										break;
+									case "3":
+										translatedCharacteristic = "Possui área de alimentação";
+										break;
+									case "4":
+										translatedCharacteristic = "Possui cinema";
+										break;
+								}
 
-    function successToast(title) {
-        Toast.fire({
-            icon: "success",
-            title: title
-        })
-    }
+								return `
+								<div class="flex items-center fw-normal ms-4">
+									<i class="fa-solid fa-caret-right me-2"></i>
+									${translatedCharacteristic}
+								</div>
+							`;
+							})
+							.join("")}
+					`;
+			});
+		});
+	}
 
-    function errorToast(title) {
-        Toast.fire({
-            icon: "error",
-            title: title
-        })
-    }
+	// clear all data whenever register modal closes
+	document.querySelector("#register-modal").addEventListener("hidden.bs.modal", (event) => {
+		event.target.querySelector("form").reset();
+	});
+
+	function successToast(title) {
+		Toast.fire({
+			icon: "success",
+			title: title,
+		});
+	}
+
+	function errorToast(title) {
+		Toast.fire({
+			icon: "error",
+			title: title,
+		});
+	}
 </script>
 @endsection
