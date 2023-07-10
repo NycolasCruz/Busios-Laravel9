@@ -2,6 +2,12 @@
 <script>
 	const numberMask = IMask(document.querySelector(".numberMask"), { mask: "(00) 90000-0000" });
 	const cpfMask = IMask(document.querySelector(".cpfMask"), { mask: "000.000.000-00" });
+	let isPostForm = true;
+	let id;
+
+	document.querySelector("#register-button").addEventListener("click", () => {
+		document.querySelector(".modal-title").innerHTML = "Cadastrar loja";
+	});
 
 	async function handleShowAllShops() {
 		const loader = document.querySelector("#loader-allData");
@@ -16,8 +22,8 @@
 		tbody.innerHTML = "";
 
 		allData.map((data, index) => {
-		const showActionsToOwner = {{ Auth::user()->id }} !== data.user.id && "d-none"
-		const showActionsToUser = {{ Auth::user()->id }} === data.user.id && "d-none"
+		const showActionsToOwner = {{ Auth::user()->id }} !== data.user.id && "d-none";
+		const showActionsToUser = {{ Auth::user()->id }} === data.user.id && "d-none";
 
 			tbody.innerHTML += `
 					<tr class="align-middle">
@@ -39,7 +45,7 @@
 								class="btn btn-icon bg-amber-400 hover:bg-yellow-500 focus:bg-yellow-500 border-amber-400 focus:border-yellow-500 focus:ring-2 focus:ring-amber-300 text-white ms-2 md:mt-0 sm:mt-1 edit-button ${showActionsToOwner}"
 								title="Editar Informações"
 								data-bs-toggle="modal"
-								data-bs-target="#edit-modal"
+								data-bs-target="#register-modal"
 								data-id="${data.id}"
 							>
 								<i class="fas fa-edit"></i>
@@ -63,46 +69,50 @@
 
 	window.onload = handleShowAllShops;
 
-	// register form
+	// register / edit form
 	document.querySelector("#register-form").addEventListener("submit", async (event) => {
 		event.preventDefault();
 		const formData = new FormData(event.target);
 
 		try {
-			await axios.post("{{ route('dashboard.store') }}", formData);
+			if(isPostForm) {
+				await axios.post("{{ route('dashboard.store') }}", formData);
+				successToast("Loja cadastrada com sucesso!");
+			} else {
+				await axios.post("{{ route('dashboard.update', ':id') }}".replace(":id", id), formData);
+				successToast("Loja editada com sucesso!");
+			}
 
-			successToast("Loja cadastrada com sucesso!");
 			bootstrap.Modal.getInstance("#register-modal").hide();
 			document.querySelector("#tbody").innerHTML = "";
 			handleShowAllShops();
+			isPostForm = true;
 		} catch (error) {
 			console.error(error);
 			errorToast("Erro ao cadastrar a loja!");
 		}
 	});
 
-	let id;
-
 	function fillOutTheForm() {
 		document.querySelectorAll(".edit-button").forEach((button) => {
 			button.addEventListener("click", async (event) => {
-				const loader = document.querySelector("#loader-edit");
-				const editForm = document.querySelector("#edit-form");
+				document.querySelector(".modal-title").innerHTML = "Editar loja";
+
+				const form = document.querySelector("#register-form");
 				id = event.currentTarget.dataset.id;
+				isPostForm = false;
 
 				const inputData = Array.from(
-					editForm.querySelectorAll("div.row div input[type='text']"),
+					form.querySelectorAll("div.row div input[type='text']"),
 				);
 
-				loader.removeAttribute("hidden");
-				editForm.setAttribute("hidden", true);
+				form.setAttribute("hidden", true);
 
 				const { data } = await axios.get(
 					"{{ route('dashboard.show', ':id') }}".replace(":id", id),
 				);
 
-				loader.setAttribute("hidden", true);
-				editForm.removeAttribute("hidden");
+				form.removeAttribute("hidden");
 
 				inputData[0].value = data.shop_name;
 				inputData[1].value = data.branch;
@@ -115,23 +125,6 @@
 			});
 		});
 	}
-
-	// edit shop
-	document.querySelector("#edit-form").addEventListener("submit", async (event) => {
-		event.preventDefault();
-		const formData = new FormData(event.target);
-
-		try {
-			await axios.post("{{ route('dashboard.update', ':id') }}".replace(":id", id), formData);
-
-			successToast("Loja editada com sucesso!");
-			bootstrap.Modal.getInstance("#edit-modal").hide();
-			handleShowAllShops();
-		} catch (error) {
-			console.error(error);
-			errorToast("Erro ao editar a loja!");
-		}
-	});
 
 	function handleShowSpecificShop() {
 		document.querySelectorAll(".show-button").forEach((button) => {
@@ -227,16 +220,16 @@
 
 								switch (characteristic) {
 									case "1":
-										translatedCharacteristic = "Possui estacionamento";
+										translatedCharacteristic = "Possui site próprio";
 										break;
 									case "2":
-										translatedCharacteristic = "Possui área de lazer";
+										translatedCharacteristic = "Possui filiais";
 										break;
 									case "3":
-										translatedCharacteristic = "Possui área de alimentação";
+										translatedCharacteristic = "Possui loja física e virtual";
 										break;
 									case "4":
-										translatedCharacteristic = "Possui cinema";
+										translatedCharacteristic = "Faz entregas à domicílio";
 										break;
 								}
 
