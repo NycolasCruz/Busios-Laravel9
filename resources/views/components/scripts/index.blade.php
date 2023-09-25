@@ -73,12 +73,14 @@
 	document.querySelector("#register-form").addEventListener("submit", async (event) => {
 		event.preventDefault();
 		const formData = new FormData(event.target);
+		let errorMessage = "Erro ao cadastrar a loja!";
 
 		try {
 			if (isPostForm) {
 				await axios.post("{{ route('dashboard.store') }}", formData);
 				successToast("Loja cadastrada com sucesso!");
 			} else {
+				errorMessage = "Erro ao editar a loja!"
 				await axios.post("{{ route('dashboard.update', ':id') }}".replace(":id", id), formData);
 				successToast("Loja editada com sucesso!");
 			}
@@ -89,7 +91,7 @@
 			isPostForm = true;
 		} catch (error) {
 			console.error(error);
-			errorToast("Erro ao cadastrar a loja!");
+			errorToast(errorMessage);
 		}
 	});
 

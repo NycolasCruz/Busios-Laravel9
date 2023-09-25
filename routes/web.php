@@ -24,8 +24,8 @@ Route::middleware(['auth'])->group(function () {
 		Route::get('/', [ShopController::class, 'index'])->name('dashboard.index');
 		Route::post('/', [ShopController::class, 'store'])->name('dashboard.store');
 		Route::get('/getAllData', [ShopController::class, 'getAllData'])->name('dashboard.getAllData');
-		Route::get('/show/{shop_id}', [ShopController::class, 'show'])->name('dashboard.show');
-		Route::post('/update/{shop_id}', [ShopController::class, 'update'])->name('dashboard.update');
+		Route::get('/{shop_id}/show', [ShopController::class, 'show'])->name('dashboard.show');
+		Route::post('/{shop_id}/update', [ShopController::class, 'update'])->name('dashboard.update');
 	});
 });
 

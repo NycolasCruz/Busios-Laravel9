@@ -39,10 +39,7 @@ class ShopController extends Controller
 	{
 		$data = $this->repository->findOrFail($shop_id);
 
-		$shopOwner = $this->repository
-			->with('user')
-			->where('id', $data->id)
-			->first();
+		$shopOwner = $this->repository->with('user')->where('id', $data->id)->first();
 
 		return response()->json($shopOwner);
 	}
