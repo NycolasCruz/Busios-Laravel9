@@ -26,40 +26,40 @@
 		const showActionsToUser = {{ Auth::user()->id }} === data.user.id && "d-none";
 
 			tbody.innerHTML += `
-					<tr class="align-middle">
-						<td>${index + 1}</td>
-						<td>${data.shop_name}</td>
-						<td>${data.user.name}</td>
-						<td>${data.branch}</td>
-						<td class="text-end">
-							<button
-								class="btn btn-icon bg-sky-500 hover:bg-sky-600 focus:bg-sky-600 border-sky-500 focus:border-sky-600 focus:ring-2 text-white show-button"
-								title="Ver Detalhes"
-								data-bs-toggle="modal"
-								data-bs-target="#show-modal"
-								data-id="${data.id}"
-							>
-								<i class="fas fa-eye"></i>
-							</button>
-							<button
-								class="btn btn-icon bg-amber-400 hover:bg-yellow-500 focus:bg-yellow-500 border-amber-400 focus:border-yellow-500 focus:ring-2 focus:ring-amber-300 text-white ms-2 md:mt-0 sm:mt-1 edit-button ${showActionsToOwner}"
-								title="Editar Informações"
-								data-bs-toggle="modal"
-								data-bs-target="#register-modal"
-								data-id="${data.id}"
-							>
-								<i class="fas fa-edit"></i>
-							</button>
-							<button
-								class="btn btn-icon bg-red-600 hover:bg-red-500 focus:bg-red-500 border-red-600 focus:border-red-500 focus:ring-2 focus:ring-red-300 text-white ms-2 lg:mt-0 md:mt-1 sm:mt-1 ${showActionsToOwner}"
-								title="Excluir Informações"
-								data-id="${data.id}"
-							>
-								<i class="fas fa-trash"></i>
-							</button>
-						</td>
-					</tr>
-				`;
+				<tr class="align-middle">
+					<td>${index + 1}</td>
+					<td>${data.shop_name}</td>
+					<td>${data.user.name}</td>
+					<td>${data.branch}</td>
+					<td class="text-end">
+						<button
+							class="btn btn-icon bg-sky-500 hover:bg-sky-600 focus:bg-sky-600 border-sky-500 focus:border-sky-600 focus:ring-2 text-white show-button"
+							title="Ver Detalhes"
+							data-bs-toggle="modal"
+							data-bs-target="#show-modal"
+							data-id="${data.id}"
+						>
+							<i class="fas fa-eye"></i>
+						</button>
+						<button
+							class="btn btn-icon bg-amber-400 hover:bg-yellow-500 focus:bg-yellow-500 border-amber-400 focus:border-yellow-500 focus:ring-2 focus:ring-amber-300 text-white ms-2 md:mt-0 sm:mt-1 edit-button ${showActionsToOwner}"
+							title="Editar Informações"
+							data-bs-toggle="modal"
+							data-bs-target="#register-modal"
+							data-id="${data.id}"
+						>
+							<i class="fas fa-edit"></i>
+						</button>
+						<button
+							class="btn btn-icon bg-red-600 hover:bg-red-500 focus:bg-red-500 border-red-600 focus:border-red-500 focus:ring-2 focus:ring-red-300 text-white ms-2 lg:mt-0 md:mt-1 sm:mt-1 ${showActionsToOwner}"
+							title="Excluir Informações"
+							data-id="${data.id}"
+						>
+							<i class="fas fa-trash"></i>
+						</button>
+					</td>
+				</tr>
+			`;
 		});
 
 		tbody.removeAttribute("hidden");
@@ -75,7 +75,7 @@
 		const formData = new FormData(event.target);
 
 		try {
-			if(isPostForm) {
+			if (isPostForm) {
 				await axios.post("{{ route('dashboard.store') }}", formData);
 				successToast("Loja cadastrada com sucesso!");
 			} else {
@@ -102,9 +102,7 @@
 				id = event.currentTarget.dataset.id;
 				isPostForm = false;
 
-				const inputData = Array.from(
-					form.querySelectorAll("div.row div input[type='text']"),
-				);
+				const inputData = Array.from(form.querySelectorAll("div.row div input[type='text']"));
 
 				form.setAttribute("hidden", true);
 
