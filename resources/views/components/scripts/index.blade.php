@@ -31,9 +31,9 @@
 					<td>${data.shop_name}</td>
 					<td>${data.user.name}</td>
 					<td>${data.branch}</td>
-					<td class="text-end">
+					<td class="text-end py-0">
 						<button
-							class="btn btn-icon bg-sky-500 hover:bg-sky-600 focus:bg-sky-600 border-sky-500 focus:border-sky-600 focus:ring-2 text-white show-button"
+							class="btn btn-icon bg-sky-500 hover:bg-sky-600 focus:bg-sky-600 border-sky-500 focus:border-sky-600 focus:ring-2 text-white scale-[.8] show-button"
 							title="Ver Detalhes"
 							data-bs-toggle="modal"
 							data-bs-target="#show-modal"
@@ -42,7 +42,7 @@
 							<i class="fas fa-eye"></i>
 						</button>
 						<button
-							class="btn btn-icon bg-amber-400 hover:bg-yellow-500 focus:bg-yellow-500 border-amber-400 focus:border-yellow-500 focus:ring-2 focus:ring-amber-300 text-white ms-2 md:mt-0 sm:mt-1 edit-button ${showActionsToOwner}"
+							class="btn btn-icon bg-amber-400 hover:bg-yellow-500 focus:bg-yellow-500 border-amber-400 focus:border-yellow-500 focus:ring-2 focus:ring-amber-300 text-white edit-button scale-[.8] ${showActionsToOwner}"
 							title="Editar Informações"
 							data-bs-toggle="modal"
 							data-bs-target="#register-modal"
@@ -51,7 +51,7 @@
 							<i class="fas fa-edit"></i>
 						</button>
 						<button
-							class="btn btn-icon bg-red-600 hover:bg-red-500 focus:bg-red-500 border-red-600 focus:border-red-500 focus:ring-2 focus:ring-red-300 text-white ms-2 lg:mt-0 md:mt-1 sm:mt-1 ${showActionsToOwner}"
+							class="btn btn-icon bg-red-600 hover:bg-red-500 focus:bg-red-500 border-red-600 focus:border-red-500 focus:ring-2 focus:ring-red-300 text-white scale-[.8] ${showActionsToOwner}"
 							title="Excluir Informações"
 							data-id="${data.id}"
 						>
@@ -80,8 +80,11 @@
 				await axios.post("{{ route('dashboard.store') }}", formData);
 				successToast("Loja cadastrada com sucesso!");
 			} else {
-				errorMessage = "Erro ao editar a loja!"
-				await axios.post("{{ route('dashboard.update', ':id') }}".replace(":id", id), formData);
+				errorMessage = "Erro ao editar a loja!";
+				await axios.put(
+					"{{ route('dashboard.update', ':id') }}".replace(":id", id),
+					Object.fromEntries(formData),
+				);
 				successToast("Loja editada com sucesso!");
 			}
 
