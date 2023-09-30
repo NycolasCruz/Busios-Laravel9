@@ -9,14 +9,16 @@
 		document.querySelector(".modal-title").innerHTML = "Cadastrar loja";
 	});
 
-	async function handleShowAllShops() {
+	async function handleShowAllShops(search) {
 		const loader = document.querySelector("#loader-allData");
 		const tbody = document.querySelector("#tbody");
 
 		loader.removeAttribute("hidden");
 		tbody.setAttribute("hidden", true);
 
-		const { data: allData } = await axios.get("{{ route('dashboard.getAllData') }}");
+		const { data: allData } = await axios.get("{{ route('dashboard.getAllData') }}", {
+			params: { search: search.length && search },
+		});
 
 		loader.setAttribute("hidden", true);
 		tbody.innerHTML = "";
@@ -253,6 +255,11 @@
 			});
 		});
 	}
+
+	// search
+	document.querySelector("#search-input").addEventListener('input', (event) => {
+		handleShowAllShops(event.target.value);
+	})
 
 	// clear all data whenever register modal closes
 	document.querySelector("#register-modal").addEventListener("hidden.bs.modal", (event) => {

@@ -32,6 +32,15 @@ class ShopController extends Controller
 
 	public function getAllData()
 	{
+		$search = request('search');
+
+		if ($search) {
+			return $this->repository
+				->where('shop_name', 'like', '%' . $search . '%')
+				->get()
+				->load('user');
+		}
+
 		return $this->repository->all()->load('user');
 	}
 

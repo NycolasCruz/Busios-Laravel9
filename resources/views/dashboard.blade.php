@@ -47,8 +47,8 @@
 	
 										<input
 											type="text"
+											id="search-input"
 											class="form-control form-control-solid text-gray-400 focus:text-gray-400 rounded-lg pl-16"
-											filter="search"
 											placeholder="Pesquisar Loja"
 										/>
 									</div>
