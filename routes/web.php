@@ -26,6 +26,7 @@ Route::middleware(['auth'])->group(function () {
 		Route::get('/getAllData', [ShopController::class, 'getAllData'])->name('dashboard.getAllData');
 		Route::get('/{shop_id}/show', [ShopController::class, 'show'])->name('dashboard.show');
 		Route::put('/{shop_id}/update', [ShopController::class, 'update'])->name('dashboard.update');
+		Route::delete('/{shop_id}/delete', [ShopController::class, 'destroy'])->name('dashboard.destroy');
 	});
 });
 
