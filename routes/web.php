@@ -22,7 +22,7 @@ Route::get('/', function () {
 Route::middleware(['auth'])->group(function () {
 	Route::group(['prefix' => 'dashboard'], function () {
 		Route::get('/', [ShopController::class, 'index'])->name('dashboard.index');
-		Route::post('/', [ShopController::class, 'store'])->name('dashboard.store');
+		Route::post('/store', [ShopController::class, 'store'])->name('dashboard.store');
 		Route::get('/getAllData', [ShopController::class, 'getAllData'])->name('dashboard.getAllData');
 		Route::get('/{shop_id}/show', [ShopController::class, 'show'])->name('dashboard.show');
 		Route::put('/{shop_id}/update', [ShopController::class, 'update'])->name('dashboard.update');

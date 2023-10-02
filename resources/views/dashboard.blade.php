@@ -71,7 +71,7 @@
 								<tr>
 									<th>#</th>
 									<th>Nome</th>
-									<th>Proprietário</th>
+									<th>Gerente</th>
 									<th>Ramo de Negócio</th>
 									<th class="text-end">Ações</th>
 								</tr>

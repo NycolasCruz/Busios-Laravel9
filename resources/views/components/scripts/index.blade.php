@@ -7,6 +7,7 @@
 
 	document.querySelector("#register-button").addEventListener("click", () => {
 		document.querySelector(".modal-title").innerHTML = "Cadastrar loja";
+		isPostForm = true;
 	});
 
 	async function handleShowAllShops(search) {
@@ -98,10 +99,10 @@
 
 			bootstrap.Modal.getInstance("#register-modal").hide();
 			handleShowAllShops();
-			isPostForm = true;
+			isPostForm = false;
 		} catch (error) {
 			console.error(error);
-			errorToast(errorMessage);
+			errorToast(Object.values(error.response.data.errors)[0][0])
 		}
 	});
 
@@ -131,8 +132,9 @@
 					inputData[3].value = data.number;
 					inputData[4].value = data.cpf;
 					inputData[5].value = data.address;
-					// numberOfEmployees
-					// extras
+					document.querySelector("#employees").value = data.employees;
+					
+					data.characteristics
 				} catch (error) {
 					console.error(error);
 					errorToast("Erro ao carregar as informações da loja!");
