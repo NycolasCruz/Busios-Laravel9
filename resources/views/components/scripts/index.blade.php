@@ -15,58 +15,64 @@
 
 		loader.removeAttribute("hidden");
 		tbody.setAttribute("hidden", true);
-
-		const { data: allData } = await axios.get("{{ route('dashboard.getAllData') }}", {
-			params: { search: search.length && search },
-		});
-
-		loader.setAttribute("hidden", true);
 		tbody.innerHTML = "";
 
-		allData.map((data, index) => {
-		const showActionsToOwner = {{ Auth::user()->id }} !== data.user.id && "d-none";
-		const showActionsToUser = {{ Auth::user()->id }} === data.user.id && "d-none";
+		try {
+			const { data: allData } = await axios.get("{{ route('dashboard.getAllData') }}", {
+				params: { search: search?.length && search },
+			});
 
-			tbody.innerHTML += `
-				<tr class="align-middle">
-					<td>${index + 1}</td>
-					<td>${data.shop_name}</td>
-					<td>${data.user.name}</td>
-					<td>${data.branch}</td>
-					<td class="text-end py-0">
-						<button
-							class="btn btn-icon bg-sky-500 hover:bg-sky-600 focus:bg-sky-600 border-sky-500 focus:border-sky-600 focus:ring-2 text-white scale-[.8] show-button"
-							title="Ver Detalhes"
-							data-bs-toggle="modal"
-							data-bs-target="#show-modal"
-							data-id="${data.id}"
-						>
-							<i class="fas fa-eye"></i>
-						</button>
-						<button
-							class="btn btn-icon bg-amber-400 hover:bg-yellow-500 focus:bg-yellow-500 border-amber-400 focus:border-yellow-500 focus:ring-2 focus:ring-amber-300 text-white edit-button scale-[.8] ${showActionsToOwner}"
-							title="Editar Informações"
-							data-bs-toggle="modal"
-							data-bs-target="#register-modal"
-							data-id="${data.id}"
-						>
-							<i class="fas fa-edit"></i>
-						</button>
-						<button
-							class="btn btn-icon bg-red-600 hover:bg-red-500 focus:bg-red-500 border-red-600 focus:border-red-500 focus:ring-2 focus:ring-red-300 text-white scale-[.8] ${showActionsToOwner}"
-							title="Excluir Informações"
-							data-id="${data.id}"
-						>
-							<i class="fas fa-trash"></i>
-						</button>
-					</td>
-				</tr>
-			`;
-		});
+			loader.setAttribute("hidden", true);
 
-		tbody.removeAttribute("hidden");
-		handleShowSpecificShop();
-		fillOutTheForm();
+			allData.map((data, index) => {
+				const showActionsToOwner = {{ Auth::user()->id }} !== data.user.id && "d-none";
+				const showActionsToUser = {{ Auth::user()->id }} === data.user.id && "d-none";
+
+				tbody.innerHTML += `
+						<tr class="align-middle">
+							<td>${index + 1}</td>
+							<td>${data.shop_name}</td>
+							<td>${data.user.name}</td>
+							<td>${data.branch}</td>
+							<td class="text-end py-0">
+								<button
+									class="btn btn-icon bg-sky-500 hover:bg-sky-600 focus:bg-sky-600 border-sky-500 focus:border-sky-600 focus:ring-2 text-white scale-[.8] show-button"
+									title="Ver detalhes"
+									data-bs-toggle="modal"
+									data-bs-target="#show-modal"
+									data-id="${data.id}"
+								>
+									<i class="fas fa-eye"></i>
+								</button>
+								<button
+									class="btn btn-icon bg-amber-400 hover:bg-yellow-500 focus:bg-yellow-500 border-amber-400 focus:border-yellow-500 focus:ring-2 focus:ring-amber-300 text-white scale-[.8] edit-button ${showActionsToOwner}"
+									title="Editar loja"
+									data-bs-toggle="modal"
+									data-bs-target="#register-modal"
+									data-id="${data.id}"
+								>
+									<i class="fas fa-edit"></i>
+								</button>
+								<button
+									class="btn btn-icon bg-red-600 hover:bg-red-500 focus:bg-red-500 border-red-600 focus:border-red-500 focus:ring-2 focus:ring-red-300 text-white scale-[.8] delete-button ${showActionsToOwner}"
+									title="Apagar loja"
+									data-id="${data.id}"
+								>
+									<i class="fas fa-trash"></i>
+								</button>
+							</td>
+						</tr>
+					`;
+
+				tbody.removeAttribute("hidden");
+				handleShowSpecificShop();
+				fillOutTheForm();
+				deleteShop();
+			});
+		} catch (error) {
+			console.error(error);
+			errorToast("Erro ao carregar as lojas!");
+		}
 	}
 
 	window.onload = handleShowAllShops;
@@ -91,7 +97,6 @@
 			}
 
 			bootstrap.Modal.getInstance("#register-modal").hide();
-			document.querySelector("#tbody").innerHTML = "";
 			handleShowAllShops();
 			isPostForm = true;
 		} catch (error) {
@@ -113,20 +118,56 @@
 
 				form.setAttribute("hidden", true);
 
-				const { data } = await axios.get(
-					"{{ route('dashboard.show', ':id') }}".replace(":id", id),
-				);
+				try {
+					const { data } = await axios.get(
+						"{{ route('dashboard.show', ':id') }}".replace(":id", id),
+					);
 
-				form.removeAttribute("hidden");
+					form.removeAttribute("hidden");
 
-				inputData[0].value = data.shop_name;
-				inputData[1].value = data.branch;
-				inputData[2].value = data.description;
-				inputData[3].value = data.number;
-				inputData[4].value = data.cpf;
-				inputData[5].value = data.address;
-				// numberOfEmployees
-				// extras
+					inputData[0].value = data.shop_name;
+					inputData[1].value = data.branch;
+					inputData[2].value = data.description;
+					inputData[3].value = data.number;
+					inputData[4].value = data.cpf;
+					inputData[5].value = data.address;
+					// numberOfEmployees
+					// extras
+				} catch (error) {
+					console.error(error);
+					errorToast("Erro ao carregar as informações da loja!");
+				}
+			});
+		});
+	}
+
+	function deleteShop() {
+		document.querySelectorAll(".delete-button").forEach((button) => {
+			button.addEventListener("click", async (event) => {
+				id = event.currentTarget.dataset.id;
+
+				try {
+					const { isConfirmed } = await Swal.fire({
+						title: "Você deseja apagar a loja?",
+						text: "Esta ação não poderá ser desfeita?",
+						icon: "warning",
+						confirmButtonText: "Sim",
+						showCancelButton: true,
+						cancelButtonText: "Cancelar",
+					});
+
+					if (isConfirmed) {
+						await axios.delete(
+							"{{ route('dashboard.destroy', ':id') }}".replace(":id", id),
+						);
+
+						handleShowAllShops();
+						successToast("Loja apagada com sucesso!");
+					}
+				} catch (error) {
+					console.error(error);
+					errorToast("Erro ao excluir a loja!");
+				}
 			});
 		});
 	}
@@ -142,124 +183,131 @@
 				loader.removeAttribute("hidden");
 				showModalBody.innerHTML = "";
 
-				const { data } = await axios.get(
-					"{{ route('dashboard.show', ':id') }}".replace(":id", id),
-				);
+				try {
+					const { data } = await axios.get(
+						"{{ route('dashboard.show', ':id') }}".replace(":id", id),
+					);
 
-				let numberOfEmployees;
+					let numberOfEmployees;
 
-				switch (data.employees) {
-					case 1:
-						numberOfEmployees = "Menos de 10 funcionários";
-						break;
-					case 2:
-						numberOfEmployees = "Entre 10 e 100 funcionários";
-						break;
-					case 3:
-						numberOfEmployees = "Mais que 100 funcionários";
-						break;
-				}
+					switch (data.employees) {
+						case 1:
+							numberOfEmployees = "Menos de 10 funcionários";
+							break;
+						case 2:
+							numberOfEmployees = "Entre 10 e 100 funcionários";
+							break;
+						case 3:
+							numberOfEmployees = "Mais que 100 funcionários";
+							break;
+					}
 
-				loader.setAttribute("hidden", true);
-				showModalBody.innerHTML = `
-					<p class="text-gray-700 font-bold fs-6 mb-3">
-						Proprietário:
-						<span class="fw-normal">
-							${data.user.name}
-						</span>
-					</p>
-					<p class="text-gray-700 font-bold fs-6 mb-3">
-						Email do proprietário:
-						<span class="fw-normal">
-							${data.user.email}
-						</span>
-					</p>
-					<p class="text-gray-700 font-bold fs-6 mb-3">
-						Nome da loja:
-						<span class="fw-normal">
-							${data.shop_name}
-						</span>
-					</p>
-					<p class="text-gray-700 font-bold fs-6 mb-3">
-						Ramo:
-						<span class="fw-normal">
-							${data.branch}
-						</span>
-					</p>
-					<p class="text-gray-700 font-bold fs-6 mb-3">
-						Descrição:
-						<span class="fw-normal">
-							${data.description || "Sem descrição"}
-						</span>
-					</p>
-					<p class="text-gray-700 font-bold fs-6 mb-3">
-						Telefone:
-						<span class="fw-normal">
-							${data.number}
-						</span>
-					</p>
-					<p class="text-gray-700 font-bold fs-6 mb-3">
-						Cpf:
-						<span class="fw-normal">
-							${data.cpf}
-						</span>
-					</p>
-					<p class="text-gray-700 font-bold fs-6 mb-3">
-						Logradouro:
-						<span class="fw-normal">
-							${data.address}
-						</span>
-					</p>
-					<p class="text-gray-700 font-bold fs-6 mb-3">
-						Quantidade de funcionários:
-						<span class="fw-normal">
-							${numberOfEmployees}
-						</span>
-					</p>
-					${data.characteristics ? `
+					loader.setAttribute("hidden", true);
+					showModalBody.innerHTML = `
 						<p class="text-gray-700 font-bold fs-6 mb-3">
-							Extras:
+							Proprietário:
+							<span class="fw-normal">
+								${data.user.name}
+							</span>
 						</p>
-					` : ""}
-					${data.characteristics ? data.characteristics
-						.map((characteristic) => {
-							let translatedCharacteristic;
+						<p class="text-gray-700 font-bold fs-6 mb-3">
+							Email do proprietário:
+							<span class="fw-normal">
+								${data.user.email}
+							</span>
+						</p>
+						<p class="text-gray-700 font-bold fs-6 mb-3">
+							Nome da loja:
+							<span class="fw-normal">
+								${data.shop_name}
+							</span>
+						</p>
+						<p class="text-gray-700 font-bold fs-6 mb-3">
+							Ramo:
+							<span class="fw-normal">
+								${data.branch}
+							</span>
+						</p>
+						<p class="text-gray-700 font-bold fs-6 mb-3">
+							Descrição:
+							<span class="fw-normal">
+								${data.description || "Sem descrição"}
+							</span>
+						</p>
+						<p class="text-gray-700 font-bold fs-6 mb-3">
+							Telefone:
+							<span class="fw-normal">
+								${data.number}
+							</span>
+						</p>
+						<p class="text-gray-700 font-bold fs-6 mb-3">
+							Cpf:
+							<span class="fw-normal">
+								${data.cpf}
+							</span>
+						</p>
+						<p class="text-gray-700 font-bold fs-6 mb-3">
+							Logradouro:
+							<span class="fw-normal">
+								${data.address}
+							</span>
+						</p>
+						<p class="text-gray-700 font-bold fs-6 mb-3">
+							Quantidade de funcionários:
+							<span class="fw-normal">
+								${numberOfEmployees}
+							</span>
+						</p>
+						${data.characteristics ? `
+							<p class="text-gray-700 font-bold fs-6 mb-3">
+								Extras:
+							</p>
+						` : ""}
+						${data.characteristics
+							? data.characteristics
+								.map((characteristic) => {
+									let translatedCharacteristic;
 
-							switch (characteristic) {
-								case "1":
-									translatedCharacteristic =
-										"Possui site próprio";
-									break;
-								case "2":
-									translatedCharacteristic = "Possui filiais";
-									break;
-								case "3":
-									translatedCharacteristic =
-										"Possui loja física e virtual";
-									break;
-								case "4":
-									translatedCharacteristic =
-										"Faz entregas à domicílio";
-									break;
-							}
+									switch (characteristic) {
+										case "1":
+											translatedCharacteristic = "Possui site próprio";
+											break;
+										case "2":
+											translatedCharacteristic = "Possui filiais";
+											break;
+										case "3":
+											translatedCharacteristic =
+												"Possui loja física e virtual";
+											break;
+										case "4":
+											translatedCharacteristic =
+												"Faz entregas à domicílio";
+											break;
+									}
 
-							return `
-								<div class="flex items-center fw-normal ms-4">
-									<i class="fa-solid fa-caret-right me-2"></i>
-									${translatedCharacteristic}
-								</div>
-							`;
-						}).join("")
-					: ""}
-				`;
+									return `
+										<div class="flex items-center fw-normal ms-4">
+											<i class="fa-solid fa-caret-right me-2"></i>
+											${translatedCharacteristic}
+										</div>
+									`;
+								})
+								.join("")
+							: ""
+						}
+					`;
+				} catch (error) {
+					console.error(error);
+					errorToast("Erro ao carregar as informações da loja!");
+				}
 			});
 		});
 	}
 
 	// search
-	document.querySelector("#search-input").addEventListener('input', (event) => {
+	document.querySelector("#search-input").addEventListener("input", (event) => {
 		handleShowAllShops(event.target.value);
-	})
+	});
 
 	// clear all data whenever register modal closes
 	document.querySelector("#register-modal").addEventListener("hidden.bs.modal", (event) => {
