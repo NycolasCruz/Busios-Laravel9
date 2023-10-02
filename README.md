@@ -21,8 +21,8 @@
 
 ## 🔧 Características
 
-- [ ] Projeto base finalizado
-- [ ] Cadastro, edição e exclusão de lojas
+- [x] Projeto base finalizado
+- [x] Cadastro, edição e exclusão de lojas
 - [x] Interface limpa e intuitiva
 - [x] Máscaras nos campos
 - [x] Permissões para usuários
