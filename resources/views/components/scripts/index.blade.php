@@ -81,19 +81,28 @@
 	// register / edit form
 	document.querySelector("#register-form").addEventListener("submit", async (event) => {
 		event.preventDefault();
+
 		const formData = new FormData(event.target);
+		const checkboxes = document.querySelectorAll(".form-check-input:checked");
 		let errorMessage = "Erro ao cadastrar a loja!";
+		let characteristics = [];
+
+		checkboxes.forEach((checkbox) => {
+			characteristics.push(checkbox.value);
+		});
 
 		try {
 			if (isPostForm) {
 				await axios.post("{{ route('dashboard.store') }}", formData);
+
 				successToast("Loja cadastrada com sucesso!");
 			} else {
 				errorMessage = "Erro ao editar a loja!";
-				await axios.put(
-					"{{ route('dashboard.update', ':id') }}".replace(":id", id),
-					Object.fromEntries(formData),
-				);
+				await axios.put("{{ route('dashboard.update', ':id') }}".replace(":id", id), {
+					...Object.fromEntries(formData),
+					characteristics,
+				});
+
 				successToast("Loja editada com sucesso!");
 			}
 
@@ -102,7 +111,7 @@
 			isPostForm = false;
 		} catch (error) {
 			console.error(error);
-			errorToast(Object.values(error.response.data.errors)[0][0])
+			errorToast(Object.values(error.response.data.errors)[0][0]);
 		}
 	});
 
@@ -133,8 +142,10 @@
 					inputData[4].value = data.cpf;
 					inputData[5].value = data.address;
 					document.querySelector("#employees").value = data.employees;
-					
-					data.characteristics
+					data.characteristics.forEach((characteristic) => {
+						document.querySelector(`#check-${characteristic}`).checked = true;
+					});
+
 				} catch (error) {
 					console.error(error);
 					errorToast("Erro ao carregar as informações da loja!");
