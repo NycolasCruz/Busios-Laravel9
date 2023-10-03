@@ -21,8 +21,8 @@
 
 ## 🔧 Características
 
-- [ ] Projeto base finalizado
-- [ ] Cadastro, edição e exclusão de lojas
+- [x] Projeto base finalizado
+- [x] Cadastro, edição e exclusão de lojas
 - [x] Interface limpa e intuitiva
 - [x] Máscaras nos campos
 - [x] Permissões para usuários
@@ -64,10 +64,9 @@ Copie o arquivo .env.example para um novo arquivo '.env' e gere a chave encripto
 ````
 php artisan key:generate
 ````
+E por fim faça a conexão com o banco de dados (foi utilizado MySQL como banco, na porta 3388 e host localhost).
 
-E por fim faça a conexão com o banco de dados e rode as migrations:
-
-OBS: Foi utilizado MySQL como banco, na porta 3388 e host localhost.
+E rode as migrations:
 ````
 php artisan migrate
 ````

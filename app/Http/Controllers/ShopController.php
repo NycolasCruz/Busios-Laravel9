@@ -32,6 +32,15 @@ class ShopController extends Controller
 
 	public function getAllData()
 	{
+		$search = request('search');
+
+		if ($search) {
+			return $this->repository
+				->where('shop_name', 'like', '%' . $search . '%')
+				->get()
+				->load('user');
+		}
+
 		return $this->repository->all()->load('user');
 	}
 
@@ -39,17 +48,19 @@ class ShopController extends Controller
 	{
 		$data = $this->repository->findOrFail($shop_id);
 
-		$shopOwner = $this->repository
-			->with('user')
-			->where('id', $data->id)
-			->first();
+		$shopOwner = $this->repository->with('user')->where('id', $data->id)->first();
 
 		return response()->json($shopOwner);
 	}
 
-	public function update(UpdateShopRequest $request)
+	public function update(UpdateShopRequest $request, $shop_id)
 	{
-		$data = $this->repository->findOrFail($request->shop_id)->update($request->all());
+		$data = $this->repository->findOrFail($shop_id)->update($request->all());
 		return response()->json($data);
+	}
+
+	public function destroy($shop_id)
+	{
+		return $this->repository->findOrFail($shop_id)->delete();
 	}
 }

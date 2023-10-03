@@ -9,28 +9,28 @@ use Illuminate\Foundation\Auth\User;
 
 class Shop extends Model
 {
-    use HasFactory;
+	use HasFactory;
 
-    protected $table = 'shop';
+	protected $table = 'shop';
 
-    protected $casts = [
-        'characteristics' => 'array'
-    ];
+	protected $casts = [
+		'characteristics' => 'array'
+	];
 
-    protected $fillable = [
-        'shop_name',
-        'branch',
-        'description',
-        'cpf',
-        'number',
-        'address',
-        'employees',
-        'characteristics',
-        'user_id'
-    ];
+	protected $fillable = [
+		'shop_name',
+		'branch',
+		'description',
+		'cpf',
+		'number',
+		'address',
+		'employees',
+		'characteristics',
+		'user_id',
+	];
 
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
+	public function user(): BelongsTo
+	{
+		return $this->belongsTo(User::class);
+	}
 }
